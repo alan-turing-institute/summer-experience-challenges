@@ -1,10 +1,16 @@
-##  Template
+# Cryptography
 
-**Summary:** _Short description of what this challenge is about and what participants will do_
+## Summary
 
-**Learning themes and outcomes:** _Data science/D&S-relevant topics participants will learn about_
+_Short description of what this challenge is about and what participants will do_
 
-**Sessions:** _Rough outline of what participants/facilitators can do in each of these four sessions:_
+## Learning themes and outcomes
+
+_Data science/D&S-relevant topics participants will learn about_
+
+## Sessions
+
+Rough outline of what participants/facilitators can do in each of these four sessions:_
 
 - 5 min video pitch - Mon
 - Introduction (0.5 hours) - Thurs
@@ -12,13 +18,30 @@
 - Main challenge session 2 (1.5 hours) - Fri
 - Challenge wrap-up/presentation preparation (students will be asked to present what they did) (1 hour) - Fri
 
-**Opportunities for Collaboration:** _Summary of how teamwork and collaboration can feature in this challenge_
+## Opportunities for Collaboration
 
-**Development plan:** _Requirements and plans for developing the challenge - what needs to be done_
+_Summary of how teamwork and collaboration can feature in this challenge_
 
-**Development time:** _An estimate of how long it will take to prepare the challenge_
+## Development plan
 
-**Delivery plan:** _Requirements and plans for delivering the challenge during the week - what will students need, what will facilitators/helpers need to do etc._
+_Requirements and plans for developing the challenge - what needs to be done_
 
-**Questions/risks:** _Any outstanding questions or potential risks in preparing/delivering the challenge (e.g. is there anything that might cause the development to take much longer, or anything that could compromise the delivery of the challenge on the day?)_
+Tech needed: 
 
+ - Website providing educational resources / animations / examples of en-/decryption algorithms
+ - For the games: message passing between laptops (some kind of web server, it doesn't have to be overly complicated, as the messages themselves don't have to be private)
+ - Facilitators need scripts / some way of 'quickly' break codes (to verify whether the kids are doing it correctly).
+
+## Development time
+
+_An estimate of how long it will take to prepare the challenge_
+
+I suspect at least 1 FTE-month
+
+## Delivery plan
+
+_Requirements and plans for delivering the challenge during the week - what will students need, what will facilitators/helpers need to do etc._
+
+## Questions/risks
+
+_Any outstanding questions or potential risks in preparing/delivering the challenge (e.g. is there anything that might cause the development to take much longer, or anything that could compromise the delivery of the challenge on the day?)_
