@@ -1,0 +1,32 @@
+project:
+  type: book
+
+book:
+  title: "Cryptography Challenge"
+  author: "Jonathan Yong"
+  date: "2023-04-24"
+  chapters:
+    - index.qmd
+    - part: symmetric.qmd
+      chapters:
+        - caesar.qmd
+        - monosub.qmd
+        - vigenere.qmd
+    - part: asymmetric.qmd
+      chapters:
+        - rsa.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    include-in-header:
+        - text: |
+            <script src="https://cdn.plot.ly/plotly-2.20.0.min.js" charset="utf-8"></script>
+  pdf:
+    documentclass: scrreprt
+
+execute:
+    echo: false

@@ -1,0 +1,11 @@
+.is_code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.italic {
+    font-style: italic;
+}

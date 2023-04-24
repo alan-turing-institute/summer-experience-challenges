@@ -1,0 +1,116 @@
+---
+title: "Caesar cipher"
+format: html
+---
+
+## Introduction
+
+The Caesar cipher is the most basic type of encryption that we will look at.
+It is extraordinarily simple to use: each character of the alphabet is simply mapped to another character a fixed number of alphabet away.
+
+For example, using a shift of 2, A would be turned into C, B into D, and so on, all the way until the end where X is turned into Z, Y back into A, and Z into B.
+
+You can try out the Caesar cipher with this simple form here:
+
+<script type="module">
+function cleanText() {
+    // Capitalise all letters and remove all non-letters
+    const input = document.getElementById("input").value;
+    const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
+    document.getElementById("input").value = cleaned;
+}
+function encrypt(n) {
+    // Encrypt the text
+    console.log("1");
+    const input = document.getElementById("input").value;
+    console.log("2");
+    let output = [];
+    console.log("3");
+    for (let i = 0; i < input.length; i++) {
+        const c = input.charCodeAt(i);
+        const c_new = (c - 65 + n) % 26 + 65;  // 65 = 'A'
+        output.push(String.fromCharCode(c_new));
+    }
+    console.log("4");
+    document.getElementById("output").value = output.join("");
+    console.log("5");
+}
+
+function en_or_decrypt() {
+    const n = parseInt(document.getElementById("shift").value);
+    console.log("Got " + n);
+    if (document.getElementById("encrypt").checked) {
+        document.getElementById("input").placeholder = "Enter plain text here..."
+        document.getElementById("output").placeholder = "Cipher text will be displayed here..."
+        encrypt(n);
+    } else {
+        document.getElementById("input").placeholder = "Enter cipher text here..."
+        document.getElementById("output").placeholder = "Plain text will be displayed here..."
+        encrypt(26 - n);
+    }
+}
+function swapText() {
+    console.log("swapping");
+    const input = document.getElementById("input").value;
+    const output = document.getElementById("output").value;
+    console.log("swapping done");
+    document.getElementById("input").value = output;
+    en_or_decrypt();
+}
+document.getElementById("input").addEventListener("input", cleanText);
+document.getElementById("input").addEventListener("input", en_or_decrypt);
+document.getElementById("shift").addEventListener("change", en_or_decrypt);
+document.getElementById("encrypt").addEventListener("change", swapText);
+document.getElementById("decrypt").addEventListener("change", swapText);
+en_or_decrypt()
+</script>
+
+<div>
+<input type="radio" id="encrypt" name="mode" value="Encrypt" checked="checked" />
+<label for="encrypt">Encrypt</label>
+<br />
+<input type="radio" id="decrypt" name="mode" value="Decrypt" />
+<label for="decrypt">Decrypt</label>
+<br />
+Shift:
+<select id="shift">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2" selected="selected">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+    <option value="16">16</option>
+    <option value="17">17</option>
+    <option value="18">18</option>
+    <option value="19">19</option>
+    <option value="20">20</option>
+    <option value="21">21</option>
+    <option value="22">22</option>
+    <option value="23">23</option>
+    <option value="24">24</option>
+    <option value="25">25</option>
+</select>
+<br />
+<textarea id="input" rows=6 class="fullwidth is_code" spellcheck=false></textarea>
+<textarea id="output" rows=6 class="fullwidth is_code" disabled="true" spellcheck=false></textarea>
+</div>
+
+
+## Breaking a Caesar code
+
+Since there are only 25 useful possibilities for encoding, it is almost trivial to break a Caesar code.
+You can perform a **brute-force attack**, which means trying each possibility until you find one that gives the correct text.
+For example, use the playground above to figure out this hidden message:
+
+```HIDDENMESSAGE```

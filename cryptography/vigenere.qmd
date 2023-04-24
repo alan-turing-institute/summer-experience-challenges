@@ -1,0 +1,29 @@
+# Vigenère cipher
+
+Copilot, over to you:
+
+The Vigenère cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It employs a form of polyalphabetic substitution. A [Vigenère square](https://en.wikipedia.org/wiki/Vigen%C3%A8re_square) or Vigenère table is a `26 × 26` square of letters, used to encrypt a message. It consists of the alphabet written out 26 times in different rows, each alphabet shifted cyclically to the left compared to the previous alphabet, corresponding to the 26 possible Caesar ciphers. At different points in the encryption process, the cipher uses a different alphabet from one of the rows. The alphabet used at each point depends on a repeating keyword.
+
+```python
+vigenere = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+def vigenere(key, text, mode):
+    key = key.upper()
+    text = text.upper()
+    key_len = len(key)
+    text_len = len(text)
+    key_index = 0
+    result = ""
+    for i in range(text_len):
+        if text[i] in vigenere:
+            if mode == "encrypt":
+                result += vigenere[(vigenere.index(text[i]) + vigenere.index(key[key_index])) % 26]
+            elif mode == "decrypt":
+                result += vigenere[(vigenere.index(text[i]) - vigenere.index(key[key_index])) % 26]
+            key_index += 1
+            if key_index == key_len:
+                key_index = 0
+        else:
+            result += text[i]
+    return result
+```

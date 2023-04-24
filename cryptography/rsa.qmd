@@ -1,0 +1,22 @@
+# RSA scheme
+
+The RSA scheme is a public-key cryptosystem. It is based on the fact that it is easy to multiply two large prime numbers, but it is difficult to factorize a large number. The RSA scheme is based on the following assumptions:
+
+1. It is easy to multiply two large prime numbers.
+2. It is difficult to factorize a large number.
+3. It is easy to compute the remainder of a large number when divided by a small number.
+4. It is difficult to compute the remainder of a large number when divided by a large number.
+5. It is easy to compute the remainder of a large number when divided by a small number.
+6. It is difficult to compute the remainder of a large number when divided by a large number.
+7. It is easy to compute the remainder of a large number when divided by a small number.
+8. It is difficult to compute the remainder of a large number when divided by a large number.
+
+It was proven that the RSA scheme is secure if the following conditions are met:
+
+1. The prime numbers p and q are chosen at random.
+2. The product n = pq is a large number.
+3. The public key is (n, e) and the private key is (n, d).
+4. The public key is published.
+5. The private key is kept secret.
+6. The message m is an integer such that 0 < m < n.
+7. The ciphertext c is an integer such that 0 < c < n.

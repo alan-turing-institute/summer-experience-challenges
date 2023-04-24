@@ -1,0 +1,9 @@
+# Overview {.unnumbered}
+
+In this challenge, you and your team will learn about codes and ciphers: ways of scrambling a message such that they cannot be read by unintended people.
+
+**On Thursday**, we'll be going through *symmetric ciphers*: these are ciphers where both you and the intended recipient share the same piece of knowledge (a *key*), which is used to both encode and decode the message.
+In particular, we'll spend time on *substitution ciphers*, where each letter of the alphabet is replaced with another according to some rule.
+
+**On Friday**, we'll talk about *asymmetric ciphers*, where you and the recipient do not actually share a key.
+Although this might sound like a contradiction, this *is* possible, and is really important for the modern Internet, as you don't want to be sending your key over the Internet where anybody can read it!
