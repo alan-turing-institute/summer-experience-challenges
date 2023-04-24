@@ -1,8 +1,20 @@
-##  Template
+##  The Vaccinating Drone
 
-**Summary:** _Short description of what this challenge is about and what participants will do_
+*Taking inspiration from the great MIT Media Lab [Ethics for AI course](https://docs.google.com/document/d/1e9wx9oBg7CR0s5O7YnYHVmX7H7pnITfoDxNdrSGkp60/view).*
 
-**Learning themes and outcomes:** _Data science/D&S-relevant topics participants will learn about_
+**Summary:** The challenge requires the students to develop an AI system for a fictional vaccinating drone. We tell the students there's been a viral outbreak that's targeting dogs and cats, and the government wants to deploy drones that locate stray dogs and cats on the streets for vaccination.However, the vaccines for dogs and cats *are different*, and the system should be able to distinguish between them using its camera.
+
+![](https://i.imgur.com/6tv4PL1.png)
+
+
+**Learning themes and outcomes:** 
+
+- Understand how a classification model works, using *training data* within an 
+*algorithm* to *predict* the label 
+of instances not seen before.
+- Understand the impact of biases in training data in prediction quality, and how it can impact our society.
+- Describe what engineers can do to mitigate the effects of biased systems.
+
 
 **Sessions:** _Rough outline of what participants/facilitators can do in each of these four sessions:_
 
