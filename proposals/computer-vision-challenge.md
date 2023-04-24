@@ -23,31 +23,38 @@ We start by explaining the basics of supervised learning to the students, and sh
 
 
 ***The Vaccinating Drone Warm-Up (1.5 hours - Thursday):***
-To motivate the scenario: we provide the students with three small datasets: 1) training dataset (15 cats, 7 dogs), 2) testing dataset (5 cats, 5 dogs), and a 3) supplementary dataset (8 extra dogs). When training only using the training dataset, the students will see that the model performs very badly with dogs, which means that many dogs will receive the wrong vaccine. **We can use this to present the notions of bias in machine learning**. We then  show that we can address bias by increasing the quality of our data: using the supplementary dataset, the model performs better (but still makes some mistakes).
+To motivate the scenario: we provide the students with three small datasets: 1) training dataset (15 cats, 7 dogs), 2) testing dataset (5 cats, 5 dogs), and a 3) supplementary dataset (8 extra dogs). When training only using the training dataset, the students will see that the model performs very badly with dogs, which means that many dogs will receive the wrong vaccine. **We can use this outcome to present the notions of bias in machine learning**. We then  show that we can address bias by increasing the quality of our data: using the supplementary dataset, the model performs better (but still makes some mistakes).
 
 ![](https://i.imgur.com/6tv4PL1.png)
 
 
 ***The Vaccinating Drone Challenge (1.5 hours - Friday):***
-Now it comes the competition: the students need to build a classifier, using the Teachable Machine Platform, that distinguishes between dogs and cats. Their models will be evaluated using a secret testing dataset, that will be way more challenging than the data we provided before (hairless cats and dogs, photos from weird angles and noisy backgrounds). Also, each team will provide two images for evaluation, that ideally should be handled well by their models but can challenge the models from other teams.
+Now it comes the competition: the students need to build a classifier, using the Teachable Machine Platform, that distinguishes between dogs and cats. Their models will be evaluated using a secret testing dataset, that will be way more challenging than the data we provided before (hairless cats and dogs, photos from weird angles and noisy backgrounds). 
 
-The task for the students is to gather a data from the internet that reflects the diversity of dogs and cats. The competition evaluation metric can be the number of vaccinated dogs and cats.
+![](https://i.imgur.com/ON8hucF.jpeg)
 
-![](https://files.slack.com/files-pri/T03KWED6CG5-F053SKT0935/image.png)
+Also, each team will provide some images for evaluation, that ideally should be handled well by their models but can challenge the models from other teams. The task for the students is to gather a data from the internet that reflects the diversity of dogs and cats. The competition evaluation metric can be the number of vaccinated dogs and cats.
 
-- 5 min video pitch - Mon
-- Introduction (0.5 hours) - Thurs
-- Main challenge session 1 (1.5 hours) - Thurs
-- Main challenge session 2 (1.5 hours) - Fri
-- Challenge wrap-up/presentation preparation (students will be asked to present what they did) (1 hour) - Fri
+***Challenge Wrap-Up (1 hour - Friday):*** The students do a short 1-slide presentation of their rationale gathering data for their model, explaining how they are addressing data bias. After their presentation, their model is evaluated over the secret testing dataset.
 
 **Opportunities for Collaboration:** _Summary of how teamwork and collaboration can feature in this challenge_
 
-**Development plan:** _Requirements and plans for developing the challenge - what needs to be done_
+**Development plan:** 
+ - Prepare the script, slides, and videos required per session.
+ - Prepare the secret challenge dataset (hairless cats and dogs, dogs that look like cats, blurred pictures, cropped images, and weird angles like fisheye, disabled dogs and cats, cartoon style).
+ - Extra challenge, in case students finish early.
 
 **Development time:** _An estimate of how long it will take to prepare the challenge_
 
-**Delivery plan:** _Requirements and plans for delivering the challenge during the week - what will students need, what will facilitators/helpers need to do etc._
+**Delivery plan:** 
+ - 2+ Turing people to present and supervise, depending on the number of students.
+ - Internet connection (with firewalls allowing the Teachable Machines website)
+ - Laptops with decent webcams. One per team would be enough 
+ 
+ *This challenge does not require any programming skills, if that's a factor going into group making.*
 
-**Questions/risks:** _Any outstanding questions or potential risks in preparing/delivering the challenge (e.g. is there anything that might cause the development to take much longer, or anything that could compromise the delivery of the challenge on the day?)_
+**Questions/risks:** 
 
+- Where are they advertising the summer school programme? 
+- What's the background of the students?
+- How many students there will be, and what is the group size?
