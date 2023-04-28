@@ -1,29 +1,54 @@
 # Vigenère cipher
 
-Copilot, over to you:
+## Introduction
 
-The Vigenère cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It employs a form of polyalphabetic substitution. A [Vigenère square](https://en.wikipedia.org/wiki/Vigen%C3%A8re_square) or Vigenère table is a `26 × 26` square of letters, used to encrypt a message. It consists of the alphabet written out 26 times in different rows, each alphabet shifted cyclically to the left compared to the previous alphabet, corresponding to the 26 possible Caesar ciphers. At different points in the encryption process, the cipher uses a different alphabet from one of the rows. The alphabet used at each point depends on a repeating keyword.
+TODO: TEXT
 
-```python
-vigenere = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+Key: <input type="text" id="key-encode" size=10 spellcheck=false class="is_code">
+<textarea id="input-encode" rows=6 class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck=false></textarea>
+<textarea id="output-encode" rows=6 class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck=false></textarea>
+<script type="module">
+{{< include vigenere_encode.js >}}
+</script>
 
-def vigenere(key, text, mode):
-    key = key.upper()
-    text = text.upper()
-    key_len = len(key)
-    text_len = len(text)
-    key_index = 0
-    result = ""
-    for i in range(text_len):
-        if text[i] in vigenere:
-            if mode == "encrypt":
-                result += vigenere[(vigenere.index(text[i]) + vigenere.index(key[key_index])) % 26]
-            elif mode == "decrypt":
-                result += vigenere[(vigenere.index(text[i]) - vigenere.index(key[key_index])) % 26]
-            key_index += 1
-            if key_index == key_len:
-                key_index = 0
-        else:
-            result += text[i]
-    return result
-```
+
+## Finding the key length
+
+Luckily, the Vigenère cipher still contains a point of weakness that we can use to attack it: the *periodicity* of the key, or in other words, the fact that it repeats itself every $n$ characters.
+
+This means that, if the key length is 3, then the 1st, 4th, 7th, ... characters are encoded in the same way, and we can tackle it just like we did for the simple ciphers seen already.
+
+But, to do this, we first need to know the key length!
+
+To do this, we need to understand another fundamental property of English text: the *index of coincidence* (IoC).
+If we have a piece of text and randomly pull two letters out of it, the IoC tells us how likely it is that these two letters are the same.
+
+Mathematically, we can define the IoC as:
+
+$$\text{IoC} = 26 \cdot \frac{n_\text{A}(n_\text{A} - 1) + n_\text{B}(n_\text{B} - 1) + \cdots + n_\text{Z}(n_\text{Z} - 1)}{N(N - 1)},$$
+
+where $n_i$ is the number of times the letter $i$ appears in the text, and $N$ is the length of the text.
+
+> **Question:** Show that if all letters have the same probability of occurring, then the IoC is equal to 1. (Assume that the text is long enough, such that the $n_i$'s are much larger than 1.)
+
+Because letters are not uniformly distributed in English (recall that 'E's were particularly common), this quantity is not equal to 1 for typical English texts.
+
+Have a play around with this plot, and find out what the IoC is for some typical text.
+The same samples as before are included:
+
+<div id="buttons" style="margin: auto; display: flex; justify-content: center">
+Samples: 
+<input type="button" id="fillpnp" value="Pride and Prejudice" class="italic" />
+<input type="button" id="fillbm" value="Bee Movie" class="italic" />
+<input type="button" id="filludhr" value="Universal Declaration of Human Rights" class="italic" />
+</div>
+<div id="container" style="display: flex">
+<div id="content" style="width: 40%">
+<textarea rows=10 placeholder="Paste text to analyse here..." class="fullwidth is_code" id="text_analysis" spellcheck=false></textarea>
+</div>
+<div id="plot" style="width: 60%"></div>
+</div>
+<script type="module">
+{{< include samples.js >}}
+{{< include ioc.js >}}
+</script>

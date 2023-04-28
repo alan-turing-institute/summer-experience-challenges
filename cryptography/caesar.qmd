@@ -13,56 +13,7 @@ For example, using a shift of 2, A would be turned into C, B into D, and so on, 
 You can try out the Caesar cipher with this simple form here:
 
 <script type="module">
-function cleanText() {
-    // Capitalise all letters and remove all non-letters
-    const input = document.getElementById("input").value;
-    const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
-    document.getElementById("input").value = cleaned;
-}
-function encrypt(n) {
-    // Encrypt the text
-    console.log("1");
-    const input = document.getElementById("input").value;
-    console.log("2");
-    let output = [];
-    console.log("3");
-    for (let i = 0; i < input.length; i++) {
-        const c = input.charCodeAt(i);
-        const c_new = (c - 65 + n) % 26 + 65;  // 65 = 'A'
-        output.push(String.fromCharCode(c_new));
-    }
-    console.log("4");
-    document.getElementById("output").value = output.join("");
-    console.log("5");
-}
-
-function en_or_decrypt() {
-    const n = parseInt(document.getElementById("shift").value);
-    console.log("Got " + n);
-    if (document.getElementById("encrypt").checked) {
-        document.getElementById("input").placeholder = "Enter plain text here..."
-        document.getElementById("output").placeholder = "Cipher text will be displayed here..."
-        encrypt(n);
-    } else {
-        document.getElementById("input").placeholder = "Enter cipher text here..."
-        document.getElementById("output").placeholder = "Plain text will be displayed here..."
-        encrypt(26 - n);
-    }
-}
-function swapText() {
-    console.log("swapping");
-    const input = document.getElementById("input").value;
-    const output = document.getElementById("output").value;
-    console.log("swapping done");
-    document.getElementById("input").value = output;
-    en_or_decrypt();
-}
-document.getElementById("input").addEventListener("input", cleanText);
-document.getElementById("input").addEventListener("input", en_or_decrypt);
-document.getElementById("shift").addEventListener("change", en_or_decrypt);
-document.getElementById("encrypt").addEventListener("change", swapText);
-document.getElementById("decrypt").addEventListener("change", swapText);
-en_or_decrypt()
+{{< include caesar.js >}}
 </script>
 
 <div>

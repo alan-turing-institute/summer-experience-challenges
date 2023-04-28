@@ -17,7 +17,46 @@ For example, A can be mapped to B, but B can be mapped to Q, and C to I, and so 
 
 > **Question:** How many possible encryptions are there? Would a brute-force attack on such a cipher be sensible?
 
-TODO: JavaScript block.
+Try encoding a piece of text by choosing your own cipher.
+You can either enter each character of the cipher manually, or use the 'randomise' button to generate a random cipher.
+
+<div id="random" style="display: flex; justify-content: center">
+<input type="button" id="random-encode" value="Choose a random encoding" class="italic" />
+</div>
+<div id="letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">
+<div id="a">A→ <input type="text" id="encode-a" size=1></div>
+<div id="b">B→ <input type="text" id="encode-b" size=1></div>
+<div id="c">C→ <input type="text" id="encode-c" size=1></div>
+<div id="d">D→ <input type="text" id="encode-d" size=1></div>
+<div id="e">E→ <input type="text" id="encode-e" size=1></div>
+<div id="f">F→ <input type="text" id="encode-f" size=1></div>
+<div id="g">G→ <input type="text" id="encode-g" size=1></div>
+<div id="h">H→ <input type="text" id="encode-h" size=1></div>
+<div id="i">I→ <input type="text" id="encode-i" size=1></div>
+<div id="j">J→ <input type="text" id="encode-j" size=1></div>
+<div id="k">K→ <input type="text" id="encode-k" size=1></div>
+<div id="l">L→ <input type="text" id="encode-l" size=1></div>
+<div id="m">M→ <input type="text" id="encode-m" size=1></div>
+<div id="n">N→ <input type="text" id="encode-n" size=1></div>
+<div id="o">O→ <input type="text" id="encode-o" size=1></div>
+<div id="p">P→ <input type="text" id="encode-p" size=1></div>
+<div id="q">Q→ <input type="text" id="encode-q" size=1></div>
+<div id="r">R→ <input type="text" id="encode-r" size=1></div>
+<div id="s">S→ <input type="text" id="encode-s" size=1></div>
+<div id="t">T→ <input type="text" id="encode-t" size=1></div>
+<div id="u">U→ <input type="text" id="encode-u" size=1></div>
+<div id="v">V→ <input type="text" id="encode-v" size=1></div>
+<div id="w">W→ <input type="text" id="encode-w" size=1></div>
+<div id="x">X→ <input type="text" id="encode-x" size=1></div>
+<div id="y">Y→ <input type="text" id="encode-y" size=1></div>
+<div id="z">Z→ <input type="text" id="encode-z" size=1></div>
+</div>
+<div id="remaining"></div>
+<textarea id="input-encode" rows=6 class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck=false></textarea>
+<textarea id="output-encode" rows=6 class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck=false></textarea>
+<script type="module">
+{{< include monosub_encode.js >}}
+</script>
 
 ## Frequency analysis
 
@@ -26,7 +65,8 @@ It relies on the fact that certain letters of the alphabet are much more common 
 
 Try pasting some text into the box below (or clicking the samples), and observe the frequency distribution of the letters in the plot that appears:
 
-<div id="buttons" style="display: flex; justify-content: center">
+<div id="buttons" style="margin: auto; display: flex; justify-content: center">
+Samples: 
 <input type="button" id="fillpnp" value="Pride and Prejudice" class="italic" />
 <input type="button" id="fillbm" value="Bee Movie" class="italic" />
 <input type="button" id="filludhr" value="Universal Declaration of Human Rights" class="italic" />
@@ -38,6 +78,7 @@ Try pasting some text into the box below (or clicking the samples), and observe 
 <div id="plot" style="width: 60%"></div>
 </div>
 <script type="module">
+{{< include samples.js >}}
 {{< include monosub_freq.js >}}
 </script>
 
@@ -47,8 +88,18 @@ Try pasting some text into the box below (or clicking the samples), and observe 
 > If you speak a foreign language, try analysing some text in that language to observe how the distribution might change. (Sadly, the box above ignores all accented characters! The schemes we're discussing today can be adapted to work on non-English letters, but today we'll focus only on the 26 English alphabet.)
 
 In English, the most common letter is by far 'E'.
-If we perform the same analysis on the cipher text, and find that 'R' is the most common letter, then it's likely that 'R' corresponds to 'E' in the plain text.
+If we perform the same analysis on the cipher text, and find that 'R' is the most common letter, then it's likely that 'R' decodes to 'E' in the plain text.
 
 Once we have a match, we can fill it in and try to solve the rest in an iterative manner.
 
-TODO: JavaScript block.
+Another useful piece of information you can get from the cipher text is to find repeated sequences of letters.
+For example, once you find the letter for 'E', it makes sense to look for potential spots where 'THE' might be encoded.
+
+## Decryption
+
+With the above information, you should be able to have a go at decrypting these texts:
+
+**TODO** JavaScript block.
+Essentially: the reverse of the first block, where the cipher text is preselected from one of a few examples, and then you can key in the decryption letter by letter to reveal the plain text.
+There should also be a plot showing the distribution of the letters.
+The plain text should have '?' in places where the decoding is not yet known.
