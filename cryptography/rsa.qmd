@@ -1,22 +1,107 @@
 # RSA scheme
 
-The RSA scheme is a public-key cryptosystem. It is based on the fact that it is easy to multiply two large prime numbers, but it is difficult to factorize a large number. The RSA scheme is based on the following assumptions:
+The RSA scheme is one of the most important asymmetric-key systems, and is widely used as part of the steps in encrypting Internet communications.
 
-1. It is easy to multiply two large prime numbers.
-2. It is difficult to factorize a large number.
-3. It is easy to compute the remainder of a large number when divided by a small number.
-4. It is difficult to compute the remainder of a large number when divided by a large number.
-5. It is easy to compute the remainder of a large number when divided by a small number.
-6. It is difficult to compute the remainder of a large number when divided by a large number.
-7. It is easy to compute the remainder of a large number when divided by a small number.
-8. It is difficult to compute the remainder of a large number when divided by a large number.
+The RSA scheme is named after the surnames of its three inventors: Ron Rivest, Adi Shamir, and Leonard Adleman.
+Although they were the first to publicly describe the RSA system in 1977, an equivalent algorithm had in fact been discovered four years ago by Clifford Cocks, who worked at GCHQ.
 
-It was proven that the RSA scheme is secure if the following conditions are met:
+## Introduction
 
-1. The prime numbers p and q are chosen at random.
-2. The product n = pq is a large number.
-3. The public key is (n, e) and the private key is (n, d).
-4. The public key is published.
-5. The private key is kept secret.
-6. The message m is an integer such that 0 < m < n.
-7. The ciphertext c is an integer such that 0 < c < n.
+The RSA scheme revolves around modular arithmetic, which we touched briefly on yesterday.
+
+Specifically, it assumes that the message you want to transmit is first translated into an integer $m$ (which stands for message).
+
+> **Question:** Can you come up with a way of translating a plain-text message into an integer?
+
+1. The *encoding* step involves the sender taking the message $m$ and raising it to a power $e$ (for 'encryption'), modulo $n$:
+
+    $$c \equiv m^e \mod n$$
+
+    where $c$ is the *ciphertext*.
+    The combination of $e$ and $n$ forms the *public key* of the RSA scheme.
+
+2. This ciphertext is then passed to the recipient, who then *decodes* it by raising it to a power $d$ (for 'decryption'), modulo $n$:
+
+    $$m \equiv c^d \mod n.$$
+
+    $d$ forms part of the *private key*, which only the recipient is allowed to know.
+
+The two equations above imply together that:
+
+$$m \equiv (m^e)^d \mod n,$$
+
+for all messages $m$.
+
+In general, if we just pick any random numbers $e$, $d$, and $n$, this will not be true!
+The RSA scheme works because these numbers are specifically chosen in a way that not only satisfies the equation above, but is also difficult to reverse-engineer.
+
+For example, if you were an attacker and you knew the public key (i.e. $e$ and $n$), it's still extremely difficult to find the correct value of $d$ to correctly decode the message.
+
+**TODO:** JavaScript demo.
+
+## Key generation
+
+Because the RSA scheme is asymmetric, it only works for communication in one way.
+The *recipient* is responsible for generating the three integers $e$, $d$, and $n$.
+They do so using the following algorithm:
+
+1. Choose two prime numbers $p$ and $q$, and set $n = pq$.
+
+   For example, if we choose $p = 5$ and $q = 13$, then $n = 65$.
+
+2. Calculate the *totient function*, defined by $\phi = (p - 1)(q - 1)$. (That symbol is the Greek letter phi.) In this case, we would have $\phi = 4 \times 12 = 48$.
+
+   Then, choose an integer $e$ which is smaller than $\phi$ and has no common prime factors with $\phi$. Here, the only prime factors of $48$ are $2$ and $3$: so, a valid choice would be $e = 5$.
+
+   $e$ and $n$ are part of the public key, and can be shared with the sender.
+
+3. Finally, choose $d$ such that $de \equiv 1 \bmod\phi$.
+
+   In this case, we need $d \times 5 \equiv 1 \bmod 48$: the smallest value of $d$ for which this holds true is $d = 29$. (Can you verify this?)
+
+   $d$ is part of the private key, and must be kept secret.
+
+
+This setup ensures that regardless of what message $m$ is being sent, $$(m^e)^d \equiv m \bmod n,$$ as required by the RSA algorithm.
+
+Try this out using the interactive form here:
+
+- **Step 1**: Choose $p$ and $q$ (must be prime)
+<div class="rsa-grid-1">
+<div id="rsa-pq-in">
+$p$: <input type="text" id="rsa-p" value="5" size="3" />
+$q$: <input type="text" id="rsa-q" value="13" size="3" />
+</div>
+<div id="rsa-pq-out"></div>
+</div>
+
+- **Step 2**: Choose $e$ (encryption key: must be smaller than $\phi$, and cannot share prime factors with $\phi$)
+<div class="rsa-grid-1">
+<div id="rsa-e-in">
+$e$: <input type="text" id="rsa-e" value="5" size="3" />
+</div>
+<div id="rsa-e-out"></div>
+</div>
+
+- **Step 3**: Choose $d$ (decryption key: must satisfy $de \equiv 1 \bmod \phi$)
+<div class="rsa-grid-1">
+<div id="rsa-d-in">
+$d$: <input type="text" id="rsa-d" value="29" size="3" />
+</div>
+<div id="rsa-d-out"></div>
+</div>
+
+- **Step 4**: Choose $m$ (message: can be anything!)
+<div class="rsa-grid-1">
+<div id="rsa-m-in">
+$m$: <input type="text" id="rsa-m" value="7" size="3" />
+</div>
+<div id="rsa-m-out"></div>
+</div>
+
+<script type="module">
+{{< include rsa_encode.js >}}
+</script>
+
+
+**TODO:** Another page on proving why this works (using Fermat's little theorem), in case there are very advanced students who are bored by this point.

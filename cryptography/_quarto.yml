@@ -3,8 +3,8 @@ project:
 
 book:
   title: "Cryptography Challenge"
-  author: "Jonathan Yong"
-  date: "2023-04-24"
+  author: "The Alan Turing Institute"
+  date: "2023-05-02"
   chapters:
     - index.qmd
     - part: symmetric.qmd
@@ -12,6 +12,7 @@ book:
         - caesar.qmd
         - monosub.qmd
         - vigenere.qmd
+        - modular1.qmd
     - part: asymmetric.qmd
       chapters:
         - rsa.qmd

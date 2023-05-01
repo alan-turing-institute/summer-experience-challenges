@@ -1,0 +1,76 @@
+# Modular arithmetic I
+
+Before wrapping up today's activities, we'll take a brief look at *modular arithmetic*.
+This is the same thing as regular arithmetic, but with one twist: we only care about the remainder when dividing by some number $n$.
+
+Instead of talking about numbers, we talk about numbers *modulo* $n$.
+For example, $5 \bmod 3 = 2$, because the remainder when dividing $5$ by $3$ is $2$.
+But also, $8 \bmod 3 = 2$; so $5$ and $8$ are equivalent, or *congruent*, modulo $3$.
+
+Essentially, $a$ and $b$ are congruent modulo $n$ if $a$ and $b$ have the same remainder when divided by $n$.
+
+This is often denoted as:
+
+$$5 \equiv 8 \bmod 3.$$
+
+We can insert any other expressions we like in here, as well:
+
+$$1 + 4 \equiv 4 \times 2 \bmod 3.$$
+
+Another way of thinking about this is that integers 'wrap around' back to 0 after reaching $n - 1$.
+So, when counting *modulo* $3$, instead of $$0, 1, 2, 3, 4, 5, 6, 7, 8, \ldots$$ we have: $$0, 1, 2, 0, 1, 2, 0, 1, 2, \ldots$$
+
+Because $5$ and $8$ both 'become' the same number, they are congruent modulo $3$.
+
+> **Question:** Consider some other areas in life where we use modular arithmetic without thinking about it.
+>
+> What day of the week will it be, five days from now?
+>
+> If you need to wake up at 7 am and you need 8 hours' sleep, what time do you need to sleep?
+>
+> Can you express these relations using modular arithmetic?
+
+
+## Calculator
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+<script type="text/javascript">
+math.config({number: 'BigNumber', precision: 64, epsilon: 1e-60});
+</script>
+<div id="calculator">
+<input type="text" id="expr" placeholder="Enter expression here..." size=40 spellcheck=false />
+mod
+<input type="text" id="modulus" placeholder="Modulus" size=10 spellcheck=false />
+</div>
+<div>Answer: <span id="answer" style="font-weight: bold"></span></div>
+<script type="module">
+{{< include calculator.js >}}
+</script>
+
+## Exercises
+
+Suppose that $a \equiv p \bmod n$ and $b \equiv q \bmod n$.
+Prove the following statements:
+
+1. $(a + b) \equiv (p + q) \bmod n$.
+1. $(ab) \equiv (pq) \bmod n$.
+1. $(a^m) \equiv (p^m) \bmod n$, for all integers $m$.
+
+<!-- Note: the last one requires proof by induction, or a simplified form thereof. -->
+
+These equalities make it far easier to perform some calculations.
+For example, what is $33^{594} \bmod{32}$?
+
+We might first think about calculating $33$ to the power of $594$, and *then* dividing that by $32$ to find the remainder.
+But if we notice that $33 \equiv 1 \bmod{32}$, then we can see that
+
+$$33^{594} \equiv 1^{594} \equiv 1 \bmod{32},$$
+
+because $1$ to the power of anything is still $1$.
+
+> **Challenge:** Calculate $7^{175} \bmod{16}$.
+
+<!-- The correct answer is 7, because 7^2 = 49 = (16 * 3) + 1 = 1 mod 16.
+So 7^n for any even n = 1 mod 16, and 7^n for any odd n = 7 mod 16.
+If the students have trouble seeing this, try to get them to see the 'pattern' in 7^1 mod 16, 7^2 mod 16, 7^3 mod 16, 7^4 mod 16, ... which the calculator *will* correctly calculate.
+-->

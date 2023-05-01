@@ -1,3 +1,16 @@
 # Asymmetric ciphers
 
-TODO
+*Asymmetric cryptography* refers to an encoding/decoding algorithm that requires two separate keys, known as a *public key* and a *private key*.
+
+Let's say Bob wants to send Alice an encoded message that only she can read.
+Alice must first generate both a public key and a private key for herself.
+She sends the public key to Bob, and keeps the private key to herself.
+
+Bob can then use the public key to encrypt his message to Alice; and Alice uses her private key to decrypt it.
+Since only Alice has the private key, only she can decrypt the message.
+
+You can think of this as Alice giving Bob a lock, but keeping the key for herself.
+
+**TODO**: Would be nice to have a figure.
+
+In this section, we'll look at one specific example of an asymmetric scheme, namely the RSA system.
