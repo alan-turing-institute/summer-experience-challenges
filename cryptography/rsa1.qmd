@@ -1,4 +1,4 @@
-# RSA scheme
+# RSA scheme I
 
 The RSA scheme is one of the most important asymmetric-key systems, and is widely used as part of the steps in encrypting Internet communications.
 
@@ -30,7 +30,7 @@ The two equations above imply together that:
 
 $$m \equiv (m^e)^d \mod n,$$
 
-for all messages $m$.
+for all messages $m < n$.
 
 In general, if we just pick any random numbers $e$, $d$, and $n$, this will not be true!
 The RSA scheme works because these numbers are specifically chosen in a way that not only satisfies the equation above, but is also difficult to reverse-engineer.
@@ -71,6 +71,8 @@ Try this out using the interactive form here:
 <div id="rsa-pq-in">
 $p$: <input type="text" id="rsa-p" value="5" size="3" />
 $q$: <input type="text" id="rsa-q" value="13" size="3" />
+&nbsp;&nbsp;&nbsp; &nbsp;
+<input type="button" id="rsa-pq-hint" value="(hint)" class="hint" />
 </div>
 <div id="rsa-pq-out"></div>
 </div>
@@ -79,6 +81,8 @@ $q$: <input type="text" id="rsa-q" value="13" size="3" />
 <div class="rsa-grid-1">
 <div id="rsa-e-in">
 $e$: <input type="text" id="rsa-e" value="5" size="3" />
+&nbsp;&nbsp;&nbsp; &nbsp;
+<input type="button" id="rsa-e-hint" value="(hint)" class="hint" />
 </div>
 <div id="rsa-e-out"></div>
 </div>
@@ -87,11 +91,13 @@ $e$: <input type="text" id="rsa-e" value="5" size="3" />
 <div class="rsa-grid-1">
 <div id="rsa-d-in">
 $d$: <input type="text" id="rsa-d" value="29" size="3" />
+&nbsp;&nbsp;&nbsp; &nbsp;
+<input type="button" id="rsa-d-hint" value="(hint)" class="hint" />
 </div>
 <div id="rsa-d-out"></div>
 </div>
 
-- **Step 4**: Choose $m$ (message: can be anything!)
+- **Step 4**: Choose $m$ (message: must be smaller than $n$)
 <div class="rsa-grid-1">
 <div id="rsa-m-in">
 $m$: <input type="text" id="rsa-m" value="7" size="3" />
@@ -104,4 +110,15 @@ $m$: <input type="text" id="rsa-m" value="7" size="3" />
 </script>
 
 
-**TODO:** Another page on proving why this works (using Fermat's little theorem), in case there are very advanced students who are bored by this point.
+## Next steps
+
+We've managed to show here that the RSA scheme *works*.
+However, there are several questions that remain:
+
+1. Unless you chose very small numbers for $p$, $q$, and $e$, you probably found it hard to calculate $d$. How can this be done quickly?
+1. How do we know that the RSA scheme is *secure*? Is it possible to obtain the private key, $d$, if you have the public key ($e$ and $n$)?
+1. why does the RSA algorithm work at all, i.e. why is it always true that $(m^e)^d \equiv m \bmod n$?
+
+We'll cover the first two questions in the remainder of today.
+
+The proof that RSA works is provided on a bonus page, although it doesn't form part of the activities for today, as it requires slightly more mathematical knowledge than we've seen so far.

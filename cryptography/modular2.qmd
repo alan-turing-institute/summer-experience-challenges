@@ -1,0 +1,92 @@
+# Modular arithmetic II
+
+## Introduction
+
+In this section, we'll look at the *extended Euclidean algorithm*, a series of steps which can be used to solve the equation:
+
+$$ax + by = \gcd(a, b) \tag{1}$$
+
+where $a$, $b$, $x$, and $y$ are all integers, and $\gcd(a, b)$ denotes the *greatest common divisor* of $a$ and $b$, i.e. the largest whole number that divides both $a$ and $b$.
+
+Formulated this way, this equation might not immediately seem relevant.
+However, in fact, it is precisely what we need to find the value of $d$ in the RSA algorithm.
+
+Recall that we chose $e$ and $d$ such that:
+
+- $e$ and $\phi$ have no common factors. This means that $\gcd(e, \phi) = 1$.
+- $ed \bmod \phi = 1$.
+
+> **Question:** Reformulate the second condition in terms of equation (1).
+
+
+
+## The extended Euclidean algorithm
+
+You probably found above that we are trying to solve the equation $ed + \phi y = 1$.
+We already know the values of $e$ and $\phi$, and the Euclidean algorithm will let us obtain the values of $d$ and $y$.
+
+Of course, we're only really interested in $d$, so even though we'll also get the value of $y$, we can just throw it away.
+
+Let's reuse the example from the previous page, where $\phi = 48$ and $e = 5$.
+Substituting that in:
+
+$$5d + 48y = 1$$
+
+Each step of the Euclidean algorithm is a simple division.
+We start off with the larger number (48), and divide it by the smaller number (5).
+In this case, $48$ divided by $5$ is $9$, with a remainder of $3$:
+
+$$\underset{\text{big number}}{\color{blue}{48}} = (9 \times \underset{\text{small number}}{\color{red}{5}}) + \underset{\text{remainder}}{\color{green}{3}}$$
+
+We repeat this, but the small number from the previous equation ($5$) becomes the 'big number', and the remainder ($3$) becomes the 'small number'.
+
+$$\underset{\text{big number}}{\color{blue}{5}} = (1 \times \underset{\text{small number}}{\color{red}{3}}) + \underset{\text{remainder}}{\color{green}{2}}$$
+
+And again:
+
+$$\underset{\text{big number}}{\color{blue}{3}} = (1 \times \underset{\text{small number}}{\color{red}{2}}) + \underset{\text{remainder}}{\color{green}{1}}$$
+
+And we can stop when we get to the remainder of $1$, because that's the number on the right-hand side of our original equation!
+
+But how does this help us to find $d$ and $y$?
+
+Well, we can rewrite each of the equations above by bringing the remainders to one side:
+
+$$\begin{align}
+{\color{green}{3}} &= {\color{blue}{48}} - (9 \times {\color{red}{5}}) \\
+{\color{green}{2}} &= {\color{blue}{5}} - (1 \times {\color{red}{3}}) \\
+{\color{green}{1}} &= {\color{blue}{3}} - (1 \times {\color{red}{2}})
+\end{align}$$
+
+At the very top, we have an equation that links 3 to our original numbers, 48 and 5.
+At the bottom, we have an equation that links our target 1 to 3 and 2.
+So we just need to substitute the equations above into the ones below, in order to relate our target 1 to the original 48 and 5.
+
+> **Exercise:** Substitute the equations above into the third equation to express 1 in terms of multiples of 48 and 5. You will have to do this in several steps to make sure that all the 2's and 3's are eliminated.
+
+You might eventually end up at this answer:
+
+$$1 = (\underset{y}{2} \times \underset{\phi}{48}) + (\underset{d}{-19} \times \underset{e}{5}).$$
+
+which suggests that $d = -19$ and $y = 2$.
+
+But we can't have a negative number for $d$!
+
+Thankfully, we can add and subtract multiples of $48$ and $5$:
+
+\begin{align}
+1 &= (2 \times 48) - (19 \times 5) \\
+  &= (2 \times 48) - (5 \times 48) + (48 \times 5) - (19 \times 5) \\
+  &= (\underset{y}{-3} \times \underset{\phi}{48}) + (\underset{d}{29} \times \underset{e}{5}).
+\end{align}
+
+which tells us that $d = 29$ is a valid choice for the decryption key.
+
+> **Exercise:** Try your hand at calculating $d$ for another set of $e$ and $\phi$.
+>
+> For example, if we choose $p = 17$ and $q = 23$, then $\phi = 16 \times 22 = 352$ and we can choose $e = 13$.
+>
+> Find a correct value of $d$ for this setup, and compare your result against the form on the previous page.
+
+As we will soon see, the values of $p$ and $q$ actually used in practice are *extremely* large!
+So, having a fast algorithm to calculate $d$ is very important.

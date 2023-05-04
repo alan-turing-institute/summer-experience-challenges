@@ -44,7 +44,7 @@ function recalcNPhi() {
         const phi = (p - 1) * (q - 1);
         const space = "&nbsp;".repeat(4);
         outdiv.style.color = "green";
-        outdiv.innerHTML = `⇒   OK! n = ${n}; ${space} φ = ${p-1} × ${q - 1} = ${phi}`;
+        outdiv.innerHTML = `⇒   OK! n = ${n}; ${space} φ = ${p - 1} × ${q - 1} = ${phi}`;
         return [n, phi];
     }
     else if (!p_prime) {
@@ -98,12 +98,12 @@ function recalcD(e, phi) {
         const edmodphi = (emodphi * dmodphi) % phi;
         if (edmodphi == 1) {
             outdiv.style.color = "green";
-            outdiv.innerHTML = `⇒ OK! d × e = ${e*d} ≡ ${edmodphi} mod ${phi}`;
+            outdiv.innerHTML = `⇒ OK! d × e = ${e * d} ≡ ${edmodphi} mod ${phi}`;
             return d;
         }
         else {
             outdiv.style.color = "red";
-            outdiv.innerHTML = `⇒ d × e = ${e*d} ≡ ${edmodphi} mod ${phi}`;
+            outdiv.innerHTML = `⇒ d × e = ${e * d} ≡ ${edmodphi} mod ${phi}`;
             return null;
         }
     }
@@ -164,9 +164,74 @@ function powmod(base, exp, mod) {
     return result;
 }
 
+// calculates a value for e based on p and q
+function generateE() {
+    const result1 = recalcNPhi();
+    if (result1 !== null) {
+        const [_, phi] = result1;
+        // Tabulate all possible values of e
+        let possibleEs = [];
+        for (let e = 2; e < phi; e++) {
+            if (primeFactor(e, phi) === null) {
+                possibleEs.push(e);
+            }
+        }
+        // Choose a random one
+        console.log(possibleEs);
+        const chosen = possibleEs[Math.floor(Math.random() * possibleEs.length)];
+        document.getElementById("rsa-e").value = chosen;
+        recalc();
+        return;
+    }
+}
+
+// calculates modular inverse -- not with Bezout's identity, but by brute force
+function modinv(e, phi) {
+    for (let d = 2; d < phi; d++) {
+        if ((e * d) % phi == 1) {
+            return d;
+        }
+    }
+    return null;
+}
+
+function generateD() {
+    const result1 = recalcNPhi();
+    if (result1 !== null) {
+        const [_, phi] = result1;
+        const e = recalcE(phi);
+        if (e !== null) {
+            const d = modinv(e, phi);
+            if (d !== null) {
+                document.getElementById("rsa-d").value = d;
+                recalc();
+                return;
+            }
+        }
+    }
+}
+
+function generatePQ() {
+    const primes = [2, 3, 5, 7, 11, 13, 17,
+        19, 23, 29, 31, 37, 41, 43, 47, 53,
+        59, 61, 67, 71, 73, 79, 83, 89, 97,
+        101, 103, 107, 109, 113, 127, 131,
+        137, 139, 149];
+    // Sample without replacement
+    const p = primes[Math.floor(Math.random() * primes.length)];
+    const primes2 = primes.filter(x => x != p);
+    const q = primes2[Math.floor(Math.random() * primes2.length)];
+    document.getElementById("rsa-p").value = p;
+    document.getElementById("rsa-q").value = q;
+    recalc();
+}
+
 document.getElementById("rsa-p").addEventListener("input", recalc);
 document.getElementById("rsa-q").addEventListener("input", recalc);
 document.getElementById("rsa-e").addEventListener("input", recalc);
 document.getElementById("rsa-d").addEventListener("input", recalc);
 document.getElementById("rsa-m").addEventListener("input", recalc);
+document.getElementById("rsa-e-hint").addEventListener("click", generateE);
+document.getElementById("rsa-d-hint").addEventListener("click", generateD);
+document.getElementById("rsa-pq-hint").addEventListener("click", generatePQ);
 recalc();
