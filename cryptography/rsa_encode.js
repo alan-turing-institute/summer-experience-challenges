@@ -17,14 +17,16 @@ function validate(id) {
     }
 }
 
-// Returns the smallest shared prime factor of n1 and n2, or null if none exists
-function primeFactor(n1, n2) {
-    if (n1 < 2 || n2 < 2 || isNaN(n1) || isNaN(n2)) return false;
+// using Euclid's algorithm
+function gcd(n1, n2) {
+    if (n1 <= 0 || n2 <= 0 || isNaN(n1) || isNaN(n2)) return false;
 
-    for (let i = 2; i <= Math.min(n1, n2); i++) {
-        if (n1 % i == 0 && n2 % i == 0) return i;
-    }
-    return null;
+    const x = Math.max(n1, n2);
+    const y = Math.min(n1, n2);
+
+    const r = x % y;
+    if (r == 0) return y;
+    else return gcd(y, r);
 }
 
 function recalcNPhi() {
@@ -71,8 +73,8 @@ function recalcE(phi) {
         return null;
     }
     else {
-        const factor = primeFactor(e, phi);
-        if (factor === null) {
+        const factor = gcd(e, phi);
+        if (factor == 1) {
             outdiv.style.color = "green";
             outdiv.innerHTML = "⇒   OK!";
             return e;
@@ -164,6 +166,30 @@ function powmod(base, exp, mod) {
     return result;
 }
 
+function factorise(n, existing_factors) {
+    if (n == 1) return existing_factors;
+
+    for (let i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
+        if (n % i == 0) {
+            n = n / i;
+            existing_factors.push(i);
+            return factorise(n, existing_factors);
+        }
+    }
+    // No factors found -- n is prime
+    return existing_factors.concat([n]);
+}
+
+// calculate gcd(a,b) but with b already factorised. Much faster if b is a constant.
+function gcd2(a, prime_factors_of_b) {
+    for (const f of prime_factors_of_b) {
+        if (a % f == 0) {
+            return f;
+        }
+    }
+    return 1;
+}
+
 // calculates a value for e based on p and q
 function generateE() {
     const result1 = recalcNPhi();
@@ -171,8 +197,9 @@ function generateE() {
         const [_, phi] = result1;
         // Tabulate all possible values of e
         let possibleEs = [];
+        const factorisedPhi = factorise(phi, []);
         for (let e = 2; e < phi; e++) {
-            if (primeFactor(e, phi) === null) {
+            if (gcd2(e, factorisedPhi) === 1) {
                 possibleEs.push(e);
             }
         }
