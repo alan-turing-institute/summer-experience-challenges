@@ -13,6 +13,7 @@ book:
         - caesar.qmd
         - monosub.qmd
         - vigenere.qmd
+        - enigma.qmd
         - modular1.qmd
     - part: asymmetric.qmd
       chapters:
