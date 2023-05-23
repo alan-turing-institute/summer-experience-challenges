@@ -11,6 +11,6 @@ Since only Alice has the private key, only she can decrypt the message.
 
 You can think of this as Alice giving Bob a lock, but keeping the key for herself.
 
-**TODO**: Would be nice to have a figure.
+![Alice gives Bob her public key so Bob can encrypt a message, which she then decrypts with her private key.](images/asymmetric_public_encryption.png)
 
 In this section, we'll look at one specific example of an asymmetric scheme, namely the RSA system.
