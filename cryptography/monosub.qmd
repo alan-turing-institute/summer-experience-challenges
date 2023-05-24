@@ -66,7 +66,7 @@ It relies on the fact that certain letters of the alphabet are much more common 
 Try pasting some text into the box below (or clicking the samples), and observe the frequency distribution of the letters in the plot that appears:
 
 <div id="buttons" style="margin: auto; display: flex; justify-content: center">
-Samples: 
+Samples:
 <input type="button" id="fillpnp" value="Pride and Prejudice" class="italic" />
 <input type="button" id="fillbm" value="Bee Movie" class="italic" />
 <input type="button" id="filludhr" value="Universal Declaration of Human Rights" class="italic" />
@@ -75,12 +75,9 @@ Samples:
 <div id="content" style="width: 40%">
 <textarea rows=10 placeholder="Paste text to analyse here..." class="fullwidth is_code" id="text_analysis" spellcheck=false></textarea>
 </div>
-<div id="plot" style="width: 60%"></div>
+<div id="plot" style="width: 80%"></div>
 </div>
-<script type="module">
-{{< include samples.js >}}
-{{< include monosub_freq.js >}}
-</script>
+
 
 
 > **Question:** Try a few different text sources. What are the most and least common letters? Can you think of any reasons why this distribution might systematically vary from text to text?
@@ -97,9 +94,48 @@ For example, once you find the letter for 'E', it makes sense to look for potent
 
 ## Decryption
 
-With the above information, you should be able to have a go at decrypting these texts:
-
-**TODO** JavaScript block.
-Essentially: the reverse of the first block, where the cipher text is preselected from one of a few examples, and then you can key in the decryption letter by letter to reveal the plain text.
-There should also be a plot showing the distribution of the letters.
-The plain text should have '?' in places where the decoding is not yet known.
+With the above information, you should be able to have a go at decrypting this encrypted text, with the frequency distribution shown here:
+<div id="random" style="display: flex; justify-content: center">
+<div id="content" style="width: 40%">
+<textarea rows=10 placeholder="ciphertext." class="fullwidth is_code" id="input-decode" spellcheck=false></textarea>
+</div>
+<div id="decplot" style="width: 80%"></div>
+</div>
+<div id="decrypt_letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">
+<div id="a">A→ <input type="text" id="decode-a" size=1></div>
+<div id="b">B→ <input type="text" id="decode-b" size=1></div>
+<div id="c">C→ <input type="text" id="decode-c" size=1></div>
+<div id="d">D→ <input type="text" id="decode-d" size=1></div>
+<div id="e">E→ <input type="text" id="decode-e" size=1></div>
+<div id="f">F→ <input type="text" id="decode-f" size=1></div>
+<div id="g">G→ <input type="text" id="decode-g" size=1></div>
+<div id="h">H→ <input type="text" id="decode-h" size=1></div>
+<div id="i">I→ <input type="text" id="decode-i" size=1></div>
+<div id="j">J→ <input type="text" id="decode-j" size=1></div>
+<div id="k">K→ <input type="text" id="decode-k" size=1></div>
+<div id="l">L→ <input type="text" id="decode-l" size=1></div>
+<div id="m">M→ <input type="text" id="decode-m" size=1></div>
+<div id="n">N→ <input type="text" id="decode-n" size=1></div>
+<div id="o">O→ <input type="text" id="decode-o" size=1></div>
+<div id="p">P→ <input type="text" id="decode-p" size=1></div>
+<div id="q">Q→ <input type="text" id="decode-q" size=1></div>
+<div id="r">R→ <input type="text" id="decode-r" size=1></div>
+<div id="s">S→ <input type="text" id="decode-s" size=1></div>
+<div id="t">T→ <input type="text" id="decode-t" size=1></div>
+<div id="u">U→ <input type="text" id="decode-u" size=1></div>
+<div id="v">V→ <input type="text" id="decode-v" size=1></div>
+<div id="w">W→ <input type="text" id="decode-w" size=1></div>
+<div id="x">X→ <input type="text" id="decode-x" size=1></div>
+<div id="y">Y→ <input type="text" id="decode-y" size=1></div>
+<div id="z">Z→ <input type="text" id="decode-z" size=1></div>
+</div>
+<div id="remaining"></div>
+<div id="container" style="display: flex">
+<div id="content" style="width: 100%">
+<textarea rows=10 placeholder="Decrypted text" class="fullwidth is_code" id="output-decode" spellcheck=false></textarea>
+</div>
+</div>
+<script type="module">
+{{< include samples.js >}}
+{{< include monosub_freq.js >}}
+</script>

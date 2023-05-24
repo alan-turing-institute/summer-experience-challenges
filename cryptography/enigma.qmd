@@ -20,7 +20,7 @@ When the machine is setup in the specified starting position, the user can press
 
 Like Vigenere, Enigma is therefore a *polyalphabetic substitution cipher*: a given configuration of the machine is a mono-alphabetic substitution cipher, but we get a different configuration after every key press.
 
-Since Enigma is a symmetric cipher, this procedure is exactly the same for encrypting a plaintext message, or for decrypting a ciphertext message.
+Since Enigma is a symmetric cipher, the procedure is exactly the same for encrypting a plaintext message, or for decrypting a ciphertext message.
 
 > **Exercise:**  Have a go with the [Enigma emulator](https://www.101computing.net/enigma-machine-emulator/).   Some things to try:
  - Set the starting rotors to something (e.g. "A,B,C"), then type out a short message.  Note that after every keypress, the right hand rotor shifts by 1.
@@ -32,6 +32,7 @@ Since Enigma is a symmetric cipher, this procedure is exactly the same for encry
 
 The *reflector* next to the rotors gives the Enigma the nice property that the settings for encryption and decryption are identical.   However, it also gives rise to an important flaw (which you may have noticed from the exercise above): *it is impossible for a letter to encrypt to itself*.  This means that if you have a "crib" (i.e. a word or phrase that you are fairly sure will appear in the message), and you are trying out lots of possible keys, you can discard any where the same letter appears in the same position in the ciphertext and the proposed plaintext.
 
-Using this, and various flaws in the procedures that Enigma operators used, Polish cryptographers were able to break Enigma in the 1930s.  They were able to teach British and French cryptographers what they had learned, and a cryptographic arms race took place throughout World War II.   As extra layers of complexity were added to Enigma (a fourth rotor, a plug-board that mapped pairs of letters to one another, ...), so the scale and complexity of the code-breaking efforts increased.  An example of this is the development of the *Bombe* - an electro-mechanical device that could try all the 17576 (26x26x26) possible rotor positions in about 20 minutes.
+Using this, and various flaws in the procedures that Enigma operators used, Polish cryptographers were able to break Enigma in the 1930s.  They then shared this knowledge with British and French cryptographers, and a cryptographic arms race ensued that lasted throughout World War II.   As extra layers of complexity were added to Enigma (a fourth rotor, a plug-board that mapped pairs of letters to one another, ...), so the scale and complexity of the code-breaking efforts increased.  An example of this is the development of the *Bombe* - an electro-mechanical device that could try all the 17576 (26x26x26) possible rotor positions in about 20 minutes.
 
-![The bombe at Bletchley Park.  Image by Antoine Taveneaux (CC-BY-SA 3.0)](images/BletchleyParkBombe.jpg)
+![The bombe at Bletchley Park.  Image by Antoine Taveneaux (license:
+CC-BY-SA 3.0)](images/BletchleyParkBombe.jpg)

@@ -6,13 +6,13 @@ function cleanText() {
     document.getElementById("input-encode").value = cleaned;
 }
 
-function getMappings(excluding) {
+function getMappings(excluding, prefix="encode-") {
     let mappings = new Map();
     for (const c of alphabet) {
         if (excluding.includes(c)) {
             continue;
         }
-        const id = "encode-" + c.toLowerCase();
+        const id = prefix + c.toLowerCase();
         let mapped_to = document.getElementById(id).value.toUpperCase();
         if (mapped_to.length > 0) {
             mappings.set(c, mapped_to);
@@ -30,8 +30,8 @@ function alreadyMappedTo(char, excluding) {
     return false;
 }
 
-function validate(char) {
-    const id = "encode-" + char.toLowerCase();
+function validate(char, prefix="encode-") {
+    const id = prefix + char.toLowerCase();
     const val = document.getElementById(id).value;
     // First, remove extra characters
     if (val.length > 1) {
@@ -62,9 +62,21 @@ function encrypt() {
     if (mappings.size < 26) return;
     let output = "";
     for (const c of input) {
+
         output += mappings.get(c);
     }
     document.getElementById("output-encode").value = output;
+}
+
+function decrypt() {
+    const input = document.getElementById("input-decode").value;
+    const mappings = getMappings([], "decode-");
+    let output = "";
+    for (const c of input) {
+	if (mappings.get(c)) output += mappings.get(c);
+	else output += "?";
+    }
+    document.getElementById("output-decode").value = output;
 }
 
 function randomise() {
@@ -87,16 +99,24 @@ function showRemainingChars() {
         document.getElementById("remaining").innerHTML = "";
     }
     else {
-        document.getElementById("remaining").innerHTML = `Remaining characters: ${remaining}`; 
+        document.getElementById("remaining").innerHTML = `Remaining characters: ${remaining}`;
     }
 }
 
 for (const c of alphabet) {
-    const id = "encode-" + c.toLowerCase();
+    // encoding
+    var id = "encode-" + c.toLowerCase();
     document.getElementById(id).addEventListener("input", (_ => validate(c.toUpperCase())));
     document.getElementById(id).addEventListener("input", encrypt);
+    // decoding
+    var prefix = "decode-"
+    var id = prefix + c.toLowerCase();
+    document.getElementById(id).addEventListener("input", (_ => validate(c.toUpperCase(), prefix)));
+    document.getElementById(id).addEventListener("input", decrypt);
 }
 document.getElementById("random-encode").addEventListener("click", randomise);
 document.getElementById("input-encode").addEventListener("input", cleanText);
 document.getElementById("input-encode").addEventListener("input", encrypt);
+
 showRemainingChars();
+decrypt();
