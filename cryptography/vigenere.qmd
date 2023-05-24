@@ -15,13 +15,30 @@ Since the first letter of the key is "S", which is the 19th letter of the alphab
 
 > **Exercise:** Using pen and paper, go ahead and encrypt the rest of that message.
 
-Key: <input type="text" id="key-encode" size=10 spellcheck=false class="is_code">
-<textarea id="input-encode" rows=6 class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck=false></textarea>
-<textarea id="output-encode" rows=6 class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck=false></textarea>
-<script type="module">
-{{< include vigenere_encode.js >}}
+<div id="vig-encrypt" style="display: flex; justify-content: center">
+<div id="buttons" style="margin: auto; display: flex; justify-content: center">
+<input type="button" id="revealButton" class="italic" value="Reveal answer" />
+</div>
+</div>
+<br>
+<div id="vig-answer" style="display: none; justify-content: center">
+UVAGXHQVYHLAZWYER
+</div>
+<script>
+    var button = document.getElementById("revealButton");
+    var answerElement = document.getElementById("vig-answer");
+    var answerVisible = false;
+    button.addEventListener("click", function() {
+      if (answerVisible) {
+      	 answerElement.style.display = "none";
+	 button.value = "Reveal answer";
+      } else {
+      	answerElement.style.display = "flex";
+	button.value = "Hide answer";
+      }
+      answerVisible = !answerVisible;
+    });
 </script>
-
 
 ## Finding the key length
 
@@ -64,6 +81,9 @@ Samples:
 {{< include ioc.js >}}
 </script>
 
-## One-time pads - the unbreakable cipher
+
+
+
+## Aside: One-time pads - the unbreakable cipher
 
 Since the way that we break the Vigenere cipher depends on the repetition of the key, it follows that if the key is (at least) as long as the message, we wouldn't be able to crack the cipher this way.   In fact, these so-called "one-time pads", where the key is a long sequence of randomly generated letters, are thought to be unbreakable (as long as the sequence is truly random, and is not re-used - hence the name).   These were used for some of the most secret communications in WWII.   However, of course, we still have the problem of how to securely share the key between the sender and the recipient!
