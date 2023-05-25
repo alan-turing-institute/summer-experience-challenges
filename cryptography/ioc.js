@@ -53,8 +53,8 @@ function makeLayout() {
     'margin' : {'b': 30, 'l': 40, 'r': 30, 't': 30},
     'title' : `Index of coincidence: ${ioc(text).toFixed(2)}`
 }};
-function plotUpdate() {
-    const words = document.getElementById("text_analysis").value;
+function plotUpdate(textElementId="text_analysis") {
+    const words = document.getElementById(textElementId).value;
     Plotly.react( plotDiv, [getCounts(words)], makeLayout() );
     if (words.length > 0) {
         plotDiv.style.display = "block";
@@ -68,11 +68,32 @@ document.getElementById("text_analysis").addEventListener("input", plotUpdate);
 Plotly.newPlot( plotDiv, [{'x': [], 'y': [], 'type': 'bar'}], makeLayout());
 plotUpdate();
 
-function fillWith(text) {
-    document.getElementById("text_analysis").value = text;
+
+function vigAnalysis(keyLength) {
+    console.log("In vigAnalysis with keyLength "+keyLength);
+    const origText = vig_txt;
+    for (var i=1; i< 5; i++) {
+	const textDiv = document.getElementById("vig-"+i)
+	if (i <= keyLength) {
+	    const txt = "Letters "+i+", "+(parseInt(i)+keyLength)+", "+(parseInt(i)+2*keyLength)+", ...";
+	    textDiv.innerHTML = txt;
+	    textDiv.style.display = "block";
+	} else {
+	    textDiv.style.display = "none";
+	}
+    }
+}
+
+function fillWith(text, elementId="text_analysis") {
+    document.getElementById(elementId).value = text;
     cleanText();
     plotUpdate();
 }
 document.getElementById("fillpnp").addEventListener("click", e => fillWith(pnp_text));
 document.getElementById("fillbm").addEventListener("click", e => fillWith(bm_text));
 document.getElementById("filludhr").addEventListener("click", e => fillWith(udhr_text));
+document.getElementById("fillrand").addEventListener("click", e => fillWith(random_text));
+for (var i=2; i< 5; i++) {
+    const keyLengthGuess = i;
+    document.getElementById("keylength-"+i).addEventListener("click", e => vigAnalysis(keyLengthGuess));
+}
