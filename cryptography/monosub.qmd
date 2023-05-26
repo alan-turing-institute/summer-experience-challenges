@@ -95,39 +95,42 @@ For example, once you find the letter for 'E', it makes sense to look for potent
 ## Decryption
 
 With the above information, you should be able to have a go at decrypting this encrypted text, with the frequency distribution shown here:
-<div id="random" style="display: flex; justify-content: center">
+<div id="decode-container" style="display: flex; justify-content: center">
 <div id="content" style="width: 40%">
 <textarea rows=10 placeholder="ciphertext." class="fullwidth is_code" id="input-decode" spellcheck=false></textarea>
 </div>
 <div id="decplot" style="width: 80%"></div>
 </div>
+<div id="random" style="display: flex; justify-content: center">
+<input type="button" id="check" value="Check guesses" class="italic" />
+</div>
 <div id="decrypt_letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">
-<div id="a">A→ <input type="text" id="decode-a" size=1></div>
-<div id="b">B→ <input type="text" id="decode-b" size=1></div>
-<div id="c">C→ <input type="text" id="decode-c" size=1></div>
-<div id="d">D→ <input type="text" id="decode-d" size=1></div>
-<div id="e">E→ <input type="text" id="decode-e" size=1></div>
-<div id="f">F→ <input type="text" id="decode-f" size=1></div>
-<div id="g">G→ <input type="text" id="decode-g" size=1></div>
-<div id="h">H→ <input type="text" id="decode-h" size=1></div>
-<div id="i">I→ <input type="text" id="decode-i" size=1></div>
-<div id="j">J→ <input type="text" id="decode-j" size=1></div>
-<div id="k">K→ <input type="text" id="decode-k" size=1></div>
-<div id="l">L→ <input type="text" id="decode-l" size=1></div>
-<div id="m">M→ <input type="text" id="decode-m" size=1></div>
-<div id="n">N→ <input type="text" id="decode-n" size=1></div>
-<div id="o">O→ <input type="text" id="decode-o" size=1></div>
-<div id="p">P→ <input type="text" id="decode-p" size=1></div>
-<div id="q">Q→ <input type="text" id="decode-q" size=1></div>
-<div id="r">R→ <input type="text" id="decode-r" size=1></div>
-<div id="s">S→ <input type="text" id="decode-s" size=1></div>
-<div id="t">T→ <input type="text" id="decode-t" size=1></div>
-<div id="u">U→ <input type="text" id="decode-u" size=1></div>
-<div id="v">V→ <input type="text" id="decode-v" size=1></div>
-<div id="w">W→ <input type="text" id="decode-w" size=1></div>
-<div id="x">X→ <input type="text" id="decode-x" size=1></div>
-<div id="y">Y→ <input type="text" id="decode-y" size=1></div>
-<div id="z">Z→ <input type="text" id="decode-z" size=1></div>
+<div id="da">A→ <input type="text" id="decode-a" size=1></div>
+<div id="db">B→ <input type="text" id="decode-b" size=1></div>
+<div id="dc">C→ <input type="text" id="decode-c" size=1></div>
+<div id="dd">D→ <input type="text" id="decode-d" size=1></div>
+<div id="de">E→ <input type="text" id="decode-e" size=1></div>
+<div id="df">F→ <input type="text" id="decode-f" size=1></div>
+<div id="dg">G→ <input type="text" id="decode-g" size=1></div>
+<div id="dh">H→ <input type="text" id="decode-h" size=1></div>
+<div id="di">I→ <input type="text" id="decode-i" size=1></div>
+<div id="dj">J→ <input type="text" id="decode-j" size=1></div>
+<div id="dk">K→ <input type="text" id="decode-k" size=1></div>
+<div id="dl">L→ <input type="text" id="decode-l" size=1></div>
+<div id="dm">M→ <input type="text" id="decode-m" size=1></div>
+<div id="dn">N→ <input type="text" id="decode-n" size=1></div>
+<div id="do">O→ <input type="text" id="decode-o" size=1></div>
+<div id="dp">P→ <input type="text" id="decode-p" size=1></div>
+<div id="dq">Q→ <input type="text" id="decode-q" size=1></div>
+<div id="dr">R→ <input type="text" id="decode-r" size=1></div>
+<div id="ds">S→ <input type="text" id="decode-s" size=1></div>
+<div id="dt">T→ <input type="text" id="decode-t" size=1></div>
+<div id="du">U→ <input type="text" id="decode-u" size=1></div>
+<div id="dv">V→ <input type="text" id="decode-v" size=1></div>
+<div id="dw">W→ <input type="text" id="decode-w" size=1></div>
+<div id="dx">X→ <input type="text" id="decode-x" size=1></div>
+<div id="dy">Y→ <input type="text" id="decode-y" size=1></div>
+<div id="dz">Z→ <input type="text" id="decode-z" size=1></div>
 </div>
 <div id="decode-remaining"></div>
 <div id="container" style="display: flex">

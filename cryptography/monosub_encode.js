@@ -104,6 +104,44 @@ function showRemainingChars() {
     }
 }
 
+let checked = [];
+function addToChecked() {
+    for (const c of alphabet) {
+        const id = "decode-" + c.toLowerCase();
+        if (document.getElementById(id).value !== "" && !checked.includes(c)) {
+            checked.push(c);
+        }
+    }
+    check();
+}
+function check() {
+    const answers = new Map([
+        ["A", "O"], ["B", "B"], ["C", "S"], ["D", "G"], ["E", "P"],
+        ["F", "I"], ["G", "M"], ["H", "C"], ["I", "E"], ["J", "F"],
+        ["K", "Q"], ["L", "K"], ["M", "V"], ["N", "X"], ["O", "R"],
+        ["P", "T"], ["Q", "W"], ["R", "N"], ["S", "Z"], ["T", "D"],
+        ["U", "L"], ["V", "H"], ["W", "J"], ["X", "Y"], ["Y", "A"],
+        ["Z", "U"]]);
+    for (const c of checked) {
+        const div = document.getElementById("d" + c.toLowerCase());
+        const input = document.getElementById("decode-" + c.toLowerCase());
+        const wrongColor = "#fad9d7";  // light red
+        const rightColor = "#d7fae9";  // light green
+        if (input.value === "") {
+            div.style.backgroundColor = "";
+            input.style.backgroundColor = "";
+        }
+        else if (input.value === answers.get(c)) {
+            div.style.backgroundColor = rightColor;
+            input.style.backgroundColor = rightColor;
+        }
+        else {
+            div.style.backgroundColor = wrongColor;
+            input.style.backgroundColor = wrongColor;
+        }
+    }
+}
+
 for (const c of alphabet) {
     // encoding
     var id = "encode-" + c.toLowerCase();
@@ -114,10 +152,12 @@ for (const c of alphabet) {
     var id = prefix + c.toLowerCase();
     document.getElementById(id).addEventListener("input", (_ => validate(c.toUpperCase(), prefix)));
     document.getElementById(id).addEventListener("input", decrypt);
+    document.getElementById(id).addEventListener("input", check);
 }
 document.getElementById("random-encode").addEventListener("click", randomise);
 document.getElementById("input-encode").addEventListener("input", cleanText);
 document.getElementById("input-encode").addEventListener("input", encrypt);
+document.getElementById("check").addEventListener("click", addToChecked);
 
 showRemainingChars();
 decrypt();
