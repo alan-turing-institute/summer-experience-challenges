@@ -21,8 +21,8 @@ function getMappings(excluding, prefix="encode-") {
     return mappings;
 }
 
-function alreadyMappedTo(char, excluding) {
-    for (const m of getMappings(excluding)) {
+function alreadyMappedTo(char, excluding, prefix="encode-") {
+    for (const m of getMappings(excluding, prefix)) {
         if (m[1] == char.toUpperCase()) {
             return true;
         }
@@ -41,7 +41,7 @@ function validate(char, prefix="encode-") {
     // Then check if it's already been mapped
     if (val.length == 1) {
         const valUp = val.toUpperCase();
-        if (alreadyMappedTo(valUp, [char])) {
+        if (alreadyMappedTo(valUp, [char], prefix)) {
             // Already found somewhere else
             document.getElementById(id).value = "";
         }
@@ -93,13 +93,14 @@ function randomise() {
 }
 
 function showRemainingChars() {
-    const mappings = getMappings([]);
-    const remaining = [...alphabet].filter(c => !alreadyMappedTo(c, [])).join("");
-    if (remaining.length == 0) {
-        document.getElementById("remaining").innerHTML = "";
-    }
-    else {
-        document.getElementById("remaining").innerHTML = `Remaining characters: ${remaining}`;
+    for (const prefix of ["encode-", "decode-"]) {
+        const remaining = [...alphabet].filter(c => !alreadyMappedTo(c, [], prefix)).join("");
+        if (remaining.length == 0) {
+            document.getElementById(prefix + "remaining").innerHTML = "";
+        }
+        else {
+            document.getElementById(prefix + "remaining").innerHTML = `Remaining characters: ${remaining}`;
+        }
     }
 }
 

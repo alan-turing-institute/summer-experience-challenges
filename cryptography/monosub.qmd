@@ -51,7 +51,7 @@ You can either enter each character of the cipher manually, or use the 'randomis
 <div id="y">Y→ <input type="text" id="encode-y" size=1></div>
 <div id="z">Z→ <input type="text" id="encode-z" size=1></div>
 </div>
-<div id="remaining"></div>
+<div id="encode-remaining"></div>
 <textarea id="input-encode" rows=6 class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck=false></textarea>
 <textarea id="output-encode" rows=6 class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck=false></textarea>
 <script type="module">
@@ -129,7 +129,7 @@ With the above information, you should be able to have a go at decrypting this e
 <div id="y">Y→ <input type="text" id="decode-y" size=1></div>
 <div id="z">Z→ <input type="text" id="decode-z" size=1></div>
 </div>
-<div id="remaining"></div>
+<div id="decode-remaining"></div>
 <div id="container" style="display: flex">
 <div id="content" style="width: 100%">
 <textarea rows=10 placeholder="Decrypted text" class="fullwidth is_code" id="output-decode" spellcheck=false></textarea>

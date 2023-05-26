@@ -21,7 +21,7 @@ function getCounts(words) {
     // Sort by prevalence
     let sortedCounts = [...counts.entries()].sort((a, b) => b[1] - a[1]);
     // Construct data in the form Plotly wants
-    let data = {'x': [], 'y': [], 'type': 'bar'};
+    let data = { 'x': [], 'y': [], 'type': 'bar' };
     for (const item of sortedCounts) {
         data.x.push(item[0]);
         data.y.push(item[1]);
@@ -31,12 +31,12 @@ function getCounts(words) {
 
 const encPlotDiv = document.getElementById("plot");
 const decPlotDiv = document.getElementById("decplot");
-const layout = {'margin' : {'b': 30, 'l': 40, 'r': 30, 't': 30}};
+const layout = { 'margin': { 'b': 30, 'l': 40, 'r': 30, 't': 30 } };
 
-function plotUpdate(textElementId="text_analysis", targetDivId="plot") {
+function plotUpdate(textElementId = "text_analysis", targetDivId = "plot") {
     const targetDiv = document.getElementById(targetDivId);
     const words = document.getElementById(textElementId).value;
-    Plotly.react( targetDiv, [getCounts(words)], layout );
+    Plotly.react(targetDiv, [getCounts(words)], layout);
     if (words.length > 0) {
         targetDiv.style.display = "block";
     } else {
@@ -46,7 +46,7 @@ function plotUpdate(textElementId="text_analysis", targetDivId="plot") {
 
 document.getElementById("text_analysis").addEventListener("input", cleanText);
 document.getElementById("text_analysis").addEventListener("input", plotUpdate);
-Plotly.newPlot( encPlotDiv, [{'x': [], 'y': [], 'type': 'bar'}], layout);
+Plotly.newPlot(encPlotDiv, [{ 'x': [], 'y': [], 'type': 'bar' }], layout);
 plotUpdate("text_analysis", "plot");
 
 
@@ -55,10 +55,10 @@ function fillWith(text, elementId) {
     cleanText();
     plotUpdate();
 }
-document.getElementById("fillpnp").addEventListener("click", e => fillWith(pnp_text, "text_analysis"));
-document.getElementById("fillbm").addEventListener("click", e => fillWith(bm_text, "text_analysis"));
-document.getElementById("filludhr").addEventListener("click", e => fillWith(udhr_text, "text_analysis"));
+document.getElementById("fillpnp").addEventListener("click", _ => fillWith(pnp_text, "text_analysis"));
+document.getElementById("fillbm").addEventListener("click", _ => fillWith(bm_text, "text_analysis"));
+document.getElementById("filludhr").addEventListener("click", _ => fillWith(udhr_text, "text_analysis"));
 fillWith(enc_text, "input-decode");
 
-Plotly.newPlot( decPlotDiv, [{'x': [], 'y': [], 'type': 'bar'}], layout);
+Plotly.newPlot(decPlotDiv, [{ 'x': [], 'y': [], 'type': 'bar' }], layout);
 plotUpdate("input-decode", "decplot");
