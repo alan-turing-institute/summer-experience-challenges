@@ -7,7 +7,7 @@ Although they were the first to publicly describe the RSA system in 1977, an equ
 
 ## Introduction
 
-The RSA scheme revolves around modular arithmetic, which we touched briefly on yesterday.
+The RSA scheme revolves around modular arithmetic, which the previous page touched briefly on.
 
 Specifically, it assumes that the message you want to transmit is first translated into an integer $m$ (which stands for message).
 

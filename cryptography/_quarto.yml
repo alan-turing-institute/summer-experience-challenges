@@ -14,9 +14,9 @@ book:
         - monosub.qmd
         - vigenere.qmd
         - enigma.qmd
-        - modular1.qmd
     - part: asymmetric.qmd
       chapters:
+        - modular1.qmd
         - rsa1.qmd
         - modular2.qmd
         - rsa2.qmd

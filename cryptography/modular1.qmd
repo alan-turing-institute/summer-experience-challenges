@@ -1,6 +1,6 @@
 # Modular arithmetic I
 
-Before wrapping up today's activities, we'll take a brief look at *modular arithmetic*.
+To begin the second part of this challenge, we'll take a brief look at *modular arithmetic*.
 This is the same thing as regular arithmetic, but with one twist: we only care about the remainder when dividing by some number $n$.
 
 Instead of talking about numbers, we talk about numbers *modulo* $n$.
