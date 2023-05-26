@@ -58,10 +58,10 @@ Shift:
 </div>
 
 
-## Breaking a Caesar code
+## Breaking a Caesar cipher
 
-Since there are only 25 useful possibilities for encoding, it is almost trivial to break a Caesar code.
+Since there are only 25 useful possibilities for encoding, it is almost trivial to break a Caesar cipher.
 You can perform a **brute-force attack**, which means trying each possibility until you find one that gives the correct text.
 For example, use the playground above to figure out this hidden message:
 
-```HIDDENMESSAGE```
+```OPKKLUTLZZHNL```

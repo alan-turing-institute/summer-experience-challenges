@@ -18,7 +18,7 @@ The choice of which rotors to use, in which slots, and their starting rotations,
 
 When the machine is setup in the specified starting position, the user can press a key on the keyboard, and an electrical current will flow through the rotors from right-to-left, then through the reflector, then back through the rotors from left-to-right, and will cause a letter-lamp to light up.  At least one of the rotors will then rotate by one step (the right-hand rotor rotates after every key press, the others less frequently), so that when the next key is pressed, the mappings from the keyboard to the lamps will be different.
 
-Like Vigenere, Enigma is therefore a *polyalphabetic substitution cipher*: a given configuration of the machine is a mono-alphabetic substitution cipher, but we get a different configuration after every key press.
+Like Vigenère, Enigma is therefore a *polyalphabetic substitution cipher*: a given configuration of the machine is a mono-alphabetic substitution cipher, but we get a different configuration after every key press.
 
 Since Enigma is a symmetric cipher, the procedure is exactly the same for encrypting a plaintext message, or for decrypting a ciphertext message.
 

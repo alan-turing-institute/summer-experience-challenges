@@ -1,17 +1,21 @@
-function cleanKey() {
-    const input = document.getElementById("key-encode").value;
+function cleanKey(keyElementId="key-encode") {
+
+    const input = document.getElementById(keyElementId).value;
+    console.log("in cleankey cleaning "+input);
     const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
-    document.getElementById("key-encode").value = cleaned;
-    splitByKeyLength();
+    document.getElementById(keyElementId).value = cleaned;
+   // splitByKeyLength();
 }
 
-function caesarWith(plain, key) {
+function caesarWith(plain, key, direction=1) {
+    // optional "direction" argument lets us decode, by shifting the opposite way
     const shift = key.charCodeAt(0) - 65;
-    const resultCode = plain.charCodeAt(0) + shift;
+    const resultCode = plain.charCodeAt(0) + direction*shift;
     if (resultCode > 90) {
         return String.fromCharCode(resultCode - 26);
-    }
-    else {
+    } else if (resultCode < 65) {
+	return String.fromCharCode(resultCode + 26);
+    } else {
         return String.fromCharCode(resultCode);
     }
 }
@@ -26,12 +30,27 @@ function encrypt() {
     let result = [];
     for (let i = 0; i < cleaned.length; i++) {
         const c = cleaned[i];
-        console.log(key[i % key.length]);
+//        console.log(key[i % key.length]);
         const o = caesarWith(c, key[i % key.length]);
         result.push(o);
     }
     document.getElementById("output-encode").value = result.join("");
     splitByKeyLength();
+}
+
+function decrypt() {
+    const key = document.getElementById("key-decode").value;
+    if (key.length == 0) return;
+    const input = document.getElementById("input-decode-vig").value;
+    let result = [];
+    for (let i = 0; i < input.length; i++) {
+        const c = input[i];
+//        console.log(key[i % key.length]);
+        const o = caesarWith(c, key[i % key.length], -1);
+        result.push(o);
+    }
+    document.getElementById("output-decode").value = result.join("");
+
 }
 
 function splitByKeyLength() {
@@ -57,7 +76,9 @@ function splitByKeyLength() {
     }
 }
 
-document.getElementById("key-encode").addEventListener("input", cleanKey);
-document.getElementById("input-encode").addEventListener("input", splitByKeyLength);
-document.getElementById("key-encode").addEventListener("input", encrypt);
-document.getElementById("input-encode").addEventListener("input", encrypt);
+//document.getElementById("key-encode").addEventListener("input", cleanKey);
+document.getElementById("key-decode").addEventListener("input",  e => cleanKey("key-decode"));
+//document.getElementById("input-encode").addEventListener("input", splitByKeyLength);
+//document.getElementById("key-encode").addEventListener("input", encrypt);
+//document.getElementById("input-encode").addEventListener("input", encrypt);
+document.getElementById("key-decode").addEventListener("input",  decrypt);

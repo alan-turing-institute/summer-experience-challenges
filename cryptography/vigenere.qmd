@@ -2,7 +2,7 @@
 
 ## Introduction
 
-We can combine the *Caesar cipher* and the *Monoalphabetic substitution cipher* to create a more secure cipher called a "Vigenere cipher" (named after the 16th-century French diplomat Blaise de Vigenere).
+Both the *Caesar cipher* and the *Monoalphabetic substitution cipher* have a single, fixed mapping from input letters to ciphertext letters, making them vulnerable to letter frequency analysis.  It would be more secure if we could create a *polyalphabetic cipher* - i.e. the mapping from plaintext letters to ciphertext letters changes after every input character.   One example of this is an extension of the Caesar cipher, called a "Vigenère cipher" (named after the 16th-century French diplomat Blaise de Vigenère).
 
 In this cipher, we define the key as a word or phrase that is repeated as many times as necessary to cover the length of the message.  Each letter in this key is then used as the key for a Caesar cipher to encrypt the corresponding letter in the message.
 
@@ -42,7 +42,7 @@ UVAGXHQVYHLAZWYER
 
 
 
-## Finding the key length
+## Cracking the Vigenère cipher
 
 Luckily, the Vigenère cipher still contains a point of weakness that we can use to attack it: the *periodicity* of the key, or in other words, the fact that it repeats itself every $n$ characters.
 
@@ -50,7 +50,9 @@ This means that, if the key length is 3, then the 1st, 4th, 7th, ... characters 
 
 But, to do this, we first need to know the key length!
 
-To do this, we need to understand another fundamental property of English text: the *index of coincidence* (IoC).
+### Index of Coincidence
+
+To find the key length, we need to understand another fundamental property of English text: the *index of coincidence* (IoC).
 If we have a piece of text and randomly pull two letters out of it, the IoC tells us how likely it is that these two letters are the same.
 
 Mathematically, we can define the IoC as:
@@ -61,7 +63,7 @@ where $n_i$ is the number of times the letter $i$ appears in the text, and $N$ i
 
 > **Question:** Show that if all letters have the same probability of occurring, then the IoC is equal to 1. (Assume that the text is long enough, such that the $n_i$'s are much larger than 1.)
 
-Because letters are not uniformly distributed in English (recall that 'E's were particularly common), this quantity is not equal to 1 for typical English texts.
+Because letters are not uniformly distributed in English (recall that 'E's were particularly common), this quantity is, on average, greater than 1 for typical English texts.
 
 Have a play around with this plot, and find out what the IoC is for some typical text.
 The same samples as before are included, plus a random sequence of letters:
@@ -80,57 +82,82 @@ Samples:
 <div id="plot" style="width: 60%"></div>
 </div>
 
+### Using IoC to determine Key Length
 
-We can exploit this to identify the key length.  If the key had a length of e.g. **4**, we would know that the 1st, 5th, 9th, ... letters were encrypted with the same letter of the key, and we would expect the IoC of this collection of letters (and also the 2nd, 6th, 10th, ...) to be higher than what we would see for random.   If on the other hand, the key had length **5**, we would expect the same to be true if we looked at the 1st, 6th, 11th, 16th, ... letters.   (This periodic property is going to be looked at in more detail in "Modular Arithmetic", which we'll cover this afternoon.)
+We can exploit the fact that the IoC has different values for English text and for random sequences of letters, to identify the key length.  If the key had a length of e.g. **4**, we would know that the 1st, 5th, 9th, ... letters were encrypted with the same letter of the key, and we would expect the IoC of this collection of letters (and also the 2nd, 6th, 10th, ...) to be higher than what we would see for random.   If on the other hand, the key had length **5**, we would expect the same to be true if we looked at the 1st, 6th, 11th, 16th, ... letters.   (This periodic property is going to be looked at in more detail in "Modular Arithmetic", which we'll cover this afternoon.)
 
-> **Exercise:**  Decrypt the following ciphertext.   First, look at the Index of Coincidence and Letter Frequency graphs for the subsets of the ciphertext that we'd expect to see if the key length were 2, 3, or 4.
-Then, when we have identified the most likely key length, we should be able to look at the individual letter frequency graphs, and work out how much we'd need to shift them (like a Caesar cipher) to identify each letter of the key.
+
+> **Exercise:**  Decrypt the following ciphertext.
 
 <div id="vig-challenge" style="display: flex; justify-content: center">
 <textarea rows=10 placeholder="ciphertext." class="fullwidth is_code" id="input-decode-vig" spellcheck=false></textarea>
 </div>
 
+> **Part 1:**  First, look at the Index of Coincidence and Letter Frequency graphs for the subsets of the ciphertext that we'd expect to see if the key length were 2, 3, or 4.
+
+
 Choose a key length to try:
 <div id="buttons2" style="margin: auto; display: flex; justify-content: center">
-Key length:
+Proposed key length:
 <input type="button" id="keylength-2" value="2" class="italic" />
 <input type="button" id="keylength-3" value="3" class="italic" />
 <input type="button" id="keylength-4" value="4" class="italic" />
 </div>
 <div id="vig-1" style="display: none; justify-content: center">
-<div id="container" style="display: flex">
+<div id="vigtext-1" justify-content: center"></div>
+<div id="container-1" style="display: flex">
 <div id="content" style="width: 40%">
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-1" spellcheck=false></textarea>
 </div>
-<div id="plot1" style="width: 60%"></div>
+<div id="plot-1" style="width: 60%"></div>
+</div>
 </div>
 <div id="vig-2" style="display: none; justify-content: center">
+<div id="vigtext-2" justify-content: center"></div>
+<div id="container-2" style="display: flex">
 <div id="content" style="width: 40%">
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-2" spellcheck=false></textarea>
 </div>
-<div id="plot2" style="width: 60%"></div>
+<div id="plot-2" style="width: 60%"></div>
+</div>
 </div>
 <div id="vig-3" style="display: none; justify-content: center">
+<div id="vigtext-3" justify-content: center"></div>
+<div id="container-3" style="display: flex">
 <div id="content" style="width: 40%">
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-3" spellcheck=false></textarea>
 </div>
-<div id="plot3" style="width: 60%"></div>
+<div id="plot-3" style="width: 60%"></div>
+</div>
 </div>
 <div id="vig-4" style="display: none; justify-content: center">
+<div id="vigtext-4" justify-content: center"></div>
+<div id="container-4" style="display: flex">
 <div id="content" style="width: 40%">
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-4" spellcheck=false></textarea>
 </div>
-<div id="plot4" style="width: 60%"></div>
+<div id="plot-4" style="width: 60%"></div>
 </div>
 </div>
+
+> **Part 2:**  Now we have identified the most likely key length, we should be able to look at the individual letter frequency graphs, and work out how much we'd need to shift them (like a Caesar cipher) to identify each letter of the key.
+
+> **Hint 1:** Remember, the most common letter in English text is "E".
+
+> **Hint 2:** When we encrypt a letter using the Vigenère cipher, the letter "A" corresponds to a shift of 0.  So, if the most common letter in the first of the graphs above was "F", this would imply that we had a Caeser cipher of shift=1 (to move "E"s to "F"s), corresponding to the first letter of the key being "B".
+
+
+Propsed Key: <input type="text" id="key-decode" size=10 spellcheck=false class="is_code">
+<textarea id="output-decode" rows=6 class="fullwidth is_code" placeholder="Candidate plaintext..." spellcheck=false></textarea>
 
 
 ## Aside: One-time pads - the unbreakable cipher
 
-Since the way that we break the Vigenere cipher depends on the repetition of the key, it follows that if the key is (at least) as long as the message, we wouldn't be able to crack the cipher this way.   In fact, these so-called "one-time pads", where the key is a long sequence of randomly generated letters, are thought to be unbreakable (as long as the sequence is truly random, and is not re-used - hence the name).   These were used for some of the most secret communications in WWII.   However, of course, we still have the problem of how to securely share the key between the sender and the recipient!
-
+Since the way that we break the Vigenère cipher depends on the repetition of the key, it follows that if the key is (at least) as long as the message, we wouldn't be able to crack the cipher this way.   In fact, these so-called "one-time pads", where the key is a long sequence of randomly generated letters, are thought to be unbreakable (as long as the sequence is truly random, and is not re-used - hence the name).   These were used for some of the most secret communications in World War II.   However, of course, we still have the problem of how to securely share the key between the sender and the recipient!
+</div>
 <script type="module">
 {{< include samples.js >}}
+{{< include vigenere_encode.js >}}
 {{< include ioc.js >}}
 document.getElementById("input-decode-vig").value = vig_txt;
 </script>

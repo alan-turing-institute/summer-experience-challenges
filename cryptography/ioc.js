@@ -47,39 +47,66 @@ function ioc(text) {
 }
 
 const plotDiv = document.getElementById("plot");
-function makeLayout() {
-    const text = document.getElementById("text_analysis").value;
+function makeLayout(textElementId="text_analysis") {
+    const text = document.getElementById(textElementId).value;
     return {
     'margin' : {'b': 30, 'l': 40, 'r': 30, 't': 30},
     'title' : `Index of coincidence: ${ioc(text).toFixed(2)}`
 }};
-function plotUpdate(textElementId="text_analysis") {
+
+function plotUpdate(textElementId="text_analysis", targetDivId="plot") {
+    const targetDiv = document.getElementById(targetDivId);
     const words = document.getElementById(textElementId).value;
-    Plotly.react( plotDiv, [getCounts(words)], makeLayout() );
+    Plotly.react( targetDiv, [getCounts(words)], makeLayout(textElementId) );
     if (words.length > 0) {
-        plotDiv.style.display = "block";
+        targetDiv.style.display = "flex";
     } else {
-        plotDiv.style.display = "none";
+        targetDiv.style.display = "none";
     }
 }
+
 
 document.getElementById("text_analysis").addEventListener("input", cleanText);
 document.getElementById("text_analysis").addEventListener("input", plotUpdate);
 Plotly.newPlot( plotDiv, [{'x': [], 'y': [], 'type': 'bar'}], makeLayout());
 plotUpdate();
+// now do the same for the plots for frequency analysis of subsets of the ciphertext
+for (var i=1; i<5; i++) {
+    const plotDivId = "plot-"+i;
+    const textId = "ct-vig-"+i;
+    const plotDiv = document.getElementById(plotDivId);
+    Plotly.newPlot( plotDiv, [{'x': [], 'y': [], 'type': 'bar'}], makeLayout(textId));
+    plotUpdate(textId, plotDivId);
+}
 
-
+// for a chosen key length n between 2 and 4, show textboxes and frequency plots
+// for every nth, nth+1, ... letter of the ciphertext
 function vigAnalysis(keyLength) {
     console.log("In vigAnalysis with keyLength "+keyLength);
     const origText = vig_txt;
     for (var i=1; i< 5; i++) {
-	const textDiv = document.getElementById("vig-"+i)
+	const containerDiv = document.getElementById("vig-"+i);
+	const textDiv = document.getElementById("vigtext-"+i);
+	if (textDiv == null) console.log("textDiv "+"vigtext-"+i+" is null 1");
 	if (i <= keyLength) {
-	    const txt = "Letters "+i+", "+(parseInt(i)+keyLength)+", "+(parseInt(i)+2*keyLength)+", ...";
+	    const txt = "Letters "+i+", "+(parseInt(i)+keyLength)+", "+(parseInt(i)+2*keyLength)+", ... of ciphertext";
+	    if (textDiv == null) console.log("textDiv is null 2");
 	    textDiv.innerHTML = txt;
-	    textDiv.style.display = "block";
+	    // get every nth letter from the ciphertext
+	    var ctext = "";
+	    console.log("length of text is "+origText.length);
+	    for (var j=0; j < origText.length; j++) {
+		if ((j % keyLength) == (i-1)) {
+		    ctext += origText[j];
+		}
+	    }
+	    const textId = "ct-vig-"+i;
+	    document.getElementById(textId).value = ctext;
+	    const plotId = "plot-"+i;
+	    containerDiv.style.display = "block";
+	    plotUpdate(textId, plotId);
 	} else {
-	    textDiv.style.display = "none";
+	    containerDiv.style.display = "none";
 	}
     }
 }
