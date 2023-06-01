@@ -106,28 +106,28 @@ Proposed key length:
 
 <div id="vig-grid" style="display: grid; grid-template-columns: 30% 70%;">
 <div id="vigtext-1">
-<div id="vigtext-1-text"></div>
+<div id="vigtext-1-text" style="font-size: 80%"></div>
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-1" spellcheck=false></textarea>
 </div>
 <div id="vigplot-1">
 <canvas id="vigplot-1-canvas"></canvas>
 </div>
 <div id="vigtext-2">
-<div id="vigtext-2-text"></div>
+<div id="vigtext-2-text" style="font-size: 80%"></div>
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-2" spellcheck=false></textarea>
 </div>
 <div id="vigplot-2">
 <canvas id="vigplot-2-canvas"></canvas>
 </div>
 <div id="vigtext-3">
-<div id="vigtext-3-text"></div>
+<div id="vigtext-3-text" style="font-size: 80%"></div>
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-3" spellcheck=false></textarea>
 </div>
 <div id="vigplot-3">
 <canvas id="vigplot-3-canvas"></canvas>
 </div>
 <div id="vigtext-4">
-<div id="vigtext-4-text"></div>
+<div id="vigtext-4-text" style="font-size: 80%"></div>
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-4" spellcheck=false></textarea>
 </div>
 <div id="vigplot-4">
@@ -142,7 +142,7 @@ Proposed key length:
 > **Hint 2:** When we encrypt a letter using the Vigenère cipher, the letter "A" corresponds to a shift of 0.  So, if the most common letter in the first of the graphs above was "F", this would imply that we had a Caeser cipher of shift=1 (to move "E"s to "F"s), corresponding to the first letter of the key being "B".
 
 
-Propsed Key: <input type="text" id="key-decode" size=10 spellcheck=false class="is_code">
+Proposed Key: <input type="text" id="key-decode" size=10 spellcheck=false class="is_code">
 <textarea id="output-decode" rows=6 class="fullwidth is_code" placeholder="Candidate plaintext..." spellcheck=false></textarea>
 
 
