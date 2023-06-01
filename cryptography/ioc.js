@@ -1,7 +1,7 @@
-function cleanText() {
-    const input = document.getElementById("text_analysis").value;
+function cleanText(textareaId) {
+    const input = document.getElementById(textareaId).value;
     const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
-    document.getElementById("text_analysis").value = cleaned;
+    document.getElementById(textareaId).value = cleaned;
 }
 
 function getRawCounts(words) {
@@ -25,13 +25,13 @@ function getRawCounts(words) {
 function getCounts(words) {
     // Sort by prevalence
     let sortedCounts = [...getRawCounts(words).entries()].sort((a, b) => b[1] - a[1]);
-    // Construct data in the form Plotly wants
-    let data = {'x': [], 'y': [], 'type': 'bar'};
-    for (const item of sortedCounts) {
-        data.x.push(item[0]);
-        data.y.push(item[1]);
-    }
-    return data;
+    // Construct data in the form Chart.js wants
+    return {
+        labels: [...sortedCounts.map(x => x[0])],
+        datasets: [{
+            data: [...sortedCounts.map(x => x[1])],
+        }],
+    };
 }
 
 function ioc(text) {
@@ -47,80 +47,119 @@ function ioc(text) {
 }
 
 const plotDiv = document.getElementById("plot");
-function makeLayout(textElementId="text_analysis") {
+function makeLayout(textElementId = "text_analysis") {
     const text = document.getElementById(textElementId).value;
     return {
-    'margin' : {'b': 30, 'l': 40, 'r': 30, 't': 30},
-    'title' : `Index of coincidence: ${ioc(text).toFixed(2)}`
-}};
+        'margin': { 'b': 30, 'l': 40, 'r': 30, 't': 30 },
+        'title': `Index of coincidence: ${ioc(text).toFixed(2)}`
+    }
+};
 
-function plotUpdate(textElementId="text_analysis", targetDivId="plot") {
-    const targetDiv = document.getElementById(targetDivId);
+const chartOptions = {
+    scales: {
+        x: {
+            ticks: {
+                maxRotation: 0,
+                minRotation: 0,
+            },
+        },
+    },
+    plugins: {
+        legend: {
+            display: false,
+        },
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: false,
+};
+
+let iocPlot = new Chart('ioc-canvas', {
+    type: 'bar',
+    data: getCounts(document.getElementById("text_analysis").value),
+    options: chartOptions,
+});
+
+function plotUpdate(textElementId = "text_analysis", targetChart = iocPlot) {
     const words = document.getElementById(textElementId).value;
-    Plotly.react( targetDiv, [getCounts(words)], makeLayout(textElementId) );
-    if (words.length > 0) {
-        targetDiv.style.display = "flex";
-    } else {
-        targetDiv.style.display = "none";
+    targetChart.data = getCounts(words);
+    targetChart.options.plugins.title = {
+        display: true,
+        text: `Index of coincidence: ${ioc(words).toFixed(2)}`,
+        font: { size: 14 },
+    };
+    targetChart.update('none');
+    if (words.length == 0) {
+        targetChart.clear();
     }
 }
 
 
-document.getElementById("text_analysis").addEventListener("input", cleanText);
-document.getElementById("text_analysis").addEventListener("input", plotUpdate);
-Plotly.newPlot( plotDiv, [{'x': [], 'y': [], 'type': 'bar'}], makeLayout());
-plotUpdate();
-// now do the same for the plots for frequency analysis of subsets of the ciphertext
-for (var i=1; i<5; i++) {
-    const plotDivId = "plot-"+i;
-    const textId = "ct-vig-"+i;
-    const plotDiv = document.getElementById(plotDivId);
-    Plotly.newPlot( plotDiv, [{'x': [], 'y': [], 'type': 'bar'}], makeLayout(textId));
-    plotUpdate(textId, plotDivId);
+document.getElementById("text_analysis").addEventListener("input", () => cleanText("text_analysis"));
+document.getElementById("text_analysis").addEventListener("input", () => plotUpdate("text_analysis", iocPlot));
+plotUpdate("text_analysis", iocPlot);
+
+
+
+/* 4.2.2 Cracking the Vigenere cipher */
+
+let iocPlots = [];
+// Initialise chart objects for 1 through 4
+for (let i = 1; i < 5; i++) {
+    const plotCanvasId = `vigplot-${i}-canvas`;
+    const textareaId = `ct-vig-${i}`;
+    let chart = new Chart(plotCanvasId, {
+        type: 'bar',
+        data: getCounts(document.getElementById(textareaId).value),
+        options: chartOptions,
+    });
+    iocPlots.push(chart);
 }
 
-// for a chosen key length n between 2 and 4, show textboxes and frequency plots
-// for every nth, nth+1, ... letter of the ciphertext
 function vigAnalysis(keyLength) {
-    console.log("In vigAnalysis with keyLength "+keyLength);
+    console.log("In vigAnalysis with keyLength " + keyLength);
     const origText = vig_txt;
-    for (var i=1; i< 5; i++) {
-	const containerDiv = document.getElementById("vig-"+i);
-	const textDiv = document.getElementById("vigtext-"+i);
-	if (textDiv == null) console.log("textDiv "+"vigtext-"+i+" is null 1");
-	if (i <= keyLength) {
-	    const txt = "Letters "+i+", "+(parseInt(i)+keyLength)+", "+(parseInt(i)+2*keyLength)+", ... of ciphertext";
-	    if (textDiv == null) console.log("textDiv is null 2");
-	    textDiv.innerHTML = txt;
-	    // get every nth letter from the ciphertext
-	    var ctext = "";
-	    console.log("length of text is "+origText.length);
-	    for (var j=0; j < origText.length; j++) {
-		if ((j % keyLength) == (i-1)) {
-		    ctext += origText[j];
-		}
-	    }
-	    const textId = "ct-vig-"+i;
-	    document.getElementById(textId).value = ctext;
-	    const plotId = "plot-"+i;
-	    containerDiv.style.display = "block";
-	    plotUpdate(textId, plotId);
-	} else {
-	    containerDiv.style.display = "none";
-	}
+    for (let i = 1; i < 5; i++) {
+        const leftHalfDiv = document.getElementById(`vigtext-${i}`);
+        const rightHalfDiv = document.getElementById(`vigplot-${i}`);
+        const textDiv = document.getElementById(`vigtext-${i}-text`);
+        const textareaId = `ct-vig-${i}`;
+
+        if (i <= keyLength) {
+            const txt = `Letters ${i}, ${i + keyLength}, ${i + 2 * keyLength}, ... of ciphertext`;
+            textDiv.innerHTML = txt;
+            // get every nth letter from the ciphertext
+            let ctext = "";
+            for (let j = 0; j < origText.length; j++) {
+                if ((j % keyLength) == (i - 1)) {
+                    ctext += origText[j];
+                }
+            }
+            document.getElementById(textareaId).value = ctext;
+            let plot = iocPlots[i - 1];
+            plotUpdate(textareaId, plot);
+            leftHalfDiv.style.display = "block";
+            rightHalfDiv.style.display = "block";
+        } else {
+            leftHalfDiv.style.display = "none";
+            rightHalfDiv.style.display = "none";
+        }
     }
 }
 
-function fillWith(text, elementId="text_analysis") {
+function fillWith(text, elementId = "text_analysis", plot = iocPlot) {
     document.getElementById(elementId).value = text;
-    cleanText();
-    plotUpdate();
+    cleanText(elementId);
+    plotUpdate(elementId, plot);
 }
-document.getElementById("fillpnp").addEventListener("click", e => fillWith(pnp_text));
-document.getElementById("fillbm").addEventListener("click", e => fillWith(bm_text));
-document.getElementById("filludhr").addEventListener("click", e => fillWith(udhr_text));
-document.getElementById("fillrand").addEventListener("click", e => fillWith(random_text));
-for (var i=2; i< 5; i++) {
+document.getElementById("fillpnp").addEventListener("click", _ => fillWith(pnp_text));
+document.getElementById("fillbm").addEventListener("click", _ => fillWith(bm_text));
+document.getElementById("filludhr").addEventListener("click", _ => fillWith(udhr_text));
+document.getElementById("fillrand").addEventListener("click", _ => fillWith(random_text));
+for (let i = 2; i < 5; i++) {
     const keyLengthGuess = i;
-    document.getElementById("keylength-"+i).addEventListener("click", e => vigAnalysis(keyLengthGuess));
+    document.getElementById("keylength-" + i).addEventListener("click", _ => vigAnalysis(keyLengthGuess));
 }
+
+// Hide the Vigenere analysis divs by setting keyLength to 0 initially
+vigAnalysis(0);

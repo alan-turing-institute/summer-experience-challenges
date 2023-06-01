@@ -40,17 +40,18 @@ function encrypt() {
 
 function decrypt() {
     const key = document.getElementById("key-decode").value;
-    if (key.length == 0) return;
+    if (key.length == 0) {
+        document.getElementById("output-decode").value = "";
+        return;
+    }
     const input = document.getElementById("input-decode-vig").value;
     let result = [];
     for (let i = 0; i < input.length; i++) {
         const c = input[i];
-//        console.log(key[i % key.length]);
         const o = caesarWith(c, key[i % key.length], -1);
         result.push(o);
     }
     document.getElementById("output-decode").value = result.join("");
-
 }
 
 function splitByKeyLength() {

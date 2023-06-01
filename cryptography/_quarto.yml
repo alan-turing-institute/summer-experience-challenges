@@ -29,7 +29,7 @@ format:
     css: styles.css
     include-in-header:
         - text: |
-            <script src="https://cdn.plot.ly/plotly-2.20.0.min.js" charset="utf-8"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   pdf:
     documentclass: scrreprt
 

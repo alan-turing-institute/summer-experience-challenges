@@ -72,10 +72,10 @@ Samples:
 <input type="button" id="filludhr" value="Universal Declaration of Human Rights" class="italic" />
 </div>
 <div id="container" style="display: flex">
-<div id="content" style="width: 40%">
+<div id="content" style="width: 30%">
 <textarea rows=10 placeholder="Paste text to analyse here..." class="fullwidth is_code" id="text_analysis" spellcheck=false></textarea>
 </div>
-<div id="plot" style="width: 80%"></div>
+<div id="plot" style="width: 70%"><canvas id="plot-canvas"></canvas></div>
 </div>
 
 
@@ -99,9 +99,11 @@ With the above information, you should be able to have a go at decrypting this e
 <div id="content" style="width: 40%">
 <textarea rows=10 placeholder="ciphertext." class="fullwidth is_code" id="input-decode" spellcheck=false></textarea>
 </div>
-<div id="decplot" style="width: 80%"></div>
+<div id="decplot" style="width: 80%">
+<canvas id="decplot-canvas"></canvas>
 </div>
-<div id="random" style="display: flex; justify-content: center">
+</div>
+<div id="check-container" style="display: flex; justify-content: center">
 <input type="button" id="check" value="Check guesses" class="italic" />
 </div>
 <div id="decrypt_letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">

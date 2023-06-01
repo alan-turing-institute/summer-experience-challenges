@@ -76,10 +76,10 @@ Samples:
 <input type="button" id="fillrand" value="Random sequence" class="italic" />
 </div>
 <div id="container" style="display: flex">
-<div id="content" style="width: 40%">
+<div id="content" style="width: 30%">
 <textarea rows=10 placeholder="Paste text to analyse here..." class="fullwidth is_code" id="text_analysis" spellcheck=false></textarea>
 </div>
-<div id="plot" style="width: 60%"></div>
+<div id="plot" style="width: 70%"><canvas id="ioc-canvas"></canvas></div>
 </div>
 
 ### Using IoC to determine Key Length
@@ -103,42 +103,37 @@ Proposed key length:
 <input type="button" id="keylength-3" value="3" class="italic" />
 <input type="button" id="keylength-4" value="4" class="italic" />
 </div>
-<div id="vig-1" style="display: none; justify-content: center">
-<div id="vigtext-1" justify-content: center"></div>
-<div id="container-1" style="display: flex">
-<div id="content" style="width: 40%">
+
+<div id="vig-grid" style="display: grid; grid-template-columns: 30% 70%;">
+<div id="vigtext-1">
+<div id="vigtext-1-text"></div>
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-1" spellcheck=false></textarea>
 </div>
-<div id="plot-1" style="width: 60%"></div>
+<div id="vigplot-1">
+<canvas id="vigplot-1-canvas"></canvas>
 </div>
-</div>
-<div id="vig-2" style="display: none; justify-content: center">
-<div id="vigtext-2" justify-content: center"></div>
-<div id="container-2" style="display: flex">
-<div id="content" style="width: 40%">
+<div id="vigtext-2">
+<div id="vigtext-2-text"></div>
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-2" spellcheck=false></textarea>
 </div>
-<div id="plot-2" style="width: 60%"></div>
+<div id="vigplot-2">
+<canvas id="vigplot-2-canvas"></canvas>
 </div>
-</div>
-<div id="vig-3" style="display: none; justify-content: center">
-<div id="vigtext-3" justify-content: center"></div>
-<div id="container-3" style="display: flex">
-<div id="content" style="width: 40%">
+<div id="vigtext-3">
+<div id="vigtext-3-text"></div>
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-3" spellcheck=false></textarea>
 </div>
-<div id="plot-3" style="width: 60%"></div>
+<div id="vigplot-3">
+<canvas id="vigplot-3-canvas"></canvas>
 </div>
-</div>
-<div id="vig-4" style="display: none; justify-content: center">
-<div id="vigtext-4" justify-content: center"></div>
-<div id="container-4" style="display: flex">
-<div id="content" style="width: 40%">
+<div id="vigtext-4">
+<div id="vigtext-4-text"></div>
 <textarea rows=10 placeholder="Subset of ciphertext." class="fullwidth is_code" id="ct-vig-4" spellcheck=false></textarea>
 </div>
-<div id="plot-4" style="width: 60%"></div>
+<div id="vigplot-4">
+<canvas id="vigplot-4-canvas"></canvas>
 </div>
-</div>
+</div> <!-- vig-grid -->
 
 > **Part 2:**  Now we have identified the most likely key length, we should be able to look at the individual letter frequency graphs, and work out how much we'd need to shift them (like a Caesar cipher) to identify each letter of the key.
 
