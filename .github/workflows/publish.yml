@@ -21,9 +21,10 @@ jobs:
           to: html
           path: ./cryptography
 
-      - name: Upload rendered files to gh-pages-cryptography branch
+      - name: Upload rendered files to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./cryptography/_book
-          publish_branch: gh-pages-cryptography
+          publish_branch: gh-pages
+          subdir: cryptography
