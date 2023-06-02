@@ -33,6 +33,10 @@ Because $5$ and $8$ both 'become' the same number, they are congruent modulo $3$
 
 ## Calculator
 
+To help you get a feel for modular arithmetic, here is a calculator that accepts any mathematical expression in the left-hand side.
+You can also specify a modulus, and the calculator will show you the result of the expression modulo that number.
+You may find this useful for the exercises below.
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
 <script type="text/javascript">
 math.config({number: 'BigNumber', precision: 64, epsilon: 1e-60});
@@ -54,7 +58,7 @@ Prove the following statements:
 
 1. $(a + b) \equiv (p + q) \bmod n$.
 1. $(ab) \equiv (pq) \bmod n$.
-1. $(a^m) \equiv (p^m) \bmod n$, for all integers $m$.
+1. $(a^m) \equiv (p^m) \bmod n$, for all non-negative integers $m$.
 
 <!-- Note: the last one requires proof by induction, or a simplified form thereof. -->
 
@@ -62,7 +66,9 @@ These equalities make it far easier to perform some calculations.
 For example, what is $33^{594} \bmod{32}$?
 
 We might first think about calculating $33$ to the power of $594$, and *then* dividing that by $32$ to find the remainder.
-But if we notice that $33 \equiv 1 \bmod{32}$, then we can see that
+That sounds difficult: even a computer would struggle with such a large number! (Try using the calculator above, or [Google's built-in calculator](https://www.google.com/search?q=calculator), to calculate $33^{594}$.)
+
+But if we notice that $33 \equiv 1 \bmod{32}$, then we can use formula (3) to see that
 
 $$33^{594} \equiv 1^{594} \equiv 1 \bmod{32},$$
 

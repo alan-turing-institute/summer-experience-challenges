@@ -10,25 +10,53 @@ Can you recover the message $m$?
 
 > **Exercise 1:** Suppose you know that $n = 143$ and $e = 7$. You also know the encoded message is $c = 41$. Can you recover the decoded message $m$? <!-- Ans: d = 103, m = 50 -->
 >
-> > Hint: You will need to work out the value of $d$ yourself. Recall that $d$ is specified by the equation $de \equiv 1 \bmod \phi$, and $\phi = (p - 1)(q - 1)$.
+> > Hint: The message can be recovered using the formula $m = c^d \bmod n$.
 > >
-> > Once you have $d$, you can recover the message $m$ using the formula $m = c^d \bmod n$.
+> > Since you already know $n$ and $c$, the only thing you need to find is $d$. Recall that $d$ is specified by the equation $de \equiv 1 \bmod \phi$, and $\phi = (p - 1)(q - 1)$.
+> >
+> > Once you have found $d$, you can key in its value below to quickly calculate $m$, and submit your answer.
 >
+> <div>
+> If *c* = &nbsp;<input type="text" size=4 id="c1" value="41" />, *d* = <input type="text" size=4 id="d1" />, and *n* = <input type="text" size=4 id="n1" value="143" />, then *m* is: <span id="m1-calc">
+> </div>
+> <p></p>
 > <div>
 > Your answer: *m* = &nbsp;<input type="text" size=4 id="m1-answer" /> <input type="button" value="Check" id="check-m1" />&nbsp;&nbsp;&nbsp;&nbsp;<span id="m1-result"></span>
 > </div>
 
 <script type="module">
+// calculates (base ^ exp) % mod while avoiding overflow/rounding errors
+function powmod(base, exp, mod) {
+    let result = 1;
+    for (let i = 0; i < exp; i++) {
+        result = (result * base) % mod;
+    }
+    return result;
+}
+function verifyContents(inputId) {
+    let d = document.getElementById(inputId).value;
+    d = d.replace(/\D/g, "");
+    document.getElementById(inputId).value = d;
+}
+function calculateM() {
+    const c = parseInt(document.getElementById("c1").value);
+    const d = parseInt(document.getElementById("d1").value);
+    const n = parseInt(document.getElementById("n1").value);
+    if (isNaN(c) || isNaN(d) || isNaN(n)) {
+        document.getElementById("m1-calc").innerHTML = "";
+    }
+    else {
+        const m = powmod(c, d, n);
+        document.getElementById("m1-calc").innerHTML = m;
+    }
+}
+document.getElementById("c1").addEventListener("input", () => {verifyContents("c1"); calculateM();});
+document.getElementById("d1").addEventListener("input", () => {verifyContents("d1"); calculateM();});
+document.getElementById("n1").addEventListener("input", () => {verifyContents("n1"); calculateM();});
+
 const correctAnswer = 50;
 const wrongColor = "#fad9d7";  // light red
 const rightColor = "#d7fae9";  // light green
-function verifyM1contents() {
-    let d = document.getElementById("m1-answer").value;
-    console.log(d);
-    d = d.replace(/\D/g, "");
-    console.log(d);
-    document.getElementById("m1-answer").value = d;
-}
 function checkM(){
     const d = parseInt(document.getElementById("m1-answer").value);
     console.log(d)
@@ -44,7 +72,7 @@ function checkM(){
 }
 document.getElementById("check-m1").addEventListener("click", checkM);
 document.getElementById("m1-answer").addEventListener("input", function(){
-    verifyM1contents();
+    verifyContents("m1-answer");
     document.getElementById("m1-answer").style.backgroundColor = "white";
     document.getElementById("m1-result").innerHTML = "";
 });
