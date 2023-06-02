@@ -6,20 +6,96 @@
 Finally, let's explore how secure the RSA scheme really is.
 
 Specifically, let's consider the case where as an attacker, you already know the public key ($n$ and $e$) as well as the cipher text, $c = m^e \bmod n$.
-
 Can you recover the message $m$?
-
-TODO: Javascript widget to recover $d$ given $e$ and $\phi$, and then $m$ given $n$, $c$, and $d$. Much of this can probably be copied from rsa_encode.js.
 
 > **Exercise 1:** Suppose you know that $n = 143$ and $e = 7$. You also know the encoded message is $c = 41$. Can you recover the decoded message $m$? <!-- Ans: d = 103, m = 50 -->
 >
-> Hint: You will need to figure out $d$ yourself using the same formula as before.
+> > Hint: You will need to work out the value of $d$ yourself. Recall that $d$ is specified by the equation $de \equiv 1 \bmod \phi$, and $\phi = (p - 1)(q - 1)$.
+> >
+> > Once you have $d$, you can recover the message $m$ using the formula $m = c^d \bmod n$.
 >
+> <div>
+> Your answer: *m* = &nbsp;<input type="text" size=4 id="m1-answer" /> <input type="button" value="Check" id="check-m1" />&nbsp;&nbsp;&nbsp;&nbsp;<span id="m1-result"></span>
+> </div>
+
+<script type="module">
+const correctAnswer = 50;
+const wrongColor = "#fad9d7";  // light red
+const rightColor = "#d7fae9";  // light green
+function verifyM1contents() {
+    let d = document.getElementById("m1-answer").value;
+    console.log(d);
+    d = d.replace(/\D/g, "");
+    console.log(d);
+    document.getElementById("m1-answer").value = d;
+}
+function checkM(){
+    const d = parseInt(document.getElementById("m1-answer").value);
+    console.log(d)
+    if (d === correctAnswer) {
+        document.getElementById("m1-result").innerHTML = "Correct!";
+        document.getElementById("m1-result").style.color = "green";
+        document.getElementById("m1-answer").style.backgroundColor = rightColor;
+    } else {
+        document.getElementById("m1-result").innerHTML = "Incorrect. Try again.";
+        document.getElementById("m1-result").style.color = "red";
+        document.getElementById("m1-answer").style.backgroundColor = wrongColor;
+    }
+}
+document.getElementById("check-m1").addEventListener("click", checkM);
+document.getElementById("m1-answer").addEventListener("input", function(){
+    verifyM1contents();
+    document.getElementById("m1-answer").style.backgroundColor = "white";
+    document.getElementById("m1-result").innerHTML = "";
+});
+</script>
+
 > **Exercise 2:** Suppose you know that $n = 373577$ and $e = 7$. You also know the encoded message is $c = 226918$. Can you recover the decoded message $m$, using the same strategy as above?  <!-- Ans: d = 319063, m = 500 -->
+>
+> Chances are, you can't do this on your own! However, if you're feeling confident, you can try to guess the answer anyway:
+>
+> <div>
+> Your answer: *m* = &nbsp;<input type="text" size=4 id="m2-answer" /> <input type="button" value="Check" id="check-m2" />&nbsp;&nbsp;&nbsp;&nbsp;<span id="m2-result"></span>
+> </div>
 
-In the first case, you could probably figure out the factors $p$ and $q$, and go from there.
+<script type="module">
+const correctAnswer = 500;
+const wrongColor = "#fad9d7";  // light red
+const rightColor = "#d7fae9";  // light green
+function verifyM2contents() {
+    let d = document.getElementById("m2-answer").value;
+    console.log(d);
+    d = d.replace(/\D/g, "");
+    console.log(d);
+    document.getElementById("m2-answer").value = d;
+}
+function checkM(){
+    const d = parseInt(document.getElementById("m2-answer").value);
+    console.log(d)
+    if (d === correctAnswer) {
+        document.getElementById("m2-result").innerHTML = "Correct!";
+        document.getElementById("m2-result").style.color = "green";
+        document.getElementById("m2-answer").style.backgroundColor = rightColor;
+    } else {
+        document.getElementById("m2-result").innerHTML = "Incorrect. Try again.";
+        document.getElementById("m2-result").style.color = "red";
+        document.getElementById("m2-answer").style.backgroundColor = wrongColor;
+    }
+}
+document.getElementById("check-m2").addEventListener("click", checkM);
+document.getElementById("m2-answer").addEventListener("input", function(){
+    verifyM2contents();
+    document.getElementById("m2-answer").style.backgroundColor = "white";
+    document.getElementById("m2-result").innerHTML = "";
+});
+</script>
 
-In the second case, it's a lot harder, because $n$ is a lot bigger.
+
+You probably found that the key to cracking the message is figuring out the prime factors $p$ and $q$.
+Once you have those, you can calculate $\phi$ easily, and then $d$ using the extended Euclidean algorithm.
+
+In the first case, this was easy enough.
+But in the second case, finding $p$ and $q$ is a lot harder, because $n$ is a lot bigger.
 
 But, we could get a computer to do it!
 

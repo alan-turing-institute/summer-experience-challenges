@@ -115,8 +115,15 @@ function recalcM(e, d, n) {
     const m = parseInt(document.getElementById("rsa-m").value);
     const outdiv = document.getElementById("rsa-m-out");
 
-    if (isNaN(m) || m < 0 || m >= n) {
-        outdiv.innerHTML = "";
+    if (isNaN(m) || m < 0) {
+        outdiv.style.color = "red";
+        outdiv.innerHTML = "m cannot be negative";
+        // Should never reach here as the input is sanitised
+        return;
+    }
+    else if (m > n) {
+        outdiv.style.color = "red";
+        outdiv.innerHTML = "m cannot be larger than n";
         return;
     }
     else {

@@ -2,11 +2,14 @@
 
 ## Introduction
 
-In this section, we'll look at the *extended Euclidean algorithm*, a series of steps which can be used to solve the equation:
+In this section, we'll look at the *extended Euclidean algorithm*.
+An algorithm is a series of steps which can be used to solve a problem: think of it as a recipe, but for maths.
+
+In this case, the problem we're trying to solve is finding the values of $x$ and $y$ in the equation
 
 $$ax + by = \gcd(a, b) \tag{1}$$
 
-where $a$, $b$, $x$, and $y$ are all integers, and $\gcd(a, b)$ denotes the *greatest common divisor* of $a$ and $b$, i.e. the largest whole number that divides both $a$ and $b$.
+where $a$ and $b$ are known integers, $x$ and $y$ are unknown integers, and $\gcd(a, b)$ denotes the *greatest common divisor* of $a$ and $b$, i.e. the largest whole number that divides both $a$ and $b$.
 
 Formulated this way, this equation might not immediately seem relevant.
 However, in fact, it is precisely what we need to find the value of $d$ in the RSA algorithm.
@@ -46,11 +49,11 @@ And again:
 
 $$\underset{\text{big number}}{\color{blue}{3}} = (1 \times \underset{\text{small number}}{\color{red}{2}}) + \underset{\text{remainder}}{\color{green}{1}}$$
 
-And we can stop when we get to the remainder of $1$, because that's the number on the right-hand side of our original equation!
+We can stop when we get to the remainder of $1$, because that's the number on the right-hand side of our original equation!
 
 But how does this help us to find $d$ and $y$?
 
-Well, we can rewrite each of the equations above by bringing the remainders to one side:
+We can rewrite each of the equations above by bringing the remainders to one side:
 
 $$\begin{align}
 {\color{green}{3}} &= {\color{blue}{48}} - (9 \times {\color{red}{5}}) \\
@@ -84,9 +87,43 @@ which tells us that $d = 29$ is a valid choice for the decryption key.
 
 > **Exercise:** Try your hand at calculating $d$ for another set of $e$ and $\phi$.
 >
-> For example, if we choose $p = 17$ and $q = 23$, then $\phi = 16 \times 22 = 352$ and we can choose $e = 13$.
->
-> Find a correct value of $d$ for this setup, and compare your result against the form on the previous page.
+> For example, if we choose $p = 17$ and $q = 23$, then $\phi = 16 \times 22 = 352$ and we can choose $e = 13$. What is the correct value of $d$ for this configuration? <!-- ans = 325 -->
+> 
+> <div>
+> Your answer: *d* = &nbsp;<input type="text" size=4 id="d-answer" /> <input type="button" value="Check" id="check-d" />&nbsp;&nbsp;&nbsp;&nbsp;<span id="d-result"></span>
+> </div>
+
+<script type="module">
+const wrongColor = "#fad9d7";  // light red
+const rightColor = "#d7fae9";  // light green
+function verifyDcontents() {
+    let d = document.getElementById("d-answer").value;
+    console.log(d);
+    d = d.replace(/\D/g, "");
+    console.log(d);
+    document.getElementById("d-answer").value = d;
+}
+function checkD(){
+    const d = parseInt(document.getElementById("d-answer").value);
+    console.log(d)
+    if (d === 325) {
+        document.getElementById("d-result").innerHTML = "Correct!";
+        document.getElementById("d-result").style.color = "green";
+        document.getElementById("d-answer").style.backgroundColor = rightColor;
+    } else {
+        document.getElementById("d-result").innerHTML = "Incorrect. Try again.";
+        document.getElementById("d-result").style.color = "red";
+        document.getElementById("d-answer").style.backgroundColor = wrongColor;
+    }
+}
+document.getElementById("check-d").addEventListener("click", checkD);
+document.getElementById("d-answer").addEventListener("input", function(){
+    verifyDcontents();
+    document.getElementById("d-answer").style.backgroundColor = "white";
+    document.getElementById("d-result").innerHTML = "";
+});
+</script>
 
 As we will soon see, the values of $p$ and $q$ actually used in practice are *extremely* large!
+It would be very unfeasible to try and calculate $d$ just by testing one number after another.
 So, having a fast algorithm to calculate $d$ is very important.

@@ -35,9 +35,7 @@ for all messages $m < n$.
 In general, if we just pick any random numbers $e$, $d$, and $n$, this will not be true!
 The RSA scheme works because these numbers are specifically chosen in a way that not only satisfies the equation above, but is also difficult to reverse-engineer.
 
-For example, if you were an attacker and you knew the public key (i.e. $e$ and $n$), it's still extremely difficult to find the correct value of $d$ to correctly decode the message.
-
-**TODO:** JavaScript demo.
+Specifically, if you were an attacker and you knew the public key (i.e. $e$ and $n$), it's still extremely difficult to find the correct value of $d$ to correctly decode the message.
 
 ## Key generation
 
@@ -64,7 +62,7 @@ They do so using the following algorithm:
 
 This setup ensures that regardless of what message $m$ is being sent, $$(m^e)^d \equiv m \bmod n,$$ as required by the RSA algorithm.
 
-Try this out using the interactive form here:
+Try this out using the interactive form here. It has been pre-filled with the numbers from the example above, but you should try it out with your own choice of numbers.
 
 - **Step 1**: Choose $p$ and $q$ (must be prime)
 <div class="rsa-grid-1">
