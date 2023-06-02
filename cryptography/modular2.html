@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Cryptography Challenge - 8&nbsp; Modular arithmetic II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./rsa2.html" rel="next">
+<link href="./rsa1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./asymmetric.html">Asymmetric ciphers</a></li><li class="breadcrumb-item"><a href="./modular2.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular arithmetic II</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Cryptography Challenge</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ciphers_vs_codes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to codes and ciphers</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./symmetric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetric ciphers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./caesar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Caesar cipher</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./monosub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monoalphabetic ciphers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vigenere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vigenère cipher</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./enigma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Enigma</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./asymmetric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymmetric ciphers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modular1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modular arithmetic I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rsa1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">RSA scheme I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modular2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular arithmetic II</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rsa2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RSA scheme II</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a></li>
+  <li><a href="#the-extended-euclidean-algorithm" id="toc-the-extended-euclidean-algorithm" class="nav-link" data-scroll-target="#the-extended-euclidean-algorithm"><span class="header-section-number">8.2</span> The extended Euclidean algorithm</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular arithmetic II</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
+<p>In this section, we’ll look at the <em>extended Euclidean algorithm</em>. An algorithm is a series of steps which can be used to solve a problem: think of it as a recipe, but for maths.</p>
+<p>In this case, the problem we’re trying to solve is finding the values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the equation</p>
+<p><span class="math display">\[ax + by = \gcd(a, b) \tag{1}\]</span></p>
+<p>where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are known integers, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are unknown integers, and <span class="math inline">\(\gcd(a, b)\)</span> denotes the <em>greatest common divisor</em> of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, i.e.&nbsp;the largest whole number that divides both <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
+<p>Formulated this way, this equation might not immediately seem relevant. However, in fact, it is precisely what we need to find the value of <span class="math inline">\(d\)</span> in the RSA algorithm.</p>
+<p>Recall that we chose <span class="math inline">\(e\)</span> and <span class="math inline">\(d\)</span> such that:</p>
+<ul>
+<li><span class="math inline">\(e\)</span> and <span class="math inline">\(\phi\)</span> have no common factors. This means that <span class="math inline">\(\gcd(e, \phi) = 1\)</span>.</li>
+<li><span class="math inline">\(ed \bmod \phi = 1\)</span>.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Question:</strong> Reformulate the second condition in terms of equation (1).</p>
+</blockquote>
+</section>
+<section id="the-extended-euclidean-algorithm" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="the-extended-euclidean-algorithm"><span class="header-section-number">8.2</span> The extended Euclidean algorithm</h2>
+<p>You probably found above that we are trying to solve the equation <span class="math inline">\(ed + \phi y = 1\)</span>. We already know the values of <span class="math inline">\(e\)</span> and <span class="math inline">\(\phi\)</span>, and the Euclidean algorithm will let us obtain the values of <span class="math inline">\(d\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>Of course, we’re only really interested in <span class="math inline">\(d\)</span>, so even though we’ll also get the value of <span class="math inline">\(y\)</span>, we can just throw it away.</p>
+<p>Let’s reuse the example from the previous page, where <span class="math inline">\(\phi = 48\)</span> and <span class="math inline">\(e = 5\)</span>. Substituting that in:</p>
+<p><span class="math display">\[5d + 48y = 1\]</span></p>
+<p>Each step of the Euclidean algorithm is a simple division. We start off with the larger number (48), and divide it by the smaller number (5). In this case, <span class="math inline">\(48\)</span> divided by <span class="math inline">\(5\)</span> is <span class="math inline">\(9\)</span>, with a remainder of <span class="math inline">\(3\)</span>:</p>
+<p><span class="math display">\[\underset{\text{big number}}{\color{blue}{48}} = (9 \times \underset{\text{small number}}{\color{red}{5}}) + \underset{\text{remainder}}{\color{green}{3}}\]</span></p>
+<p>We repeat this, but the small number from the previous equation (<span class="math inline">\(5\)</span>) becomes the ‘big number’, and the remainder (<span class="math inline">\(3\)</span>) becomes the ‘small number’.</p>
+<p><span class="math display">\[\underset{\text{big number}}{\color{blue}{5}} = (1 \times \underset{\text{small number}}{\color{red}{3}}) + \underset{\text{remainder}}{\color{green}{2}}\]</span></p>
+<p>And again:</p>
+<p><span class="math display">\[\underset{\text{big number}}{\color{blue}{3}} = (1 \times \underset{\text{small number}}{\color{red}{2}}) + \underset{\text{remainder}}{\color{green}{1}}\]</span></p>
+<p>We can stop when we get to the remainder of <span class="math inline">\(1\)</span>, because that’s the number on the right-hand side of our original equation!</p>
+<p>But how does this help us to find <span class="math inline">\(d\)</span> and <span class="math inline">\(y\)</span>?</p>
+<p>We can rewrite each of the equations above by bringing the remainders to one side:</p>
+<p><span class="math display">\[\begin{align}
+{\color{green}{3}} &amp;= {\color{blue}{48}} - (9 \times {\color{red}{5}}) \\
+{\color{green}{2}} &amp;= {\color{blue}{5}} - (1 \times {\color{red}{3}}) \\
+{\color{green}{1}} &amp;= {\color{blue}{3}} - (1 \times {\color{red}{2}})
+\end{align}\]</span></p>
+<p>At the very top, we have an equation that links 3 to our original numbers, 48 and 5. At the bottom, we have an equation that links our target 1 to 3 and 2. So we just need to substitute the equations above into the ones below, in order to relate our target 1 to the original 48 and 5.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise:</strong> Substitute the equations above into the third equation to express 1 in terms of multiples of 48 and 5. You will have to do this in several steps to make sure that all the 2’s and 3’s are eliminated.</p>
+</blockquote>
+<p>You might eventually end up at this answer:</p>
+<p><span class="math display">\[1 = (\underset{y}{2} \times \underset{\phi}{48}) + (\underset{d}{-19} \times \underset{e}{5}).\]</span></p>
+<p>which suggests that <span class="math inline">\(d = -19\)</span> and <span class="math inline">\(y = 2\)</span>.</p>
+<p>But we can’t have a negative number for <span class="math inline">\(d\)</span>!</p>
+<p>Thankfully, we can add and subtract multiples of <span class="math inline">\(48\)</span> and <span class="math inline">\(5\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+1 &amp;= (2 \times 48) - (19 \times 5) \\
+  &amp;= (2 \times 48) - (5 \times 48) + (48 \times 5) - (19 \times 5) \\
+  &amp;= (\underset{y}{-3} \times \underset{\phi}{48}) + (\underset{d}{29} \times \underset{e}{5}).
+\end{align}\]</span></p>
+<p>which tells us that <span class="math inline">\(d = 29\)</span> is a valid choice for the decryption key.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise:</strong> Try your hand at calculating <span class="math inline">\(d\)</span> for another set of <span class="math inline">\(e\)</span> and <span class="math inline">\(\phi\)</span>.</p>
+<p>For example, if we choose <span class="math inline">\(p = 17\)</span> and <span class="math inline">\(q = 23\)</span>, then <span class="math inline">\(\phi = 16 \times 22 = 352\)</span> and we can choose <span class="math inline">\(e = 13\)</span>. What is the correct value of <span class="math inline">\(d\)</span> for this configuration? <!-- ans = 325 --></p>
+<div>
+<p>Your answer: <em>d</em> = &nbsp;<input type="text" size="4" id="d-answer"> <input type="button" value="Check" id="check-d">&nbsp;&nbsp;&nbsp;&nbsp;<span id="d-result"></span></p>
+</div>
+</blockquote>
+<script type="module">
+const wrongColor = "#fad9d7";  // light red
+const rightColor = "#d7fae9";  // light green
+function verifyDcontents() {
+    let d = document.getElementById("d-answer").value;
+    console.log(d);
+    d = d.replace(/\D/g, "");
+    console.log(d);
+    document.getElementById("d-answer").value = d;
+}
+function checkD(){
+    const d = parseInt(document.getElementById("d-answer").value);
+    console.log(d)
+    if (d === 325) {
+        document.getElementById("d-result").innerHTML = "Correct!";
+        document.getElementById("d-result").style.color = "green";
+        document.getElementById("d-answer").style.backgroundColor = rightColor;
+    } else {
+        document.getElementById("d-result").innerHTML = "Incorrect. Try again.";
+        document.getElementById("d-result").style.color = "red";
+        document.getElementById("d-answer").style.backgroundColor = wrongColor;
+    }
+}
+document.getElementById("check-d").addEventListener("click", checkD);
+document.getElementById("d-answer").addEventListener("input", function(){
+    verifyDcontents();
+    document.getElementById("d-answer").style.backgroundColor = "white";
+    document.getElementById("d-result").innerHTML = "";
+});
+</script>
+<p>As we will soon see, the values of <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> actually used in practice are <em>extremely</em> large! It would be very unfeasible to try and calculate <span class="math inline">\(d\)</span> just by testing one number after another. So, having a fast algorithm to calculate <span class="math inline">\(d\)</span> is very important.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./rsa1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">RSA scheme I</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./rsa2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RSA scheme II</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

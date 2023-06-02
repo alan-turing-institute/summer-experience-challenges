@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Cryptography Challenge - 9&nbsp; RSA scheme II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./modular2.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./asymmetric.html">Asymmetric ciphers</a></li><li class="breadcrumb-item"><a href="./rsa2.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RSA scheme II</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Cryptography Challenge</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ciphers_vs_codes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to codes and ciphers</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./symmetric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetric ciphers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./caesar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Caesar cipher</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./monosub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monoalphabetic ciphers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vigenere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vigenère cipher</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./enigma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Enigma</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./asymmetric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymmetric ciphers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modular1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Modular arithmetic I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rsa1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">RSA scheme I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modular2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular arithmetic II</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rsa2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RSA scheme II</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#security" id="toc-security" class="nav-link active" data-scroll-target="#security"><span class="header-section-number">9.1</span> Security</a></li>
+  <li><a href="#prime-factorisation" id="toc-prime-factorisation" class="nav-link" data-scroll-target="#prime-factorisation"><span class="header-section-number">9.2</span> Prime factorisation</a></li>
+  <li><a href="#rsa-in-practice" id="toc-rsa-in-practice" class="nav-link" data-scroll-target="#rsa-in-practice"><span class="header-section-number">9.3</span> RSA in practice</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RSA scheme II</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<script type="text/javascript">
+// wrongColor and rightColor are background colours for input fields signifying
+// wrong and correct answers respectively.
+const wrongColor = "#fad9d7";  // light red
+const rightColor = "#d7fae9";  // light green
+
+// powmod(base, exp, mod) returns (base ^ exp) % mod while avoiding
+// overflow/rounding errors.
+// In particular, for RSA, encoding involves calculating c = powmod(m, e, n);
+// and decoding involves calculating m = powmod(c, d, n).
+function powmod(base, exp, mod) {
+    let result = 1;
+    for (let i = 0; i < exp; i++) {
+        result = (result * base) % mod;
+    }
+    return result;
+}
+
+// enforcePosNumberInput(inputId) ensures that the value of the input
+// elemeent with the id `inputId` is a positive integer. It does so by removing
+// any characters that are not digits, and if the resulting value is 0, clears
+// the input.
+function enforcePosNumberInput(inputId) {
+    let d = document.getElementById(inputId).value;
+    d = d.replace(/\D/g, "");
+    if (parseInt(d) === 0) d = ""; 
+    document.getElementById(inputId).value = d;
+}
+
+// Display the value of m = c^d mod n
+//   cInputId (string): id of input element containing c
+//   dInputId (string): id of input element containing d
+//   nInputId (string): id of input element containing n
+//   mSpanId (string): id of span element where the value of m is to be displayed
+function calculateM(cInputId, dInputId, nInputId, mSpanId) {
+    const c = parseInt(document.getElementById(cInputId).value);
+    const d = parseInt(document.getElementById(dInputId).value);
+    const n = parseInt(document.getElementById(nInputId).value);
+    if (isNaN(c) || isNaN(d) || isNaN(n)) {
+        document.getElementById(mSpanId).innerHTML = "";
+    }
+    else {
+        const m = powmod(c, d, n);
+        document.getElementById(mSpanId).innerHTML = m;
+    }
+}
+
+// Check whether the value of m matches a correct answer
+//    mInputId (string): id of input element containing the proposed value of m
+//    mResultSpanId (string): id of span element where the result is to be displayed
+//    correctAnswer (number): the true value of m
+function checkM(mInputId, mResultSpanId, correctAnswer) {
+    const m = parseInt(document.getElementById(mInputId).value);
+    if (m === correctAnswer) {
+        document.getElementById(mResultSpanId).innerHTML = "Correct!";
+        document.getElementById(mResultSpanId).style.color = "green";
+        document.getElementById(mInputId).style.backgroundColor = rightColor;
+    } else {
+        document.getElementById(mResultSpanId).innerHTML = "Incorrect. Try again.";
+        document.getElementById(mResultSpanId).style.color = "red";
+        document.getElementById(mInputId).style.backgroundColor = wrongColor;
+    }
+}
+
+
+</script>
+
+<script type="module">
+// Exercise 1
+for (const inputId of ["c1", "d1", "n1"]) {
+    document.getElementById(inputId).addEventListener("input", () => {
+        enforcePosNumberInput(inputId);
+        calculateM("c1", "d1", "n1", "m1-calc");
+    });
+}
+document.getElementById("check-m1").addEventListener("click",
+    () => checkM("m1-answer", "m1-result", 50));
+document.getElementById("m1-answer").addEventListener("input", function(){
+    enforcePosNumberInput("m1-answer");
+    document.getElementById("m1-answer").style.backgroundColor = "white";
+    document.getElementById("m1-result").innerHTML = "";
+});
+
+
+// Exercise 2
+for (const inputId of ["c2", "d2", "n2"]) {
+    document.getElementById(inputId).addEventListener("input", () => {
+        enforcePosNumberInput(inputId);
+        calculateM("c2", "d2", "n2", "m2-calc");
+    });
+}
+document.getElementById("check-m2").addEventListener("click",
+    () => checkM("m2-answer", "m2-result", 500));
+document.getElementById("m2-answer").addEventListener("input", function(){
+    enforcePosNumberInput("m2-answer");
+    document.getElementById("m2-answer").style.backgroundColor = "white";
+    document.getElementById("m2-result").innerHTML = "";
+});
+
+// General functions
+
+function timeIt(callback, n = 1) {
+    const start = performance.now();
+    let result;
+    for (let i = 0; i < n; i++) {
+        result = callback();
+    }
+    const end = performance.now();
+    return [result, (end - start) / n];
+}
+
+// Base-10 logarithm on bigint
+function log10(n) {
+  const s = n.toString();
+  return s.length + Math.log10("0." + s.substring(0, 15))
+}
+
+// TODO improve behaviour on large primes
+function factorise(n) {
+    let factors = [];
+    let d = 2n;
+    while (n > 1) {
+        while (n % d === 0n) {
+            factors.push(d);
+            n /= d;
+        }
+        d = d + 1n;
+    }
+    return factors;
+}
+
+
+// Section 9.2 calculator box
+
+function makeHtmlFromFactors(factors) {
+    // Group factors that are the same
+    let groupedFactors = new Map();
+    for (const factor of factors) {
+        if (groupedFactors.has(factor)) {
+            groupedFactors.set(factor, groupedFactors.get(factor) + 1);
+        } else {
+            groupedFactors.set(factor, 1);
+        }
+    }
+    // Construct HTML
+    return [...groupedFactors
+        .entries()]
+        .map(([factor, exponent]) => exponent === 1 ? factor.toString() : `${factor}<sup>${exponent}</sup>`)
+        .join(" &times; ");
+}
+
+
+document.getElementById("factorise-input").addEventListener("input", function() {
+    enforcePosNumberInput("factorise-input");
+});
+document.getElementById("factorise-button").addEventListener("click", function() {
+    let n = BigInt(document.getElementById("factorise-input").value);
+    if (n < 2) {
+        document.getElementById("factorise-result").innerHTML = "";
+        return;
+    }
+    document.getElementById("factorise-time").innerHTML = "";
+    document.getElementById("factorise-result").innerHTML = "Calculating...";
+    setTimeout(() => {
+        let [factors, time] = timeIt(() => factorise(n), 5);
+        if (factors.length === 1) {
+            document.getElementById("factorise-result").innerHTML = `prime!`;
+        } else {
+            document.getElementById("factorise-result").innerHTML = makeHtmlFromFactors(factors);
+        }
+        document.getElementById("factorise-time").innerHTML = `(Took: ${time.toFixed(1)} ms)`;
+    }, 10);
+});
+
+
+// Section 9.2 bullet points
+
+function factoriseThis(n) {
+    document.getElementById("factorise-input").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("factorise-input").value = n;
+    document.getElementById("factorise-button").click();
+}
+const examples = [1822862989n, 18791071561n, 168317527121n, 1711588692607n,
+    12305793468907n, 196249257362329n, 1658760184264121n, 19626387663901583n]
+examples.forEach((n, i) => {
+    document.getElementById(`example${i + 1}`).innerHTML = n;
+    document.getElementById(`factoriseThis${i + 1}`).addEventListener("click", () => factoriseThis(n))
+});
+
+
+// Section 9.3 table
+for (let i = 1; i <= 8; i++) {
+    document.getElementById(`in${i}`).addEventListener("input", function() {
+        enforcePosNumberInput(`in${i}`);
+    });
+    document.getElementById(`fact${i}`).addEventListener("click", function() {
+        let n = BigInt(document.getElementById(`in${i}`).value);
+        if (n < 2) {
+            return;
+        }
+        document.getElementById(`time${i}`).value = "";
+        document.getElementById(`fact${i}`).value = "Calculating...";
+        setTimeout(() => {
+            let [_, time] = timeIt(() => factorise(n), 5);
+            document.getElementById(`time${i}`).value = time.toFixed(1);
+            document.getElementById(`fact${i}`).value = "Factorise...";
+        }, 10);
+    });
+}
+
+// Section 9.3 plot
+// Prefill from examples
+for (let i = 1; i <= 8; i++) {
+    document.getElementById(`in${i}`).value = examples[i - 1];
+}
+
+function getValidValuesFromTable() {
+    let numbers = [];
+    let times = [];
+    for (let i = 1; i <= 8; i++) {
+        let n = BigInt(document.getElementById(`in${i}`).value);
+        let time = parseFloat(document.getElementById(`time${i}`).value);
+        if (n >= 2 && time > 0) {
+            numbers.push(log10(n));
+            times.push(Math.log10(time));
+        }
+    }
+    return [numbers, times];
+}
+
+let chart = new Chart("rsa-plot-canvas", {
+    type: "scatter",
+    data: {
+        labels: [],
+        datasets: [{
+            data: [],
+        }],
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: false,
+            },
+            title: {
+                text: "",
+                font: {
+                    size: 14,
+                }
+            }
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: "log10(n)",
+                },
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: "log10(time / ms)",
+                },
+            },
+        },
+    },
+});
+
+function drawChart() {
+    document.getElementById("plot-feedback").innerHTML = "";
+    let [numbers, times] = getValidValuesFromTable();
+    // perform linear regression
+    const xbar = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+    const ybar = times.reduce((a, b) => a + b, 0) / times.length;
+    const sxy = numbers.map((n, i) => (n - xbar) * (times[i] - ybar)).reduce((a, b) => a + b, 0);
+    const sxx = numbers.map(n => (n - xbar) ** 2).reduce((a, b) => a + b, 0);
+    const m = sxy / sxx;
+    const c = ybar - (m * xbar);
+
+    if (numbers.length < 2) {
+        document.getElementById("plot-feedback").innerHTML = "Need at least 2 valid values";
+    } else {
+        chart.data.labels = numbers;
+        chart.data.datasets[0].data = times;
+        chart.data.datasets[1] = {
+            label: "Linear regression",
+            type: "line",
+            data: numbers.map(x => m * x + c),
+            pointRadius: 0,
+        }
+        chart.options.plugins.title.display = true;
+        let titleText = c > 0 
+            ? `log10(time/ms) = ${m.toFixed(2)} * log10(n) + ${c.toFixed(2)}`
+            : `log10(time/ms) = ${m.toFixed(2)} * log10(n) - ${Math.abs(c).toFixed(2)}`;
+        chart.options.plugins.title.text = titleText;
+        chart.update();
+    }
+}
+
+document.getElementById("plot").addEventListener("click", drawChart);
+
+
+</script>
+<section id="security" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="security"><span class="header-section-number">9.1</span> Security</h2>
+<p>Finally, let’s explore how secure the RSA scheme really is.</p>
+<p>Specifically, let’s consider the case where as an attacker, you already know the public key (<span class="math inline">\(n\)</span> and <span class="math inline">\(e\)</span>) as well as the cipher text, <span class="math inline">\(c = m^e \bmod n\)</span>. Can you recover the message <span class="math inline">\(m\)</span>?</p>
+<blockquote class="blockquote">
+<p><strong>Exercise 1:</strong> Suppose you know that <span class="math inline">\(n = 143\)</span> and <span class="math inline">\(e = 7\)</span>. You also know the encoded message is <span class="math inline">\(c = 41\)</span>. Can you recover the decoded message <span class="math inline">\(m\)</span>? <!-- Ans: d = 103, m = 50 --></p>
+<blockquote class="blockquote">
+<p>Hint: The message can be recovered using the formula <span class="math inline">\(m = c^d \bmod n\)</span>.</p>
+<p>Since you already know <span class="math inline">\(n\)</span> and <span class="math inline">\(c\)</span>, the only thing you need to find is <span class="math inline">\(d\)</span>. Recall that <span class="math inline">\(d\)</span> is specified by the equation <span class="math inline">\(de \equiv 1 \bmod \phi\)</span>, and <span class="math inline">\(\phi = (p - 1)(q - 1)\)</span>.</p>
+<p>Once you have found <span class="math inline">\(d\)</span>, you can key in its value below to quickly calculate <span class="math inline">\(m\)</span>, and submit your answer.</p>
+</blockquote>
+<div>
+<p>If <em>c</em> = &nbsp;<input type="text" size="4" id="c1" value="41">, <em>d</em> = <input type="text" size="4" id="d1">, and <em>n</em> = <input type="text" size="4" id="n1" value="143">, then <em>m</em> is: <span id="m1-calc"></span></p>
+</div>
+<p>
+</p>
+<div>
+<p>Your answer: <em>m</em> = &nbsp;<input type="text" size="4" id="m1-answer"> <input type="button" value="Check" id="check-m1">&nbsp;&nbsp;&nbsp;&nbsp;<span id="m1-result"></span></p>
+</div>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Exercise 2:</strong> Suppose you know that <span class="math inline">\(n = 373577\)</span> and <span class="math inline">\(e = 7\)</span>. You also know the encoded message is <span class="math inline">\(c = 226918\)</span>. Can you recover the decoded message <span class="math inline">\(m\)</span>, using the same strategy as above? <!-- Ans: d = 319063, m = 500 --></p>
+<p>Chances are, you can’t do this on your own! However, if you’re feeling confident, you can try to guess the answer anyway:</p>
+<div>
+<p>If <em>c</em> = &nbsp;<input type="text" size="6" id="c2" value="226918">, <em>d</em> = <input type="text" size="6" id="d2">, and <em>n</em> = <input type="text" size="6" id="n2" value="373577">, then <em>m</em> is: <span id="m2-calc"></span></p>
+</div>
+<p>
+</p>
+<div>
+<p>Your answer: <em>m</em> = &nbsp;<input type="text" size="4" id="m2-answer"> <input type="button" value="Check" id="check-m2">&nbsp;&nbsp;&nbsp;&nbsp;<span id="m2-result"></span></p>
+</div>
+</blockquote>
+<p>You probably found that the key to cracking the message is figuring out the prime factors <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>. Once you have those, you can calculate <span class="math inline">\(\phi\)</span> easily, and then <span class="math inline">\(d\)</span> using the extended Euclidean algorithm.</p>
+<p>In the first case, this was easy enough. But in the second case, finding <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> is a lot harder, because <span class="math inline">\(n\)</span> is a lot bigger.</p>
+<p>But, we could get a computer to do it!</p>
+</section>
+<section id="prime-factorisation" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="prime-factorisation"><span class="header-section-number">9.2</span> Prime factorisation</h2>
+<p>Although it is pretty slow for a human to figure out the primes <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> from their product, computers are much better at it.</p>
+<p>Type a number into this box, and watch as the computer factorises it:</p>
+<div id="factorise">
+<p><input type="text" size="40" id="factorise-input" value="143">&nbsp;&nbsp; <input type="button" value="Factorise!" id="factorise-button"> <br> <span id="factorise-result">11 × 13</span>&nbsp;&nbsp; <span id="factorise-time"></span></p>
+</div>
+<p>With this tool, you can revisit the second exercise above.</p>
+<p>This isn’t looking very promising so far, though. If the computer can factorise <span class="math inline">\(n\)</span> so easily, then the RSA scheme cannot be very secure at all!</p>
+<p>In fact, the key to getting around this is to use <strong><em>really</em> large numbers</strong>: ones which even computers cannot factorise in a reasonable amount of time.</p>
+<p>Here are a few large numbers which you can try in the calculator above. Notice how the time taken to factorise them increases as the numbers get larger. You can make up your own numbers to try as well: pick a couple of prime numbers from <a href="http://compoasso.free.fr/primelistweb/page/prime/liste_online_en.php">this list</a>, multiply them together, and see how long it takes to factorise it.</p>
+<ul>
+<li><span id="example1" style="font-weight: bold"></span>&nbsp; <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis1"></li>
+<li><span id="example2" style="font-weight: bold"></span>&nbsp; <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis2"></li>
+<li><span id="example3" style="font-weight: bold"></span>&nbsp; <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis3"></li>
+<li><span id="example4" style="font-weight: bold"></span>&nbsp; <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis4"></li>
+<li><span id="example5" style="font-weight: bold"></span>&nbsp; <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis5"></li>
+<li><span id="example6" style="font-weight: bold"></span>&nbsp; <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis6"></li>
+<li><span id="example7" style="font-weight: bold"></span>&nbsp; <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis7"></li>
+<li><span id="example8" style="font-weight: bold"></span>&nbsp; <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis8"></li>
+</ul>
+</section>
+<section id="rsa-in-practice" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="rsa-in-practice"><span class="header-section-number">9.3</span> RSA in practice</h2>
+<p>Clearly, if we make <span class="math inline">\(n\)</span> enough, there will be a point where it takes years or even longer to factorise it.</p>
+<p>We can’t find that out for ourselves today (we don’t have that much time!), but we can make a plot of the time taken to factorise <span class="math inline">\(n\)</span> versus the value of <span class="math inline">\(n\)</span>. Since our values of <span class="math inline">\(n\)</span> (as well as the times) will span quite a wide range, we will take the base-10 logarithms of both values when making the plot. By extrapolating the plot, we can then figure out how large a number we would need to make RSA secure.</p>
+<p>Start by keying in a few values of <span class="math inline">\(n\)</span>. You can use the examples above (which have been filled in for you), or choose your own. (But make sure that the examples are large enough that the time taken is not zero!)</p>
+<p>Press the ‘factorise’ button next to each value of <span class="math inline">\(n\)</span>, and the time taken to factorise them will be displayed for you in the box next to it. Then, when you have a few data points, click the button to plot the graph:</p>
+<div id="rsa-plot-inputs" style="display: grid; grid-template-columns: 400px 1fr; grid-row-gap: 5px">
+<div>
+<strong>Value of <em>n</em> </strong>
+</div>
+<div>
+<strong>Time (ms)</strong>
+</div>
+<div>
+<input id="in1" size="25&quot;"><input type="button" id="fact1" style="font-size: 80%" value="Factorise...">
+</div>
+<div>
+<input id="time1" size="5&quot;" readonly="">
+</div>
+<div>
+<input id="in2" size="25&quot;"><input type="button" id="fact2" style="font-size: 80%" value="Factorise...">
+</div>
+<div>
+<input id="time2" size="5&quot;" readonly="">
+</div>
+<div>
+<input id="in3" size="25&quot;"><input type="button" id="fact3" style="font-size: 80%" value="Factorise...">
+</div>
+<div>
+<input id="time3" size="5&quot;" readonly="">
+</div>
+<div>
+<input id="in4" size="25&quot;"><input type="button" id="fact4" style="font-size: 80%" value="Factorise...">
+</div>
+<div>
+<input id="time4" size="5&quot;" readonly="">
+</div>
+<div>
+<input id="in5" size="25&quot;"><input type="button" id="fact5" style="font-size: 80%" value="Factorise...">
+</div>
+<div>
+<input id="time5" size="5&quot;" readonly="">
+</div>
+<div>
+<input id="in6" size="25&quot;"><input type="button" id="fact6" style="font-size: 80%" value="Factorise...">
+</div>
+<div>
+<input id="time6" size="5&quot;" readonly="">
+</div>
+<div>
+<input id="in7" size="25&quot;"><input type="button" id="fact7" style="font-size: 80%" value="Factorise...">
+</div>
+<div>
+<input id="time7" size="5&quot;" readonly="">
+</div>
+<div>
+<input id="in8" size="25&quot;"><input type="button" id="fact8" style="font-size: 80%" value="Factorise...">
+</div>
+<div>
+<input id="time8" size="5&quot;" readonly="">
+</div>
+</div>
+<p>
+</p>
+<div style="display: flex; justify-content: center">
+<p><input type="button" id="plot" value="Plot!" style="font-size: 120%"></p>
+</div>
+<span id="plot-feedback" style="color: red"></span>
+<div>
+<canvas id="rsa-plot-canvas">
+</canvas>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercise:</strong> Using the linear regression equation (shown in the plot title), calculate how large a value of <span class="math inline">\(n\)</span> we need to choose in order for our computer to take 1 year to factorise it.</p>
+<p>(You don’t need to calculate the actual value of <span class="math inline">\(n\)</span>; it will be a very big number! Expressing it in terms of its logarithm is enough. To give you an idea of its size, the number of digits in <span class="math inline">\(n\)</span> is on the order of <span class="math inline">\(\log_{10}n\)</span>.)</p>
+</blockquote>
+<!-- I got log10(n) = 36.74 on my computer, but results can and will vary -- it's a good idea to check their methodology -->
+<p>Although that number might be enough to stop someone cracking our messages with <em>this computer</em>, it is not enough to keep out someone using a more powerful computer and a more efficient method for factorising numbers.</p>
+<p>The value of <span class="math inline">\(n\)</span> used in practical applications of the RSA algorithm is much larger than this. It is generally recommended that <span class="math inline">\(n\)</span> should be at least ‘2048 bits’ long; or in other words, it should be larger than <span class="math inline">\(2^{2048}\)</span>).</p>
+<p>This is equivalent to a decimal number with about 617 digits, meaning that <span class="math inline">\(\log_{10}n \approx 617\)</span>!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./modular2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modular arithmetic II</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
