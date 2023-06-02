@@ -1,5 +1,13 @@
 # RSA scheme II
 
+<script type="text/javascript">
+{{< include rsa_shared.js >}}
+{{< include rsa2_shared.js >}}
+</script>
+<script type="module">
+{{< include rsa2_exercises.js >}}
+{{< include rsa2_factorise.js >}}
+</script>
 
 ## Security
 
@@ -24,100 +32,17 @@ Can you recover the message $m$?
 > Your answer: *m* = &nbsp;<input type="text" size=4 id="m1-answer" /> <input type="button" value="Check" id="check-m1" />&nbsp;&nbsp;&nbsp;&nbsp;<span id="m1-result"></span>
 > </div>
 
-<script type="module">
-// calculates (base ^ exp) % mod while avoiding overflow/rounding errors
-function powmod(base, exp, mod) {
-    let result = 1;
-    for (let i = 0; i < exp; i++) {
-        result = (result * base) % mod;
-    }
-    return result;
-}
-function verifyContents(inputId) {
-    let d = document.getElementById(inputId).value;
-    d = d.replace(/\D/g, "");
-    document.getElementById(inputId).value = d;
-}
-function calculateM() {
-    const c = parseInt(document.getElementById("c1").value);
-    const d = parseInt(document.getElementById("d1").value);
-    const n = parseInt(document.getElementById("n1").value);
-    if (isNaN(c) || isNaN(d) || isNaN(n)) {
-        document.getElementById("m1-calc").innerHTML = "";
-    }
-    else {
-        const m = powmod(c, d, n);
-        document.getElementById("m1-calc").innerHTML = m;
-    }
-}
-document.getElementById("c1").addEventListener("input", () => {verifyContents("c1"); calculateM();});
-document.getElementById("d1").addEventListener("input", () => {verifyContents("d1"); calculateM();});
-document.getElementById("n1").addEventListener("input", () => {verifyContents("n1"); calculateM();});
-
-const correctAnswer = 50;
-const wrongColor = "#fad9d7";  // light red
-const rightColor = "#d7fae9";  // light green
-function checkM(){
-    const d = parseInt(document.getElementById("m1-answer").value);
-    console.log(d)
-    if (d === correctAnswer) {
-        document.getElementById("m1-result").innerHTML = "Correct!";
-        document.getElementById("m1-result").style.color = "green";
-        document.getElementById("m1-answer").style.backgroundColor = rightColor;
-    } else {
-        document.getElementById("m1-result").innerHTML = "Incorrect. Try again.";
-        document.getElementById("m1-result").style.color = "red";
-        document.getElementById("m1-answer").style.backgroundColor = wrongColor;
-    }
-}
-document.getElementById("check-m1").addEventListener("click", checkM);
-document.getElementById("m1-answer").addEventListener("input", function(){
-    verifyContents("m1-answer");
-    document.getElementById("m1-answer").style.backgroundColor = "white";
-    document.getElementById("m1-result").innerHTML = "";
-});
-</script>
-
 > **Exercise 2:** Suppose you know that $n = 373577$ and $e = 7$. You also know the encoded message is $c = 226918$. Can you recover the decoded message $m$, using the same strategy as above?  <!-- Ans: d = 319063, m = 500 -->
 >
 > Chances are, you can't do this on your own! However, if you're feeling confident, you can try to guess the answer anyway:
 >
 > <div>
+> If *c* = &nbsp;<input type="text" size=6 id="c2" value="226918" />, *d* = <input type="text" size=6 id="d2" />, and *n* = <input type="text" size=6 id="n2" value="373577" />, then *m* is: <span id="m2-calc">
+> </div>
+> <p></p>
+> <div>
 > Your answer: *m* = &nbsp;<input type="text" size=4 id="m2-answer" /> <input type="button" value="Check" id="check-m2" />&nbsp;&nbsp;&nbsp;&nbsp;<span id="m2-result"></span>
 > </div>
-
-<script type="module">
-const correctAnswer = 500;
-const wrongColor = "#fad9d7";  // light red
-const rightColor = "#d7fae9";  // light green
-function verifyM2contents() {
-    let d = document.getElementById("m2-answer").value;
-    console.log(d);
-    d = d.replace(/\D/g, "");
-    console.log(d);
-    document.getElementById("m2-answer").value = d;
-}
-function checkM(){
-    const d = parseInt(document.getElementById("m2-answer").value);
-    console.log(d)
-    if (d === correctAnswer) {
-        document.getElementById("m2-result").innerHTML = "Correct!";
-        document.getElementById("m2-result").style.color = "green";
-        document.getElementById("m2-answer").style.backgroundColor = rightColor;
-    } else {
-        document.getElementById("m2-result").innerHTML = "Incorrect. Try again.";
-        document.getElementById("m2-result").style.color = "red";
-        document.getElementById("m2-answer").style.backgroundColor = wrongColor;
-    }
-}
-document.getElementById("check-m2").addEventListener("click", checkM);
-document.getElementById("m2-answer").addEventListener("input", function(){
-    verifyM2contents();
-    document.getElementById("m2-answer").style.backgroundColor = "white";
-    document.getElementById("m2-result").innerHTML = "";
-});
-</script>
-
 
 You probably found that the key to cracking the message is figuring out the prime factors $p$ and $q$.
 Once you have those, you can calculate $\phi$ easily, and then $d$ using the extended Euclidean algorithm.
@@ -130,12 +55,95 @@ But, we could get a computer to do it!
 
 ## Prime factorisation
 
-TODO: Javascript widget that factorises the product of two primes and shows the time taken.
+Although it is pretty slow for a human to figure out the primes $p$ and $q$ from their product, computers are much better at it.
 
-TODO: Maybe get the students to make a plot of log(time) vs number of digits in the product, or make another widget that does that for a given input.
+Type a number into this box, and watch as the computer factorises it:
 
-> **Question:** How large do we need the numbers to be to make it reasonably secure?
+<div id="factorise">
+<input type="text" size=40 id="factorise-input" value="143" />&nbsp;&nbsp;
+<input type="button" value="Factorise!" id="factorise-button" />
+<br />
+<span id="factorise-result">11 &times; 13</span>&nbsp;&nbsp;
+<span id="factorise-time"></span>
+</div>
+
+With this tool, you can revisit the second exercise above.
+
+This isn't looking very promising so far, though. If the computer can factorise $n$ so easily, then the RSA scheme cannot be very secure at all!
+
+In fact, the key to getting around this is to use ***really* large numbers**: ones which even computers cannot factorise in a reasonable amount of time.
+
+Here are a few large numbers which you can try in the calculator above.
+Notice how the time taken to factorise them increases as the numbers get larger.
+You can make up your own numbers to try as well: pick a couple of prime numbers from [this list](http://compoasso.free.fr/primelistweb/page/prime/liste_online_en.php), multiply them together, and see how long it takes to factorise it.
+
+- <span id="example1" style="font-weight: bold"></span>&nbsp;
+  <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis1"> 
+- <span id="example2" style="font-weight: bold"></span>&nbsp;
+  <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis2"> 
+- <span id="example3" style="font-weight: bold"></span>&nbsp;
+  <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis3"> 
+- <span id="example4" style="font-weight: bold"></span>&nbsp;
+  <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis4"> 
+- <span id="example5" style="font-weight: bold"></span>&nbsp;
+  <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis5"> 
+- <span id="example6" style="font-weight: bold"></span>&nbsp;
+  <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis6"> 
+- <span id="example7" style="font-weight: bold"></span>&nbsp;
+  <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis7"> 
+- <span id="example8" style="font-weight: bold"></span>&nbsp;
+  <input style="font-size: 80%" type="button" value="Factorise this!" id="factoriseThis8"> 
 
 ## RSA in practice
 
-How large do we actually make it?
+Clearly, if we make $n$ enough, there will be a point where it takes years or even longer to factorise it.
+
+We can't find that out for ourselves today (we don't have that much time!), but we can make a plot of the time taken to factorise $n$ versus the value of $n$.
+Since our values of $n$ (as well as the times) will span quite a wide range, we will take the base-10 logarithms of both values when making the plot.
+By extrapolating the plot, we can then figure out how large a number we would need to make RSA secure.
+
+Start by keying in a few values of $n$.
+You can use the examples above (which have been filled in for you), or choose your own.
+(But make sure that the examples are large enough that the time taken is not zero!)
+
+Press the 'factorise' button next to each value of $n$, and the time taken to factorise them will be displayed for you in the box next to it.
+Then, when you have a few data points, click the button to plot the graph:
+
+<div id="rsa-plot-inputs" style="display: grid; grid-template-columns: 400px 1fr; grid-row-gap: 5px">
+<div>**Value of *n* **</div><div>**Time (ms)**</div>
+<div><input id="in1" size=25" /><input type="button" id="fact1" style="font-size: 80%" value="Factorise..."></div>
+<div><input id="time1" size=5" readonly /></div>
+<div><input id="in2" size=25" /><input type="button" id="fact2" style="font-size: 80%" value="Factorise..."></div>
+<div><input id="time2" size=5" readonly /></div>
+<div><input id="in3" size=25" /><input type="button" id="fact3" style="font-size: 80%" value="Factorise..."></div>
+<div><input id="time3" size=5" readonly /></div>
+<div><input id="in4" size=25" /><input type="button" id="fact4" style="font-size: 80%" value="Factorise..."></div>
+<div><input id="time4" size=5" readonly /></div>
+<div><input id="in5" size=25" /><input type="button" id="fact5" style="font-size: 80%" value="Factorise..."></div>
+<div><input id="time5" size=5" readonly /></div>
+<div><input id="in6" size=25" /><input type="button" id="fact6" style="font-size: 80%" value="Factorise..."></div>
+<div><input id="time6" size=5" readonly /></div>
+<div><input id="in7" size=25" /><input type="button" id="fact7" style="font-size: 80%" value="Factorise..."></div>
+<div><input id="time7" size=5" readonly /></div>
+<div><input id="in8" size=25" /><input type="button" id="fact8" style="font-size: 80%" value="Factorise..."></div>
+<div><input id="time8" size=5" readonly /></div>
+</div>
+<p></p>
+<div style="display: flex; justify-content: center">
+<input type="button" id="plot" value="Plot!" style="font-size: 120%" />
+</div>
+<span id="plot-feedback" style="color: red"></span>
+<div><canvas id="rsa-plot-canvas"></canvas></div>
+
+> **Exercise:** Using the linear regression equation (shown in the plot title), calculate how large a value of $n$ we need to choose in order for our computer to take 1 year to factorise it.
+>
+> (You don't need to calculate the actual value of $n$; it will be a very big number! Expressing it in terms of its logarithm is enough. To give you an idea of its size, the number of digits in $n$ is on the order of $\log_{10}n$.)
+
+<!-- I got log10(n) = 36.74 on my computer, but results can and will vary -- it's a good idea to check their methodology -->
+
+Although that number might be enough to stop someone cracking our messages with *this computer*, it is not enough to keep out someone using a more powerful computer and a more efficient method for factorising numbers.
+
+The value of $n$ used in practical applications of the RSA algorithm is much larger than this.
+It is generally recommended that $n$ should be at least '2048 bits' long; or in other words, it should be larger than $2^{2048}$).
+
+This is equivalent to a decimal number with about 617 digits, meaning that $\log_{10}n \approx 617$!

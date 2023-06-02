@@ -1,5 +1,13 @@
 # RSA scheme I
 
+<script type="text/javascript">
+{{< include rsa_shared.js >}}
+</script>
+
+<script type="module">
+{{< include rsa1.js >}}
+</script>
+
 The RSA scheme is one of the most important asymmetric-key systems, and is widely used as part of the steps in encrypting Internet communications.
 
 The RSA scheme is named after the surnames of its three inventors: Ron Rivest, Adi Shamir, and Leonard Adleman.
@@ -13,7 +21,7 @@ Specifically, it assumes that the message you want to transmit is first translat
 
 > **Question:** Can you come up with a way of translating a plain-text message into an integer?
 
-1. The *encoding* step involves the sender taking the message $m$ and raising it to a power $e$ (for 'encryption'), modulo $n$:
+1. The *encoding* step involves the sender taking the message $m$ and raising it to a power $e$ (for 'encryption'), modulo some number $n$:
 
     $$c \equiv m^e \mod n$$
 
@@ -30,12 +38,12 @@ The two equations above imply together that:
 
 $$m \equiv (m^e)^d \mod n,$$
 
-for all messages $m < n$.
+and crucially, this is true of *all* messages $m < n$, meaning that the keys can be used for whatever message you choose to send.
 
 In general, if we just pick any random numbers $e$, $d$, and $n$, this will not be true!
 The RSA scheme works because these numbers are specifically chosen in a way that not only satisfies the equation above, but is also difficult to reverse-engineer.
 
-Specifically, if you were an attacker and you knew the public key (i.e. $e$ and $n$), it's still extremely difficult to find the correct value of $d$ to correctly decode the message.
+Specifically, if you were an attacker and you knew the public key (i.e. $e$ and $n$) *as well as* the ciphertext $c$, it's still extremely difficult to find the correct value of $d$ to correctly decode the message.
 
 ## Key generation
 
@@ -102,11 +110,6 @@ $m$: <input type="text" id="rsa-m" value="7" size="3" />
 </div>
 <div id="rsa-m-out"></div>
 </div>
-
-<script type="module">
-{{< include rsa_encode.js >}}
-</script>
-
 
 ## Next steps
 

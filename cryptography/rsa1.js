@@ -7,16 +7,6 @@ function isPrime(num) {
     return true;
 }
 
-function validate(id) {
-    const val = document.getElementById(id).value;
-    const fixed = val.replace(/[^0-9]/g, "");
-    if (fixed == "0") {
-        document.getElementById(id).value = "";
-    } else {
-        document.getElementById(id).value = fixed;
-    }
-}
-
 // using Euclid's algorithm
 function gcd(n1, n2) {
     if (n1 <= 0 || n2 <= 0 || isNaN(n1) || isNaN(n2)) return false;
@@ -140,17 +130,15 @@ function recalcM(e, d, n) {
 }
 
 function recalc() {
-    validate("rsa-p");
-    validate("rsa-q");
-    validate("rsa-e");
-    validate("rsa-d");
-    validate("rsa-m");
-
-    document.getElementById("rsa-pq-out").innerHTML = "";
-    document.getElementById("rsa-e-out").innerHTML = "";
-    document.getElementById("rsa-d-out").innerHTML = "";
-    document.getElementById("rsa-m-out").innerHTML = "";
-
+    // make sure all inputs are positive numbers
+    for (const id of ["rsa-p", "rsa-q", "rsa-e", "rsa-d", "rsa-m"]) {
+        enforcePosNumberInput(id);
+    }
+    // clear all outputs
+    for (const id of ["rsa-pq-out", "rsa-e-out", "rsa-d-out", "rsa-m-out"]) {
+        document.getElementById(id).innerHTML = "";
+    }
+    // recalculate outputs
     const result1 = recalcNPhi();
     if (result1 !== null) {
         const [n, phi] = result1;
@@ -162,15 +150,6 @@ function recalc() {
             }
         }
     }
-}
-
-// calculates (base ^ exp) % mod while avoiding overflow/rounding errors
-function powmod(base, exp, mod) {
-    let result = 1;
-    for (let i = 0; i < exp; i++) {
-        result = (result * base) % mod;
-    }
-    return result;
 }
 
 function factorise(n, existing_factors) {
