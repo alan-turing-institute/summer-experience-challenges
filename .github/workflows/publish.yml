@@ -27,4 +27,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./cryptography/_book
           publish_branch: gh-pages
-          subdir: cryptography
+          destination_dir: cryptography
