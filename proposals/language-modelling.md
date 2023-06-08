@@ -1,5 +1,10 @@
 # Language Modelling
 
+link to documents: 
+- student handbook: https://ndsp.notion.site/Language-Modelling-Student-Handbook-6133f623fbde42c2b6540e94d473fd56?pvs=4
+- facilitator handbook: https://ndsp.notion.site/Facilitator-handbook-0cc5a4663d184cfb819085e08b2e9f54?pvs=4
+- notebook: https://colab.research.google.com/drive/1qB6F9l1p7JxgYlcz6Gj7Q_EwgK2qUa10?usp=sharing
+
 ## Summary
 
 Build your own AI language models! Students will learn how to collect your own text-based data, and use it to fine-tune openly available language models that have been pre-trained on large amounts of text from the internet. Students then get to try applying them in different contexts: generating horoscopes [text generation], classifying movie reviews [text classification], and whatever else they can think of within some set guidelines.
