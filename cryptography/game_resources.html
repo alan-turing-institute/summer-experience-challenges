@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Cryptography Challenge - 3&nbsp; Monoalphabetic ciphers</title>
+<title>Cryptography Challenge - 10&nbsp; Cryptography Game Resources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./vigenere.html" rel="next">
-<link href="./caesar.html" rel="prev">
+<link href="./rsa2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -63,6 +62,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -76,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./symmetric.html">Symmetric ciphers</a></li><li class="breadcrumb-item"><a href="./monosub.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monoalphabetic ciphers</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./game_resources.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cryptography Game Resources</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -130,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monosub.html" class="sidebar-item-text sidebar-link active">
+  <a href="./monosub.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monoalphabetic ciphers</span></span></a>
   </div>
 </li>
@@ -185,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./game_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="./game_resources.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cryptography Game Resources</span></span></a>
   </div>
 </li>
@@ -199,9 +200,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">3.1</span> Introduction</a></li>
-  <li><a href="#frequency-analysis" id="toc-frequency-analysis" class="nav-link" data-scroll-target="#frequency-analysis"><span class="header-section-number">3.2</span> Frequency analysis</a></li>
-  <li><a href="#decryption" id="toc-decryption" class="nav-link" data-scroll-target="#decryption"><span class="header-section-number">3.3</span> Decryption</a></li>
+  <li><a href="#asymetric-encryption-tools-rsa" id="toc-asymetric-encryption-tools-rsa" class="nav-link active" data-scroll-target="#asymetric-encryption-tools-rsa"><span class="header-section-number">10.1</span> Asymetric Encryption Tools (RSA)</a>
+  <ul class="collapse">
+  <li><a href="#key-gen-by-recipient" id="toc-key-gen-by-recipient" class="nav-link" data-scroll-target="#key-gen-by-recipient"><span class="header-section-number">10.1.1</span> Key Gen (by recipient)</a></li>
+  <li><a href="#encryption-and-decryption" id="toc-encryption-and-decryption" class="nav-link" data-scroll-target="#encryption-and-decryption"><span class="header-section-number">10.1.2</span> Encryption and Decryption</a></li>
+  </ul></li>
+  <li><a href="#symmetric-encryption-tools" id="toc-symmetric-encryption-tools" class="nav-link" data-scroll-target="#symmetric-encryption-tools"><span class="header-section-number">10.2</span> Symmetric Encryption Tools</a>
+  <ul class="collapse">
+  <li><a href="#ceasar-cipher" id="toc-ceasar-cipher" class="nav-link" data-scroll-target="#ceasar-cipher"><span class="header-section-number">10.2.1</span> Ceasar Cipher</a></li>
+  <li><a href="#monoalphabetic-cipher" id="toc-monoalphabetic-cipher" class="nav-link" data-scroll-target="#monoalphabetic-cipher"><span class="header-section-number">10.2.2</span> Monoalphabetic Cipher</a></li>
+  <li><a href="#vigenère-cipher" id="toc-vigenère-cipher" class="nav-link" data-scroll-target="#vigenère-cipher"><span class="header-section-number">10.2.3</span> Vigenère Cipher</a></li>
+  </ul></li>
+  <li><a href="#hacking-tools" id="toc-hacking-tools" class="nav-link" data-scroll-target="#hacking-tools"><span class="header-section-number">10.3</span> Hacking Tools</a>
+  <ul class="collapse">
+  <li><a href="#breaking-rsa" id="toc-breaking-rsa" class="nav-link" data-scroll-target="#breaking-rsa"><span class="header-section-number">10.3.1</span> Breaking RSA</a></li>
+  <li><a href="#caesar-cipher" id="toc-caesar-cipher" class="nav-link" data-scroll-target="#caesar-cipher"><span class="header-section-number">10.3.2</span> Caesar Cipher</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -210,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monoalphabetic ciphers</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cryptography Game Resources</span></h1>
 </div>
 
 
@@ -225,398 +239,180 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="introduction" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.1</span> Introduction</h2>
-<p>Clearly, the Caesar cipher is not very secure. It’s probably enough if you were sending an unimaginative message to a friend, but for anything mildly important, you probably want to crank up the security a little bit!</p>
-<p>The Caesar cipher is a very simple example of a <em>monoalphabetic substitution cipher</em>: one where each alphabet is replaced with another one. This means that there’s a <em>one-to-one mapping</em> between pairs of alphabet in the plain and cipher text. The problem with the Caesar cipher is that the replacement follows a very simple pattern, so once you know one mapping, the rest can be figured out right away.</p>
-<p>We can go one step further and use a cipher where the mapping is completely random. For example, A can be mapped to B, but B can be mapped to Q, and C to I, and so on.</p>
-<blockquote class="blockquote">
-<p><strong>Question:</strong> How many possible encryptions are there? Would a brute-force attack on such a cipher be sensible?</p>
-</blockquote>
-<p>Try encoding a piece of text by choosing your own cipher. You can either enter each character of the cipher manually, or use the ‘randomise’ button to generate a random cipher.</p>
-<div id="random" style="display: flex; justify-content: center">
-<p><input type="button" id="random-encode" value="Choose a random encoding" class="italic"></p>
-</div>
-<div id="letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">
-<div id="a">
-A→ <input type="text" id="encode-a" size="1">
-</div>
-<div id="b">
-B→ <input type="text" id="encode-b" size="1">
-</div>
-<div id="c">
-C→ <input type="text" id="encode-c" size="1">
-</div>
-<div id="d">
-D→ <input type="text" id="encode-d" size="1">
-</div>
-<div id="e">
-E→ <input type="text" id="encode-e" size="1">
-</div>
-<div id="f">
-F→ <input type="text" id="encode-f" size="1">
-</div>
-<div id="g">
-G→ <input type="text" id="encode-g" size="1">
-</div>
-<div id="h">
-H→ <input type="text" id="encode-h" size="1">
-</div>
-<div id="i">
-I→ <input type="text" id="encode-i" size="1">
-</div>
-<div id="j">
-J→ <input type="text" id="encode-j" size="1">
-</div>
-<div id="k">
-K→ <input type="text" id="encode-k" size="1">
-</div>
-<div id="l">
-L→ <input type="text" id="encode-l" size="1">
-</div>
-<div id="m">
-M→ <input type="text" id="encode-m" size="1">
-</div>
-<div id="n">
-N→ <input type="text" id="encode-n" size="1">
-</div>
-<div id="o">
-O→ <input type="text" id="encode-o" size="1">
-</div>
-<div id="p">
-P→ <input type="text" id="encode-p" size="1">
-</div>
-<div id="q">
-Q→ <input type="text" id="encode-q" size="1">
-</div>
-<div id="r">
-R→ <input type="text" id="encode-r" size="1">
-</div>
-<div id="s">
-S→ <input type="text" id="encode-s" size="1">
-</div>
-<div id="t">
-T→ <input type="text" id="encode-t" size="1">
-</div>
-<div id="u">
-U→ <input type="text" id="encode-u" size="1">
-</div>
-<div id="v">
-V→ <input type="text" id="encode-v" size="1">
-</div>
-<div id="w">
-W→ <input type="text" id="encode-w" size="1">
-</div>
-<div id="x">
-X→ <input type="text" id="encode-x" size="1">
-</div>
-<div id="y">
-Y→ <input type="text" id="encode-y" size="1">
-</div>
-<div id="z">
-Z→ <input type="text" id="encode-z" size="1">
-</div>
-</div>
-<div id="encode-remaining">
+<script type="text/javascript">
+// wrongColor and rightColor are background colours for input fields signifying
+// wrong and correct answers respectively.
+const wrongColor = "#fad9d7";  // light red
+const rightColor = "#d7fae9";  // light green
 
-</div>
-<textarea id="input-encode" rows="6" class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck="false"></textarea>
-<textarea id="output-encode" rows="6" class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck="false"></textarea>
-<script type="module">
-const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-function cleanText() {
-    const input = document.getElementById("input-encode").value;
-    const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
-    document.getElementById("input-encode").value = cleaned;
-}
-
-function getMappings(excluding, prefix="encode-") {
-    let mappings = new Map();
-    for (const c of alphabet) {
-        if (excluding.includes(c)) {
-            continue;
-        }
-        const id = prefix + c.toLowerCase();
-        let mapped_to = document.getElementById(id).value.toUpperCase();
-        if (mapped_to.length > 0) {
-            mappings.set(c, mapped_to);
-        }
+// powmod(base, exp, mod) returns (base ^ exp) % mod while avoiding
+// overflow/rounding errors.
+// In particular, for RSA, encoding involves calculating c = powmod(m, e, n);
+// and decoding involves calculating m = powmod(c, d, n).
+function powmod(base, exp, mod) {
+    let result = 1;
+    for (let i = 0; i < exp; i++) {
+        result = (result * base) % mod;
     }
-    return mappings;
+    return result;
 }
 
-function alreadyMappedTo(char, excluding, prefix="encode-") {
-    for (const m of getMappings(excluding, prefix)) {
-        if (m[1] == char.toUpperCase()) {
-            return true;
-        }
+// enforcePosNumberInput(inputId) ensures that the value of the input
+// elemeent with the id `inputId` is a positive integer. It does so by removing
+// any characters that are not digits, and if the resulting value is 0, clears
+// the input.
+function enforcePosNumberInput(inputId) {
+    let d = document.getElementById(inputId).value;
+    d = d.replace(/\D/g, "");
+    if (parseInt(d) === 0) d = ""; 
+    document.getElementById(inputId).value = d;
+}
+
+// Display the value of m = c^d mod n
+//   cInputId (string): id of input element containing c
+//   dInputId (string): id of input element containing d
+//   nInputId (string): id of input element containing n
+//   mSpanId (string): id of span element where the value of m is to be displayed
+function calculateM(cInputId, dInputId, nInputId, mSpanId) {
+    const c = parseInt(document.getElementById(cInputId).value);
+    const d = parseInt(document.getElementById(dInputId).value);
+    const n = parseInt(document.getElementById(nInputId).value);
+    if (isNaN(c) || isNaN(d) || isNaN(n)) {
+        document.getElementById(mSpanId).innerHTML = "";
     }
-    return false;
-}
-
-function validate(char, prefix="encode-") {
-    const id = prefix + char.toLowerCase();
-    const val = document.getElementById(id).value;
-    // First, remove extra characters
-    if (val.length > 1) {
-        document.getElementById(id).value = val[0].toUpperCase()
-    }
-
-    // Then check if it's already been mapped
-    if (val.length == 1) {
-        const valUp = val.toUpperCase();
-        if (alreadyMappedTo(valUp, [char], prefix)) {
-            // Already found somewhere else
-            document.getElementById(id).value = "";
-        }
-        else if (valUp.charCodeAt(0) < 65 || valUp.charCodeAt(0) > 90) {
-            // Not A to Z
-            document.getElementById(id).value = "";
-        }
-        else {
-            document.getElementById(id).value = valUp;
-        }
-    }
-    showRemainingChars();
-}
-
-function encrypt() {
-    const input = document.getElementById("input-encode").value;
-    const mappings = getMappings([]);
-    if (mappings.size < 26) return;
-    let output = "";
-    for (const c of input) {
-
-        output += mappings.get(c);
-    }
-    document.getElementById("output-encode").value = output;
-}
-
-function decrypt() {
-    const input = document.getElementById("input-decode").value;
-    const mappings = getMappings([], "decode-");
-    let output = "";
-    for (const c of input) {
-    if (mappings.get(c)) output += mappings.get(c);
-    else output += "?";
-    }
-    document.getElementById("output-decode").value = output;
-}
-
-function randomise() {
-    const shuffledChars = [...alphabet]
-        .map(value => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
-    shuffledChars.map((m, i) => {
-        const id = "encode-" + alphabet[i].toLowerCase();
-        document.getElementById(id).value = m.toUpperCase();
-    });
-    showRemainingChars();
-    encrypt();
-}
-
-function showRemainingChars() {
-    for (const prefix of ["encode-", "decode-"]) {
-        const remaining = [...alphabet].filter(c => !alreadyMappedTo(c, [], prefix)).join("");
-        if (remaining.length == 0) {
-            document.getElementById(prefix + "remaining").innerHTML = "";
-        }
-        else {
-            document.getElementById(prefix + "remaining").innerHTML = `Remaining characters: ${remaining}`;
-        }
+    else {
+        const m = powmod(c, d, n);
+        document.getElementById(mSpanId).innerHTML = m;
     }
 }
 
-let checked = [];
-function addToChecked() {
-    for (const c of alphabet) {
-        const id = "decode-" + c.toLowerCase();
-        if (document.getElementById(id).value !== "" && !checked.includes(c)) {
-            checked.push(c);
-        }
-    }
-    check();
-}
-function check() {
-    const answers = new Map([
-        ["A", "O"], ["B", "B"], ["C", "S"], ["D", "G"], ["E", "P"],
-        ["F", "I"], ["G", "M"], ["H", "C"], ["I", "E"], ["J", "F"],
-        ["K", "Q"], ["L", "K"], ["M", "V"], ["N", "X"], ["O", "R"],
-        ["P", "T"], ["Q", "W"], ["R", "N"], ["S", "Z"], ["T", "D"],
-        ["U", "L"], ["V", "H"], ["W", "J"], ["X", "Y"], ["Y", "A"],
-        ["Z", "U"]]);
-    for (const c of checked) {
-        const div = document.getElementById("d" + c.toLowerCase());
-        const input = document.getElementById("decode-" + c.toLowerCase());
-        const wrongColor = "#fad9d7";  // light red
-        const rightColor = "#d7fae9";  // light green
-        if (input.value === "") {
-            div.style.backgroundColor = "";
-            input.style.backgroundColor = "";
-        }
-        else if (input.value === answers.get(c)) {
-            div.style.backgroundColor = rightColor;
-            input.style.backgroundColor = rightColor;
-        }
-        else {
-            div.style.backgroundColor = wrongColor;
-            input.style.backgroundColor = wrongColor;
-        }
+// Check whether the value of m matches a correct answer
+//    mInputId (string): id of input element containing the proposed value of m
+//    mResultSpanId (string): id of span element where the result is to be displayed
+//    correctAnswer (number): the true value of m
+function checkM(mInputId, mResultSpanId, correctAnswer) {
+    const m = parseInt(document.getElementById(mInputId).value);
+    if (m === correctAnswer) {
+        document.getElementById(mResultSpanId).innerHTML = "Correct!";
+        document.getElementById(mResultSpanId).style.color = "green";
+        document.getElementById(mInputId).style.backgroundColor = rightColor;
+    } else {
+        document.getElementById(mResultSpanId).innerHTML = "Incorrect. Try again.";
+        document.getElementById(mResultSpanId).style.color = "red";
+        document.getElementById(mInputId).style.backgroundColor = wrongColor;
     }
 }
-
-for (const c of alphabet) {
-    // encoding
-    var id = "encode-" + c.toLowerCase();
-    document.getElementById(id).addEventListener("input", (_ => validate(c.toUpperCase())));
-    document.getElementById(id).addEventListener("input", encrypt);
-    // decoding
-    var prefix = "decode-"
-    var id = prefix + c.toLowerCase();
-    document.getElementById(id).addEventListener("input", (_ => validate(c.toUpperCase(), prefix)));
-    document.getElementById(id).addEventListener("input", decrypt);
-    document.getElementById(id).addEventListener("input", check);
-}
-document.getElementById("random-encode").addEventListener("click", randomise);
-document.getElementById("input-encode").addEventListener("input", cleanText);
-document.getElementById("input-encode").addEventListener("input", encrypt);
-document.getElementById("check").addEventListener("click", addToChecked);
-
-showRemainingChars();
-decrypt();
 
 
 </script>
-</section>
-<section id="frequency-analysis" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="frequency-analysis"><span class="header-section-number">3.2</span> Frequency analysis</h2>
-<p>Although we realistically cannot use brute force, there is a much more clever way to crack such a code. It relies on the fact that certain letters of the alphabet are much more common than others in typical English text.</p>
-<p>Try pasting some text into the box below (or clicking the samples), and observe the frequency distribution of the letters in the plot that appears:</p>
-<div id="buttons" style="margin: auto; display: flex; justify-content: center">
-<p>Samples: <input type="button" id="fillpnp" value="Pride and Prejudice" class="italic"> <input type="button" id="fillbm" value="Bee Movie" class="italic"> <input type="button" id="filludhr" value="Universal Declaration of Human Rights" class="italic"></p>
-</div>
-<div id="container" style="display: flex">
-<div id="content" style="width: 30%">
-<textarea rows="10" placeholder="Paste text to analyse here..." class="fullwidth is_code" id="text_analysis" spellcheck="false"></textarea>
-</div>
-<div id="plot" style="width: 70%">
-<canvas id="plot-canvas">
-</canvas>
-</div>
-</div>
-<blockquote class="blockquote">
-<p><strong>Question:</strong> Try a few different text sources. What are the most and least common letters? Can you think of any reasons why this distribution might systematically vary from text to text?</p>
-<p>If you speak a foreign language, try analysing some text in that language to observe how the distribution might change. (Sadly, the box above ignores all accented characters! The schemes we’re discussing today can be adapted to work on non-English letters, but today we’ll focus only on the 26 English alphabet.)</p>
-</blockquote>
-<p>In English, the most common letter is by far ‘E’. If we perform the same analysis on the cipher text, and find that ‘R’ is the most common letter, then it’s likely that ‘R’ decodes to ‘E’ in the plain text.</p>
-<p>Once we have a match, we can fill it in and try to solve the rest in an iterative manner.</p>
-<p>Another useful piece of information you can get from the cipher text is to find repeated sequences of letters. For example, once you find the letter for ‘E’, it makes sense to look for potential spots where ‘THE’ might be encoded.</p>
-</section>
-<section id="decryption" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="decryption"><span class="header-section-number">3.3</span> Decryption</h2>
-With the above information, you should be able to have a go at decrypting this encrypted text, with the frequency distribution shown here:
-<div id="decode-container" style="display: flex; justify-content: center">
-<div id="content" style="width: 40%">
-<textarea rows="10" placeholder="ciphertext." class="fullwidth is_code" id="input-decode" spellcheck="false"></textarea>
-</div>
-<div id="decplot" style="width: 80%">
-<canvas id="decplot-canvas">
-</canvas>
-</div>
-</div>
-<div id="check-container" style="display: flex; justify-content: center">
-<p><input type="button" id="check" value="Check guesses" class="italic"></p>
-</div>
-<div id="decrypt_letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">
-<div id="da">
-A→ <input type="text" id="decode-a" size="1">
-</div>
-<div id="db">
-B→ <input type="text" id="decode-b" size="1">
-</div>
-<div id="dc">
-C→ <input type="text" id="decode-c" size="1">
-</div>
-<div id="dd">
-D→ <input type="text" id="decode-d" size="1">
-</div>
-<div id="de">
-E→ <input type="text" id="decode-e" size="1">
-</div>
-<div id="df">
-F→ <input type="text" id="decode-f" size="1">
-</div>
-<div id="dg">
-G→ <input type="text" id="decode-g" size="1">
-</div>
-<div id="dh">
-H→ <input type="text" id="decode-h" size="1">
-</div>
-<div id="di">
-I→ <input type="text" id="decode-i" size="1">
-</div>
-<div id="dj">
-J→ <input type="text" id="decode-j" size="1">
-</div>
-<div id="dk">
-K→ <input type="text" id="decode-k" size="1">
-</div>
-<div id="dl">
-L→ <input type="text" id="decode-l" size="1">
-</div>
-<div id="dm">
-M→ <input type="text" id="decode-m" size="1">
-</div>
-<div id="dn">
-N→ <input type="text" id="decode-n" size="1">
-</div>
-<div id="do">
-O→ <input type="text" id="decode-o" size="1">
-</div>
-<div id="dp">
-P→ <input type="text" id="decode-p" size="1">
-</div>
-<div id="dq">
-Q→ <input type="text" id="decode-q" size="1">
-</div>
-<div id="dr">
-R→ <input type="text" id="decode-r" size="1">
-</div>
-<div id="ds">
-S→ <input type="text" id="decode-s" size="1">
-</div>
-<div id="dt">
-T→ <input type="text" id="decode-t" size="1">
-</div>
-<div id="du">
-U→ <input type="text" id="decode-u" size="1">
-</div>
-<div id="dv">
-V→ <input type="text" id="decode-v" size="1">
-</div>
-<div id="dw">
-W→ <input type="text" id="decode-w" size="1">
-</div>
-<div id="dx">
-X→ <input type="text" id="decode-x" size="1">
-</div>
-<div id="dy">
-Y→ <input type="text" id="decode-y" size="1">
-</div>
-<div id="dz">
-Z→ <input type="text" id="decode-z" size="1">
-</div>
-</div>
-<div id="decode-remaining">
+<script type="module">
+// Produce quotient and remainder of n = qd + r
+// nInputId (string): id of input element containing n
+// dInputId (string): id of input element containing d
+// qSpanId (string): id of span element where q is to be displayed
+// rSpanId (string): id of span element where r is to be displayed
+function quotient_remainder(nInputId, dInputId, qSpanId, rSpanId) {
+    const n = parseInt(document.getElementById(nInputId).value);
+    const d = parseInt(document.getElementById(dInputId).value);
+    // console.log("is this going to this function?");
+    if (isNaN(n) || isNaN(d)) {
+        // console.log("and how about this place?");
+        document.getElementById(qSpanId).innerHTML = "";
+        document.getElementById(rSpanId).innerHTML = "";
+    }
+    else {
+        const q = Math.floor(n / d);
+        const r = n % d;
+        // console.log("if it is going down here I want a print out of q and r");
+        // console.log(q)
+        // console.log(r)
+        document.getElementById(qSpanId).innerHTML = q;
+        document.getElementById(rSpanId).innerHTML = r;
+    }
+}
 
-</div>
-<div id="container" style="display: flex">
-<div id="content" style="width: 100%">
-<textarea rows="10" placeholder="Decrypted text" class="fullwidth is_code" id="output-decode" spellcheck="false"></textarea>
-</div>
-</div>
+function calc_m() {
+    for (const inputId of ["c1", "d1", "n1"]) {
+        document.getElementById(inputId).addEventListener("input", () => {
+            enforcePosNumberInput(inputId);
+            calculateM("c1", "d1", "n1", "m1-calc");
+        })
+    }
+}
+
+function calc_c() {
+    for (const inputId of ["c2", "d2", "n2"]) {
+        document.getElementById(inputId).addEventListener("input", () => {
+            enforcePosNumberInput(inputId);
+            calculateM("c2", "d2", "n2", "m2-calc");
+        })
+    }
+}
+
+function calc_qr() {
+    for (const inputId of ["nh", "dh"]) {
+        // console.log("here I am");
+        document.getElementById(inputId).addEventListener("input", () => {
+            // enforcePosNumberInput(inputId);
+            quotient_remainder("nh", "dh", "qh-calc", "rh-calc");
+        });
+        // console.log("and here");
+    };
+};
+
+
+calc_m();
+calc_c();
+calc_qr();
+
+
+</script>
+<script type="module">
+function cleanText() {
+    // Capitalise all letters and remove all non-letters
+    const input = document.getElementById("input").value;
+    const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
+    document.getElementById("input").value = cleaned;
+}
+
+function encrypt(n) {
+    // Encrypt the text
+    const input = document.getElementById("input").value;
+    let output = [];
+    for (let i = 0; i < input.length; i++) {
+        const c = input.charCodeAt(i);
+        const c_new = (c - 65 + n) % 26 + 65;  // 65 = 'A'
+        output.push(String.fromCharCode(c_new));
+    }
+    document.getElementById("output").value = output.join("");
+}
+
+function en_or_decrypt() {
+    const n = parseInt(document.getElementById("shift").value);
+    if (document.getElementById("encrypt").checked) {
+        document.getElementById("input").placeholder = "Enter plain text here..."
+        document.getElementById("output").placeholder = "Cipher text will be displayed here..."
+        encrypt(n);
+    } else {
+        document.getElementById("input").placeholder = "Enter cipher text here..."
+        document.getElementById("output").placeholder = "Plain text will be displayed here..."
+        encrypt(26 - n);
+    }
+}
+function swapText() {
+    const output = document.getElementById("output").value;
+    document.getElementById("input").value = output;
+    en_or_decrypt();
+}
+document.getElementById("input").addEventListener("input", cleanText);
+document.getElementById("input").addEventListener("input", en_or_decrypt);
+document.getElementById("shift").addEventListener("change", en_or_decrypt);
+document.getElementById("encrypt").addEventListener("change", swapText);
+document.getElementById("decrypt").addEventListener("change", swapText);
+en_or_decrypt()
+
+
+</script>
 
 <script type="module">
 const pnp_text = `
@@ -3341,10 +3137,334 @@ document.getElementById("fillbm").addEventListener("click", _ => fillWith(bm_tex
 document.getElementById("filludhr").addEventListener("click", _ => fillWith(udhr_text, "text_analysis"));
 fillWith(enc_text, "input-decode");
 
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+function cleanText() {
+    const input = document.getElementById("input-encode").value;
+    const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
+    document.getElementById("input-encode").value = cleaned;
+}
+
+function getMappings(excluding, prefix="encode-") {
+    let mappings = new Map();
+    for (const c of alphabet) {
+        if (excluding.includes(c)) {
+            continue;
+        }
+        const id = prefix + c.toLowerCase();
+        let mapped_to = document.getElementById(id).value.toUpperCase();
+        if (mapped_to.length > 0) {
+            mappings.set(c, mapped_to);
+        }
+    }
+    return mappings;
+}
+
+function alreadyMappedTo(char, excluding, prefix="encode-") {
+    for (const m of getMappings(excluding, prefix)) {
+        if (m[1] == char.toUpperCase()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function validate(char, prefix="encode-") {
+    const id = prefix + char.toLowerCase();
+    const val = document.getElementById(id).value;
+    // First, remove extra characters
+    if (val.length > 1) {
+        document.getElementById(id).value = val[0].toUpperCase()
+    }
+
+    // Then check if it's already been mapped
+    if (val.length == 1) {
+        const valUp = val.toUpperCase();
+        if (alreadyMappedTo(valUp, [char], prefix)) {
+            // Already found somewhere else
+            document.getElementById(id).value = "";
+        }
+        else if (valUp.charCodeAt(0) < 65 || valUp.charCodeAt(0) > 90) {
+            // Not A to Z
+            document.getElementById(id).value = "";
+        }
+        else {
+            document.getElementById(id).value = valUp;
+        }
+    }
+    showRemainingChars();
+}
+
+function encrypt() {
+    const input = document.getElementById("input-encode").value;
+    const mappings = getMappings([]);
+    if (mappings.size < 26) return;
+    let output = "";
+    for (const c of input) {
+
+        output += mappings.get(c);
+    }
+    document.getElementById("output-encode").value = output;
+}
+
+function decrypt() {
+    const input = document.getElementById("input-decode").value;
+    const mappings = getMappings([], "decode-");
+    let output = "";
+    for (const c of input) {
+    if (mappings.get(c)) output += mappings.get(c);
+    else output += "?";
+    }
+    document.getElementById("output-decode").value = output;
+}
+
+function randomise() {
+    const shuffledChars = [...alphabet]
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+    shuffledChars.map((m, i) => {
+        const id = "encode-" + alphabet[i].toLowerCase();
+        document.getElementById(id).value = m.toUpperCase();
+    });
+    showRemainingChars();
+    encrypt();
+}
+
+function showRemainingChars() {
+    for (const prefix of ["encode-", "decode-"]) {
+        const remaining = [...alphabet].filter(c => !alreadyMappedTo(c, [], prefix)).join("");
+        if (remaining.length == 0) {
+            document.getElementById(prefix + "remaining").innerHTML = "";
+        }
+        else {
+            document.getElementById(prefix + "remaining").innerHTML = `Remaining characters: ${remaining}`;
+        }
+    }
+}
+
+let checked = [];
+function addToChecked() {
+    for (const c of alphabet) {
+        const id = "decode-" + c.toLowerCase();
+        if (document.getElementById(id).value !== "" && !checked.includes(c)) {
+            checked.push(c);
+        }
+    }
+    check();
+}
+function check() {
+    const answers = new Map([
+        ["A", "O"], ["B", "B"], ["C", "S"], ["D", "G"], ["E", "P"],
+        ["F", "I"], ["G", "M"], ["H", "C"], ["I", "E"], ["J", "F"],
+        ["K", "Q"], ["L", "K"], ["M", "V"], ["N", "X"], ["O", "R"],
+        ["P", "T"], ["Q", "W"], ["R", "N"], ["S", "Z"], ["T", "D"],
+        ["U", "L"], ["V", "H"], ["W", "J"], ["X", "Y"], ["Y", "A"],
+        ["Z", "U"]]);
+    for (const c of checked) {
+        const div = document.getElementById("d" + c.toLowerCase());
+        const input = document.getElementById("decode-" + c.toLowerCase());
+        const wrongColor = "#fad9d7";  // light red
+        const rightColor = "#d7fae9";  // light green
+        if (input.value === "") {
+            div.style.backgroundColor = "";
+            input.style.backgroundColor = "";
+        }
+        else if (input.value === answers.get(c)) {
+            div.style.backgroundColor = rightColor;
+            input.style.backgroundColor = rightColor;
+        }
+        else {
+            div.style.backgroundColor = wrongColor;
+            input.style.backgroundColor = wrongColor;
+        }
+    }
+}
+
+for (const c of alphabet) {
+    // encoding
+    var id = "encode-" + c.toLowerCase();
+    document.getElementById(id).addEventListener("input", (_ => validate(c.toUpperCase())));
+    document.getElementById(id).addEventListener("input", encrypt);
+    // decoding
+    var prefix = "decode-"
+    var id = prefix + c.toLowerCase();
+    document.getElementById(id).addEventListener("input", (_ => validate(c.toUpperCase(), prefix)));
+    document.getElementById(id).addEventListener("input", decrypt);
+    document.getElementById(id).addEventListener("input", check);
+}
+document.getElementById("random-encode").addEventListener("click", randomise);
+document.getElementById("input-encode").addEventListener("input", cleanText);
+document.getElementById("input-encode").addEventListener("input", encrypt);
+document.getElementById("check").addEventListener("click", addToChecked);
+
+showRemainingChars();
+decrypt();
+
 
 </script>
+<p>The goal of the game is to design a cryptographic protocol for communication between your encryption and decryption teams, communicating solely via the ‘public-channel’. Scoring a point for each successfully transmitted message, and taking a point away from your rival team for each message your hackers can decipher.</p>
+<section id="asymetric-encryption-tools-rsa" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="asymetric-encryption-tools-rsa"><span class="header-section-number">10.1</span> Asymetric Encryption Tools (RSA)</h2>
+<p>Steps for implementing an RSA encryption scheme:</p>
+<section id="key-gen-by-recipient" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="key-gen-by-recipient"><span class="header-section-number">10.1.1</span> Key Gen (by recipient)</h3>
+<p>The goal is to compute a triple <span class="math inline">\((e, d, n=pq)\)</span>:</p>
+<ol type="1">
+<li>Pick primes <span class="math inline">\(p, q\)</span> such that <span class="math inline">\(n=pq &gt; 127\)</span>, compute <span class="math inline">\(n\)</span>.</li>
+<li>Compute totient function <span class="math inline">\(\phi=(p-1)(q-1)\)</span> and pick <span class="math inline">\(e&lt;\phi\)</span> such that <span class="math inline">\(e\)</span> and <span class="math inline">\(\phi\)</span> are coprime (i.e.&nbsp;<span class="math inline">\(\gcd(e, \phi)=1\)</span>).</li>
+<li>Pick <span class="math inline">\(d\)</span> such that <span class="math inline">\(de \equiv 1\mod\phi\)</span>.</li>
+<li>Send pair <span class="math inline">\((e, n)\)</span> to sender.</li>
+</ol>
+</section>
+<section id="encryption-and-decryption" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="encryption-and-decryption"><span class="header-section-number">10.1.2</span> Encryption and Decryption</h3>
+<p>For a given <span class="math inline">\(n\)</span> character long message <span class="math inline">\(s=s_0\ldots s_n\)</span>, with characters <span class="math inline">\(\{s_i\}\)</span>, compute integer character representations <span class="math inline">\(\{m_i\}\)</span> using ASCII table below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ascii.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">An ASCII character encoding table. By finding the character C that you wish to encode the Dec encoding will give a unique integer for that character. This can also be used to decode.</figcaption>
+</figure>
+</div>
+Then to encode or decode we simply need the subject, <span class="math inline">\(s\)</span> (either a message character integer <span class="math inline">\(m_i\)</span>, or a cipher text integer <span class="math inline">\(c_i\)</span>), the exponent (either <span class="math inline">\(e\)</span> for encyption or <span class="math inline">\(d\)</span> for decryption) and the modulus, <span class="math inline">\(n\)</span>, to either encrypt a cipher text: <span class="math display">\[\begin{equation*}
+    c_i = m_i^e \mod n,
+\end{equation*}\]</span>
+<div style="display: flex; justify-content: center">
+<p><em>m</em> = &nbsp;<input type="text" size="4" id="c1">, &nbsp; <em>e</em> = &nbsp;<input type="text" size="4" id="d1">, &nbsp; <em>n</em> = &nbsp; <input type="text" size="4" id="n1">, &nbsp; <em>c</em> = &nbsp; <span id="m1-calc"></span></p>
+</div>
+or decrypt a message: <span class="math display">\[\begin{equation*}
+    m_i = c_i^d \mod n,
+\end{equation*}\]</span>
+<div style="display: flex; justify-content: center">
+<p><em>c</em> = &nbsp;<input type="text" size="4" id="c2">, &nbsp; <em>d</em> = &nbsp;<input type="text" size="4" id="d2">, &nbsp; <em>n</em> = &nbsp; <input type="text" size="4" id="n2">, &nbsp; <em>m</em> = &nbsp; <span id="m2-calc"></span></p>
+</div>
+</section>
+</section>
+<section id="symmetric-encryption-tools" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="symmetric-encryption-tools"><span class="header-section-number">10.2</span> Symmetric Encryption Tools</h2>
+<section id="ceasar-cipher" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="ceasar-cipher"><span class="header-section-number">10.2.1</span> Ceasar Cipher</h3>
+<div>
+<input type="radio" id="encrypt" name="mode" value="Encrypt" checked="checked"> <label for="encrypt">Encrypt</label> <br> <input type="radio" id="decrypt" name="mode" value="Decrypt"> <label for="decrypt">Decrypt</label> <br> Shift: <select id="shift"> <option value="0">0</option> <option value="1">1</option> <option value="2" selected="selected">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option> <option value="25">25</option> </select> <br>
+<textarea id="input" rows="6" class="fullwidth is_code" spellcheck="false"></textarea>
+<textarea id="output" rows="6" class="fullwidth is_code" disabled="true" spellcheck="false"></textarea>
+</div>
+</section>
+<section id="monoalphabetic-cipher" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="monoalphabetic-cipher"><span class="header-section-number">10.2.2</span> Monoalphabetic Cipher</h3>
+Use the following tool to encode or decode a monoalphabetic cipher text:
+<div id="random" style="display: flex; justify-content: center">
+<p><input type="button" id="random-encode" value="Choose a random encoding" class="italic"></p>
+</div>
+<div id="letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">
+<div id="a">
+A→ <input type="text" id="encode-a" size="1">
+</div>
+<div id="b">
+B→ <input type="text" id="encode-b" size="1">
+</div>
+<div id="c">
+C→ <input type="text" id="encode-c" size="1">
+</div>
+<div id="d">
+D→ <input type="text" id="encode-d" size="1">
+</div>
+<div id="e">
+E→ <input type="text" id="encode-e" size="1">
+</div>
+<div id="f">
+F→ <input type="text" id="encode-f" size="1">
+</div>
+<div id="g">
+G→ <input type="text" id="encode-g" size="1">
+</div>
+<div id="h">
+H→ <input type="text" id="encode-h" size="1">
+</div>
+<div id="i">
+I→ <input type="text" id="encode-i" size="1">
+</div>
+<div id="j">
+J→ <input type="text" id="encode-j" size="1">
+</div>
+<div id="k">
+K→ <input type="text" id="encode-k" size="1">
+</div>
+<div id="l">
+L→ <input type="text" id="encode-l" size="1">
+</div>
+<div id="m">
+M→ <input type="text" id="encode-m" size="1">
+</div>
+<div id="n">
+N→ <input type="text" id="encode-n" size="1">
+</div>
+<div id="o">
+O→ <input type="text" id="encode-o" size="1">
+</div>
+<div id="p">
+P→ <input type="text" id="encode-p" size="1">
+</div>
+<div id="q">
+Q→ <input type="text" id="encode-q" size="1">
+</div>
+<div id="r">
+R→ <input type="text" id="encode-r" size="1">
+</div>
+<div id="s">
+S→ <input type="text" id="encode-s" size="1">
+</div>
+<div id="t">
+T→ <input type="text" id="encode-t" size="1">
+</div>
+<div id="u">
+U→ <input type="text" id="encode-u" size="1">
+</div>
+<div id="v">
+V→ <input type="text" id="encode-v" size="1">
+</div>
+<div id="w">
+W→ <input type="text" id="encode-w" size="1">
+</div>
+<div id="x">
+X→ <input type="text" id="encode-x" size="1">
+</div>
+<div id="y">
+Y→ <input type="text" id="encode-y" size="1">
+</div>
+<div id="z">
+Z→ <input type="text" id="encode-z" size="1">
+</div>
+</div>
+<div id="encode-remaining">
+
+</div>
+<textarea id="input-encode" rows="6" class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck="false"></textarea>
+<textarea id="output-encode" rows="6" class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck="false"></textarea>
+</section>
+<section id="vigenère-cipher" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="vigenère-cipher"><span class="header-section-number">10.2.3</span> Vigenère Cipher</h3>
+<p>Having decided on a key use the techniques you learnt earlier today to encode.</p>
+</section>
+</section>
+<section id="hacking-tools" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="hacking-tools"><span class="header-section-number">10.3</span> Hacking Tools</h2>
+<p>Here you will find collated all the tools required to break the ciphers.</p>
+<section id="breaking-rsa" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="breaking-rsa"><span class="header-section-number">10.3.1</span> Breaking RSA</h3>
+To aid in cracking RSA we have provided you with a tool that computes the quotient and remainder for two given numbers, i.e.&nbsp;given numbers <span class="math inline">\(n\)</span> and <span class="math inline">\(d\)</span> it returns the corresponding <span class="math inline">\(q\)</span> and <span class="math inline">\(r\)</span> from the equation: <span class="math display">\[\begin{equation*}
+    n = q\cdot d + r
+\end{equation*}\]</span> HINT: This will speed up finding <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> as well as the Euclidean algorithm!
+<div style="display: flex; justify-content: center">
+<p><em>n</em> = &nbsp;<input type="text" size="4" id="nh">, &nbsp; <em>d</em> = &nbsp;<input type="text" size="4" id="dh">, &nbsp; <em>q</em> = &nbsp;<span id="qh-calc"></span>, &nbsp; <em>r</em> = &nbsp;<span id="rh-calc"></span></p>
+</div>
+</section>
+<section id="caesar-cipher" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="caesar-cipher"><span class="header-section-number">10.3.2</span> Caesar Cipher</h3>
+<p>Use the above tool for encoding the Caesar cipher, trying multiple different shifts.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -3583,14 +3703,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./caesar.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Caesar cipher</span></span>
+      <a href="./rsa2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RSA scheme II</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./vigenere.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vigenère cipher</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
