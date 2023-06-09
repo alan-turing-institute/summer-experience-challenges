@@ -20,6 +20,7 @@ book:
         - rsa1.qmd
         - modular2.qmd
         - rsa2.qmd
+    - game_resources.qmd
 
 bibliography: references.bib
 
