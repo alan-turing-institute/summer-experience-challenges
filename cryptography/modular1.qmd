@@ -4,8 +4,14 @@ To begin the second part of this challenge, we'll take a brief look at *modular 
 This is the same thing as regular arithmetic, but with one twist: we only care about the remainder when dividing by some number $n$.
 
 Instead of talking about numbers, we talk about numbers *modulo* $n$.
-For example, $5 \bmod 3 = 2$, because the remainder when dividing $5$ by $3$ is $2$.
-But also, $8 \bmod 3 = 2$; so $5$ and $8$ are equivalent, or *congruent*, modulo $3$.
+For example, $5 \bmod 3 = 2$, because the remainder when dividing $5$ by $3$ is $2$. In fact, you already know how to do this:
+
+![$11 + 4 = 15 \equiv 3\bmod 12 $](images/400px-Modular_clocks.png)
+
+When we tell the time we implicitly work in arithmetic modulo 12, which is why we know that 3pm is 4 hours after 11am. 
+Modular arithmetic can also be thought of as performing the same operation on clocks with a different number of hours to 12.
+
+Going back to the example above, $5 \bmod 3 = 2$, we see also that $8 \bmod 3 = 2$; so $5$ and $8$ are equivalent, or *congruent*, modulo $3$.
 
 Essentially, $a$ and $b$ are congruent modulo $n$ if $a$ and $b$ have the same remainder when divided by $n$.
 

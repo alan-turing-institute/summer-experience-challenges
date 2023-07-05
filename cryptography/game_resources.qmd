@@ -22,6 +22,12 @@ encryption and decryption teams, communicating solely via the ‘public-channel�
 for each successfully transmitted message, and taking a point away from your rival team for each
 message your hackers can decipher.
 
+## RULES
+
+1. All communication with you corresponding teams must be via the public channel.
+2. If using RSA for encryption no primes greater than 500!
+3. Any message can be sent via the public channel, but only those from the list of approved messages will score!
+
 ## Asymetric Encryption Tools (RSA)
 
 Steps for implementing an RSA encryption scheme:
@@ -155,10 +161,7 @@ Use the following tool to encode or decode a monoalphabetic cipher text:
 ### Vigenère Cipher
 Having decided on a key use the techniques you learnt earlier today to encode.
 
-## Hacking Tools
-Here you will find collated all the tools required to break the ciphers.
-
-### Breaking RSA
+## Breaking RSA
 To aid in cracking RSA we have provided you with a tool that computes the
 quotient and remainder for two given numbers, i.e. given numbers $n$ and 
 $d$ it returns the corresponding $q$ and $r$ from the equation:
@@ -173,7 +176,3 @@ algorithm!
 *q* = &nbsp;<span id="qh-calc"></span>, &nbsp;
 *r* = &nbsp;<span id="rh-calc"></span>
 </div>
-
-### Caesar Cipher
-Use the above tool for encoding the Caesar cipher, trying multiple 
-different shifts. 
