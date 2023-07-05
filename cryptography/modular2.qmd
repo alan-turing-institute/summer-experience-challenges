@@ -21,6 +21,8 @@ Recall that we chose $e$ and $d$ such that:
 
 > **Question:** Reformulate the second condition in terms of equation (1).
 
+> **Exercise:** Play around with the [geometric representation of GCD](https://www.geogebra.org/m/ztbesvsd) to get an idea of how Euclid's algorithm can be used to solve for the uknowns.
+
 
 
 ## The extended Euclidean algorithm
