@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -200,22 +200,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#asymetric-encryption-tools-rsa" id="toc-asymetric-encryption-tools-rsa" class="nav-link active" data-scroll-target="#asymetric-encryption-tools-rsa"><span class="header-section-number">10.1</span> Asymetric Encryption Tools (RSA)</a>
+  <li><a href="#rules" id="toc-rules" class="nav-link active" data-scroll-target="#rules"><span class="header-section-number">10.1</span> RULES</a></li>
+  <li><a href="#asymetric-encryption-tools-rsa" id="toc-asymetric-encryption-tools-rsa" class="nav-link" data-scroll-target="#asymetric-encryption-tools-rsa"><span class="header-section-number">10.2</span> Asymetric Encryption Tools (RSA)</a>
   <ul class="collapse">
-  <li><a href="#key-gen-by-recipient" id="toc-key-gen-by-recipient" class="nav-link" data-scroll-target="#key-gen-by-recipient"><span class="header-section-number">10.1.1</span> Key Gen (by recipient)</a></li>
-  <li><a href="#encryption-and-decryption" id="toc-encryption-and-decryption" class="nav-link" data-scroll-target="#encryption-and-decryption"><span class="header-section-number">10.1.2</span> Encryption and Decryption</a></li>
+  <li><a href="#key-gen-by-recipient" id="toc-key-gen-by-recipient" class="nav-link" data-scroll-target="#key-gen-by-recipient"><span class="header-section-number">10.2.1</span> Key Gen (by recipient)</a></li>
+  <li><a href="#encryption-and-decryption" id="toc-encryption-and-decryption" class="nav-link" data-scroll-target="#encryption-and-decryption"><span class="header-section-number">10.2.2</span> Encryption and Decryption</a></li>
   </ul></li>
-  <li><a href="#symmetric-encryption-tools" id="toc-symmetric-encryption-tools" class="nav-link" data-scroll-target="#symmetric-encryption-tools"><span class="header-section-number">10.2</span> Symmetric Encryption Tools</a>
+  <li><a href="#symmetric-encryption-tools" id="toc-symmetric-encryption-tools" class="nav-link" data-scroll-target="#symmetric-encryption-tools"><span class="header-section-number">10.3</span> Symmetric Encryption Tools</a>
   <ul class="collapse">
-  <li><a href="#ceasar-cipher" id="toc-ceasar-cipher" class="nav-link" data-scroll-target="#ceasar-cipher"><span class="header-section-number">10.2.1</span> Ceasar Cipher</a></li>
-  <li><a href="#monoalphabetic-cipher" id="toc-monoalphabetic-cipher" class="nav-link" data-scroll-target="#monoalphabetic-cipher"><span class="header-section-number">10.2.2</span> Monoalphabetic Cipher</a></li>
-  <li><a href="#vigenère-cipher" id="toc-vigenère-cipher" class="nav-link" data-scroll-target="#vigenère-cipher"><span class="header-section-number">10.2.3</span> Vigenère Cipher</a></li>
+  <li><a href="#ceasar-cipher" id="toc-ceasar-cipher" class="nav-link" data-scroll-target="#ceasar-cipher"><span class="header-section-number">10.3.1</span> Ceasar Cipher</a></li>
+  <li><a href="#monoalphabetic-cipher" id="toc-monoalphabetic-cipher" class="nav-link" data-scroll-target="#monoalphabetic-cipher"><span class="header-section-number">10.3.2</span> Monoalphabetic Cipher</a></li>
+  <li><a href="#vigenère-cipher" id="toc-vigenère-cipher" class="nav-link" data-scroll-target="#vigenère-cipher"><span class="header-section-number">10.3.3</span> Vigenère Cipher</a></li>
   </ul></li>
-  <li><a href="#hacking-tools" id="toc-hacking-tools" class="nav-link" data-scroll-target="#hacking-tools"><span class="header-section-number">10.3</span> Hacking Tools</a>
-  <ul class="collapse">
-  <li><a href="#breaking-rsa" id="toc-breaking-rsa" class="nav-link" data-scroll-target="#breaking-rsa"><span class="header-section-number">10.3.1</span> Breaking RSA</a></li>
-  <li><a href="#caesar-cipher" id="toc-caesar-cipher" class="nav-link" data-scroll-target="#caesar-cipher"><span class="header-section-number">10.3.2</span> Caesar Cipher</a></li>
-  </ul></li>
+  <li><a href="#breaking-rsa" id="toc-breaking-rsa" class="nav-link" data-scroll-target="#breaking-rsa"><span class="header-section-number">10.4</span> Breaking RSA</a></li>
   </ul>
 </nav>
     </div>
@@ -3304,11 +3301,19 @@ decrypt();
 
 </script>
 <p>The goal of the game is to design a cryptographic protocol for communication between your encryption and decryption teams, communicating solely via the ‘public-channel’. Scoring a point for each successfully transmitted message, and taking a point away from your rival team for each message your hackers can decipher.</p>
-<section id="asymetric-encryption-tools-rsa" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="asymetric-encryption-tools-rsa"><span class="header-section-number">10.1</span> Asymetric Encryption Tools (RSA)</h2>
+<section id="rules" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="rules"><span class="header-section-number">10.1</span> RULES</h2>
+<ol type="1">
+<li>All communication with you corresponding teams must be via the public channel.</li>
+<li>If using RSA for encryption no primes greater than 500!</li>
+<li>Any message can be sent via the public channel, but only those from the list of approved messages will score!</li>
+</ol>
+</section>
+<section id="asymetric-encryption-tools-rsa" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="asymetric-encryption-tools-rsa"><span class="header-section-number">10.2</span> Asymetric Encryption Tools (RSA)</h2>
 <p>Steps for implementing an RSA encryption scheme:</p>
-<section id="key-gen-by-recipient" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="key-gen-by-recipient"><span class="header-section-number">10.1.1</span> Key Gen (by recipient)</h3>
+<section id="key-gen-by-recipient" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="key-gen-by-recipient"><span class="header-section-number">10.2.1</span> Key Gen (by recipient)</h3>
 <p>The goal is to compute a triple <span class="math inline">\((e, d, n=pq)\)</span>:</p>
 <ol type="1">
 <li>Pick primes <span class="math inline">\(p, q\)</span> such that <span class="math inline">\(n=pq &gt; 127\)</span>, compute <span class="math inline">\(n\)</span>.</li>
@@ -3317,8 +3322,8 @@ decrypt();
 <li>Send pair <span class="math inline">\((e, n)\)</span> to sender.</li>
 </ol>
 </section>
-<section id="encryption-and-decryption" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="encryption-and-decryption"><span class="header-section-number">10.1.2</span> Encryption and Decryption</h3>
+<section id="encryption-and-decryption" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="encryption-and-decryption"><span class="header-section-number">10.2.2</span> Encryption and Decryption</h3>
 <p>For a given <span class="math inline">\(n\)</span> character long message <span class="math inline">\(s=s_0\ldots s_n\)</span>, with characters <span class="math inline">\(\{s_i\}\)</span>, compute integer character representations <span class="math inline">\(\{m_i\}\)</span> using ASCII table below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -3340,18 +3345,18 @@ or decrypt a message: <span class="math display">\[\begin{equation*}
 </div>
 </section>
 </section>
-<section id="symmetric-encryption-tools" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="symmetric-encryption-tools"><span class="header-section-number">10.2</span> Symmetric Encryption Tools</h2>
-<section id="ceasar-cipher" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="ceasar-cipher"><span class="header-section-number">10.2.1</span> Ceasar Cipher</h3>
+<section id="symmetric-encryption-tools" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="symmetric-encryption-tools"><span class="header-section-number">10.3</span> Symmetric Encryption Tools</h2>
+<section id="ceasar-cipher" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="ceasar-cipher"><span class="header-section-number">10.3.1</span> Ceasar Cipher</h3>
 <div>
 <input type="radio" id="encrypt" name="mode" value="Encrypt" checked="checked"> <label for="encrypt">Encrypt</label> <br> <input type="radio" id="decrypt" name="mode" value="Decrypt"> <label for="decrypt">Decrypt</label> <br> Shift: <select id="shift"> <option value="0">0</option> <option value="1">1</option> <option value="2" selected="selected">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option> <option value="25">25</option> </select> <br>
 <textarea id="input" rows="6" class="fullwidth is_code" spellcheck="false"></textarea>
 <textarea id="output" rows="6" class="fullwidth is_code" disabled="true" spellcheck="false"></textarea>
 </div>
 </section>
-<section id="monoalphabetic-cipher" class="level3" data-number="10.2.2">
-<h3 data-number="10.2.2" class="anchored" data-anchor-id="monoalphabetic-cipher"><span class="header-section-number">10.2.2</span> Monoalphabetic Cipher</h3>
+<section id="monoalphabetic-cipher" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="monoalphabetic-cipher"><span class="header-section-number">10.3.2</span> Monoalphabetic Cipher</h3>
 Use the following tool to encode or decode a monoalphabetic cipher text:
 <div id="random" style="display: flex; justify-content: center">
 <p><input type="button" id="random-encode" value="Choose a random encoding" class="italic"></p>
@@ -3442,29 +3447,21 @@ Z→ <input type="text" id="encode-z" size="1">
 <textarea id="input-encode" rows="6" class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck="false"></textarea>
 <textarea id="output-encode" rows="6" class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck="false"></textarea>
 </section>
-<section id="vigenère-cipher" class="level3" data-number="10.2.3">
-<h3 data-number="10.2.3" class="anchored" data-anchor-id="vigenère-cipher"><span class="header-section-number">10.2.3</span> Vigenère Cipher</h3>
+<section id="vigenère-cipher" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="vigenère-cipher"><span class="header-section-number">10.3.3</span> Vigenère Cipher</h3>
 <p>Having decided on a key use the techniques you learnt earlier today to encode.</p>
 </section>
 </section>
-<section id="hacking-tools" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="hacking-tools"><span class="header-section-number">10.3</span> Hacking Tools</h2>
-<p>Here you will find collated all the tools required to break the ciphers.</p>
-<section id="breaking-rsa" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="breaking-rsa"><span class="header-section-number">10.3.1</span> Breaking RSA</h3>
+<section id="breaking-rsa" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="breaking-rsa"><span class="header-section-number">10.4</span> Breaking RSA</h2>
 To aid in cracking RSA we have provided you with a tool that computes the quotient and remainder for two given numbers, i.e.&nbsp;given numbers <span class="math inline">\(n\)</span> and <span class="math inline">\(d\)</span> it returns the corresponding <span class="math inline">\(q\)</span> and <span class="math inline">\(r\)</span> from the equation: <span class="math display">\[\begin{equation*}
     n = q\cdot d + r
 \end{equation*}\]</span> HINT: This will speed up finding <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> as well as the Euclidean algorithm!
 <div style="display: flex; justify-content: center">
 <p><em>n</em> = &nbsp;<input type="text" size="4" id="nh">, &nbsp; <em>d</em> = &nbsp;<input type="text" size="4" id="dh">, &nbsp; <em>q</em> = &nbsp;<span id="qh-calc"></span>, &nbsp; <em>r</em> = &nbsp;<span id="rh-calc"></span></p>
 </div>
-</section>
-<section id="caesar-cipher" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="caesar-cipher"><span class="header-section-number">10.3.2</span> Caesar Cipher</h3>
-<p>Use the above tool for encoding the Caesar cipher, trying multiple different shifts.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
