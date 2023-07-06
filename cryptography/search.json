@@ -179,7 +179,7 @@
     "href": "game_resources.html#rules",
     "title": "10  Cryptography Game Resources",
     "section": "10.1 RULES",
-    "text": "10.1 RULES\n\nAll communication with you corresponding teams must be via the public channel.\nIf using RSA for encryption no primes greater than 500!\nAny message can be sent via the public channel, but only those from the list of approved messages will score!"
+    "text": "10.1 RULES\n\nAll communication with you corresponding teams must be via the public channel.\nIf using RSA for encryption no \\(n=pq\\) greater than 500!\nAny message can be sent via the public channel, but only those from the list of approved messages will score!"
   },
   {
     "objectID": "game_resources.html#asymetric-encryption-tools-rsa",
