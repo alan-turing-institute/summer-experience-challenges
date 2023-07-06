@@ -25,7 +25,7 @@ message your hackers can decipher.
 ## RULES
 
 1. All communication with you corresponding teams must be via the public channel.
-2. If using RSA for encryption no primes greater than 500!
+2. If using RSA for encryption no $n=pq$ greater than 500!
 3. Any message can be sent via the public channel, but only those from the list of approved messages will score!
 
 ## Asymetric Encryption Tools (RSA)
