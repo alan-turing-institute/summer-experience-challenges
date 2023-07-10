@@ -1,0 +1,28 @@
+---
+title: "Cryptography"
+image: enigma.jpg
+image-alt: "Enigma wheels within alphabet rings in position in an Enigma scrambler, Ted Coles, 2011, Wikimedia Commons, CC0 1.0"
+about:
+  id: hero-heading
+  template: jolla
+  links:
+    - icon: link
+      text: Website
+      href: https://alan-turing-institute.github.io/ds-summerschool-challenges/cryptography/
+---
+
+:::{#hero-heading}
+
+In this challenge, you and your team will learn about codes and ciphers: ways of scrambling a message such that they cannot be read by unintended people.
+
+## Overview
+
+In the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.
+
+In the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!
+
+## Getting Started
+
+To get started, head over to the [Cryptography challenge website](https://alan-turing-institute.github.io/ds-summerschool-challenges/cryptography/).
+
+:::

@@ -1,0 +1,18 @@
+---
+title: "Turing Summer Experience 2023: Challenges"
+listing:
+  contents:
+    - "computer-vision.qmd"
+    - "language-modelling.qmd"
+    - "cryptography.qmd"
+  sort:
+    - "title"
+  fields: [image, title, description]
+  max-description-length: 500
+---
+
+Today you'll be spending most of the day working together on one of three data science challenges. Each covers a different domain with many interesting real-world applications, both within defence & security and across society as whole.
+
+Follow the links below to find where to get started on the one you've been assigned to. All the challenge resources will stay publicly available after this week, so if you're interested in any of the others you're welcome to explore them another time. You'll also get to hear about what the other teams were doing at the presentations on Friday.
+
+## Challenge Links
