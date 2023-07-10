@@ -1,0 +1,46 @@
+---
+title: "Introduction to codes and ciphers"
+format: html
+---
+
+## Codes and Ciphers
+
+We may often talk of "code-breaking", or the "Enigma code", but in fact there is a subtle distinction between the meanings of *code* and *cipher*.
+
+A *code* is a mapping from some meaningful concept (a word, or a sentence), to an arbitrary symbol (perhaps a letter or a number).   For example, we might have a code that assigns the sentence "It's very cold today" to the number "67".  There's no particular logic behind that, we just decided it, and wrote down this mapping in our *code book* so that it can be decoded later on.
+
+Today though, we will be looking at *ciphers*.
+While a *code* operates on *meanings*, a *cipher* operates on *symbols* (such as individual letters).  It transforms the "plaintext" symbols to their "ciphertext" counterparts using an *algorithm*.   This algorithm will usually be a mathematical operation involving the original message and some sort of *key*.   If someone knows (or is able to deduce) the algorithm and the key, they will be able to decipher an encrypted message.
+
+
+## Some basics
+
+Suppose Alice wanted to send a message to her friend Bob, using a simple "mono-alphabetic cipher" where we replace each letter in our message with a different letter (we'll look in more detail at this type of cipher a bit later).   The message might look like:
+
+Tiuug Cgc,
+
+Tgz oji lgd?
+Uiq'h riiq gs Rgseol!
+
+Oupyi
+
+> **Exercise:**  Could we use some simple logic and guesswork to have a go at decrypting this?  (When might Alice and Bob be planning to meet?)
+
+Hints:
+
+ -  What are common ways of greeting people?
+ -  Since we know the names of both the sender and the recipient, could we look for those somewhere in the message?
+ -  Look for things like double-letters, or places where the same letter appears in different words.
+
+
+As a very basic step, even before we worry about what encryption algorithm to use, we can make life more difficult for someone who wants to snoop on our messages by taking a few simple steps:
+
+ -  Only use capital letters.
+ -  Ignore spaces, new lines, and punctuation.
+ -  Put letters into e.g. groups of five.
+
+It would be much harder for someone to try to decrypt:
+
+TIUUG CGCTZ IGILG DUIQH RIIQG SRGSE OLOUP YI
+
+than the message above!

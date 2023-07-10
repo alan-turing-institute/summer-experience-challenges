@@ -1,0 +1,38 @@
+project:
+  type: book
+
+book:
+  title: "Cryptography Challenge"
+  author: "The Alan Turing Institute"
+  date: "2023-05-02"
+  chapters:
+    - index.qmd
+    - ciphers_vs_codes.qmd
+    - part: symmetric.qmd
+      chapters:
+        - caesar.qmd
+        - monosub.qmd
+        - vigenere.qmd
+        - enigma.qmd
+    - part: asymmetric.qmd
+      chapters:
+        - modular1.qmd
+        - rsa1.qmd
+        - modular2.qmd
+        - rsa2.qmd
+    - game_resources.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    include-in-header:
+        - text: |
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  pdf:
+    documentclass: scrreprt
+
+execute:
+    echo: false

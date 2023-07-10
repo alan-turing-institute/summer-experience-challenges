@@ -15,11 +15,23 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render Quarto project
+      # this has project type 'website', so is output to ./website/_site
+      - name: Render main Quarto project
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: html
           path: ./website
+
+      # this has project type 'book', so is output to ./cryptography/_book
+      - name: Render cryptography Quarto project
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html
+          path: ./cryptography/
+
+      - name: Copy cryptography Quarto build files into the main one
+        run: |
+          cp -r ./cryptography/_book ./website/_site/cryptography
 
       - name: Upload rendered files to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
@@ -28,4 +40,3 @@ jobs:
           publish_dir: ./website/_site
           publish_branch: gh-pages
           keep_files: true
-
