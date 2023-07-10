@@ -27,4 +27,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website/_book
           publish_branch: gh-pages
+          keep_files: true
 
