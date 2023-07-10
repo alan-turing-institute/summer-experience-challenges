@@ -1,6 +1,6 @@
 ---
 title: "Language Modelling"
-image: hello.jpg
+image: images/hello.jpg
 image-alt: "Pink and yellow hello neon light, Drew Beamer, 2018, Unsplash, Unsplash License"
 about:
   id: hero-heading

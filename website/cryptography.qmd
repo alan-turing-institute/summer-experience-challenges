@@ -1,6 +1,6 @@
 ---
 title: "Cryptography"
-image: enigma.jpg
+image: images/enigma.jpg
 image-alt: "Enigma wheels within alphabet rings in position in an Enigma scrambler, Ted Coles, 2011, Wikimedia Commons, CC0 1.0"
 about:
   id: hero-heading
