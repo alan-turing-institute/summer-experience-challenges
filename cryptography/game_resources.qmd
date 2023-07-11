@@ -48,9 +48,21 @@ For a given $n$ character long message $s=s_0\ldots s_n$, with characters
 $\{s_i\}$, compute integer character representations $\{m_i\}$ using 
 ASCII table below.
 
-![An ASCII character encoding table. By finding the character C that you 
-wish to encode the Dec encoding will give a unique integer for that character. 
-This can also be used to decode.](images/ascii.png)
+| Character ($s_i$) | Integer ($m_i$) | Character ($s_i$) | Integer ($m_i$) | 
+|-------------------|-----------------|-------------------|-----------------|
+| (space) | 31 | N | 53 |
+| A | 41 | O | 54 |
+| B | 42 | P | 55 |
+| C | 43 | Q | 56 |
+| D | 44 | R | 57 |
+| E | 45 | S | 58 |
+| F | 46 | T | 59 |
+| G | 47 | U | 60 |
+| H | 48 | V | 61 |
+| J | 49 | W | 62 |
+| K | 50 | X | 63 |
+| L | 51 | Y | 64 |
+| M | 52 | Z | 65 |
 
 Then to encode or decode we simply need the subject, $s$ (either a message 
 character integer $m_i$, or a cipher text integer $c_i$), the exponent 
@@ -75,91 +87,6 @@ or decrypt a message:
 *n* = &nbsp; <input type="text" size=4 id="n2" />, &nbsp;
 *m* = &nbsp; <span id="m2-calc"/>
 </div>
-
-## Symmetric Encryption Tools
-
-### Ceasar Cipher
-
-<div>
-<input type="radio" id="encrypt" name="mode" value="Encrypt" checked="checked" />
-<label for="encrypt">Encrypt</label>
-<br />
-<input type="radio" id="decrypt" name="mode" value="Decrypt" />
-<label for="decrypt">Decrypt</label>
-<br />
-Shift:
-<select id="shift">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2" selected="selected">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
-    <option value="21">21</option>
-    <option value="22">22</option>
-    <option value="23">23</option>
-    <option value="24">24</option>
-    <option value="25">25</option>
-</select>
-<br />
-<textarea id="input" rows=6 class="fullwidth is_code" spellcheck=false></textarea>
-<textarea id="output" rows=6 class="fullwidth is_code" disabled="true" spellcheck=false></textarea>
-</div>
-
-### Monoalphabetic Cipher
-Use the following tool to encode or decode a monoalphabetic cipher text:
-<div id="random" style="display: flex; justify-content: center">
-<input type="button" id="random-encode" value="Choose a random encoding" class="italic" />
-</div>
-<div id="letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">
-<div id="a">A→ <input type="text" id="encode-a" size=1></div>
-<div id="b">B→ <input type="text" id="encode-b" size=1></div>
-<div id="c">C→ <input type="text" id="encode-c" size=1></div>
-<div id="d">D→ <input type="text" id="encode-d" size=1></div>
-<div id="e">E→ <input type="text" id="encode-e" size=1></div>
-<div id="f">F→ <input type="text" id="encode-f" size=1></div>
-<div id="g">G→ <input type="text" id="encode-g" size=1></div>
-<div id="h">H→ <input type="text" id="encode-h" size=1></div>
-<div id="i">I→ <input type="text" id="encode-i" size=1></div>
-<div id="j">J→ <input type="text" id="encode-j" size=1></div>
-<div id="k">K→ <input type="text" id="encode-k" size=1></div>
-<div id="l">L→ <input type="text" id="encode-l" size=1></div>
-<div id="m">M→ <input type="text" id="encode-m" size=1></div>
-<div id="n">N→ <input type="text" id="encode-n" size=1></div>
-<div id="o">O→ <input type="text" id="encode-o" size=1></div>
-<div id="p">P→ <input type="text" id="encode-p" size=1></div>
-<div id="q">Q→ <input type="text" id="encode-q" size=1></div>
-<div id="r">R→ <input type="text" id="encode-r" size=1></div>
-<div id="s">S→ <input type="text" id="encode-s" size=1></div>
-<div id="t">T→ <input type="text" id="encode-t" size=1></div>
-<div id="u">U→ <input type="text" id="encode-u" size=1></div>
-<div id="v">V→ <input type="text" id="encode-v" size=1></div>
-<div id="w">W→ <input type="text" id="encode-w" size=1></div>
-<div id="x">X→ <input type="text" id="encode-x" size=1></div>
-<div id="y">Y→ <input type="text" id="encode-y" size=1></div>
-<div id="z">Z→ <input type="text" id="encode-z" size=1></div>
-</div>
-<div id="encode-remaining"></div>
-<textarea id="input-encode" rows=6 class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck=false></textarea>
-<textarea id="output-encode" rows=6 class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck=false></textarea>
-
-### Vigenère Cipher
-Having decided on a key use the techniques you learnt earlier today to encode.
 
 ## Breaking RSA
 To aid in cracking RSA we have provided you with a tool that computes the
