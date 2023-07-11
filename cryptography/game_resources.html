@@ -206,13 +206,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#key-gen-by-recipient" id="toc-key-gen-by-recipient" class="nav-link" data-scroll-target="#key-gen-by-recipient"><span class="header-section-number">10.2.1</span> Key Gen (by recipient)</a></li>
   <li><a href="#encryption-and-decryption" id="toc-encryption-and-decryption" class="nav-link" data-scroll-target="#encryption-and-decryption"><span class="header-section-number">10.2.2</span> Encryption and Decryption</a></li>
   </ul></li>
-  <li><a href="#symmetric-encryption-tools" id="toc-symmetric-encryption-tools" class="nav-link" data-scroll-target="#symmetric-encryption-tools"><span class="header-section-number">10.3</span> Symmetric Encryption Tools</a>
-  <ul class="collapse">
-  <li><a href="#ceasar-cipher" id="toc-ceasar-cipher" class="nav-link" data-scroll-target="#ceasar-cipher"><span class="header-section-number">10.3.1</span> Ceasar Cipher</a></li>
-  <li><a href="#monoalphabetic-cipher" id="toc-monoalphabetic-cipher" class="nav-link" data-scroll-target="#monoalphabetic-cipher"><span class="header-section-number">10.3.2</span> Monoalphabetic Cipher</a></li>
-  <li><a href="#vigenère-cipher" id="toc-vigenère-cipher" class="nav-link" data-scroll-target="#vigenère-cipher"><span class="header-section-number">10.3.3</span> Vigenère Cipher</a></li>
-  </ul></li>
-  <li><a href="#breaking-rsa" id="toc-breaking-rsa" class="nav-link" data-scroll-target="#breaking-rsa"><span class="header-section-number">10.4</span> Breaking RSA</a></li>
+  <li><a href="#breaking-rsa" id="toc-breaking-rsa" class="nav-link" data-scroll-target="#breaking-rsa"><span class="header-section-number">10.3</span> Breaking RSA</a></li>
   </ul>
 </nav>
     </div>
@@ -3325,12 +3319,102 @@ decrypt();
 <section id="encryption-and-decryption" class="level3" data-number="10.2.2">
 <h3 data-number="10.2.2" class="anchored" data-anchor-id="encryption-and-decryption"><span class="header-section-number">10.2.2</span> Encryption and Decryption</h3>
 <p>For a given <span class="math inline">\(n\)</span> character long message <span class="math inline">\(s=s_0\ldots s_n\)</span>, with characters <span class="math inline">\(\{s_i\}\)</span>, compute integer character representations <span class="math inline">\(\{m_i\}\)</span> using ASCII table below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/ascii.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">An ASCII character encoding table. By finding the character C that you wish to encode the Dec encoding will give a unique integer for that character. This can also be used to decode.</figcaption>
-</figure>
-</div>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 23%">
+<col style="width: 26%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Character (<span class="math inline">\(s_i\)</span>)</th>
+<th>Integer (<span class="math inline">\(m_i\)</span>)</th>
+<th>Character (<span class="math inline">\(s_i\)</span>)</th>
+<th>Integer (<span class="math inline">\(m_i\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(space)</td>
+<td>31</td>
+<td>N</td>
+<td>53</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>41</td>
+<td>O</td>
+<td>54</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>42</td>
+<td>P</td>
+<td>55</td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td>43</td>
+<td>Q</td>
+<td>56</td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td>44</td>
+<td>R</td>
+<td>57</td>
+</tr>
+<tr class="even">
+<td>E</td>
+<td>45</td>
+<td>S</td>
+<td>58</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>46</td>
+<td>T</td>
+<td>59</td>
+</tr>
+<tr class="even">
+<td>G</td>
+<td>47</td>
+<td>U</td>
+<td>60</td>
+</tr>
+<tr class="odd">
+<td>H</td>
+<td>48</td>
+<td>V</td>
+<td>61</td>
+</tr>
+<tr class="even">
+<td>J</td>
+<td>49</td>
+<td>W</td>
+<td>62</td>
+</tr>
+<tr class="odd">
+<td>K</td>
+<td>50</td>
+<td>X</td>
+<td>63</td>
+</tr>
+<tr class="even">
+<td>L</td>
+<td>51</td>
+<td>Y</td>
+<td>64</td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td>52</td>
+<td>Z</td>
+<td>65</td>
+</tr>
+</tbody>
+</table>
 Then to encode or decode we simply need the subject, <span class="math inline">\(s\)</span> (either a message character integer <span class="math inline">\(m_i\)</span>, or a cipher text integer <span class="math inline">\(c_i\)</span>), the exponent (either <span class="math inline">\(e\)</span> for encyption or <span class="math inline">\(d\)</span> for decryption) and the modulus, <span class="math inline">\(n\)</span>, to either encrypt a cipher text: <span class="math display">\[\begin{equation*}
     c_i = m_i^e \mod n,
 \end{equation*}\]</span>
@@ -3345,115 +3429,8 @@ or decrypt a message: <span class="math display">\[\begin{equation*}
 </div>
 </section>
 </section>
-<section id="symmetric-encryption-tools" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="symmetric-encryption-tools"><span class="header-section-number">10.3</span> Symmetric Encryption Tools</h2>
-<section id="ceasar-cipher" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="ceasar-cipher"><span class="header-section-number">10.3.1</span> Ceasar Cipher</h3>
-<div>
-<input type="radio" id="encrypt" name="mode" value="Encrypt" checked="checked"> <label for="encrypt">Encrypt</label> <br> <input type="radio" id="decrypt" name="mode" value="Decrypt"> <label for="decrypt">Decrypt</label> <br> Shift: <select id="shift"> <option value="0">0</option> <option value="1">1</option> <option value="2" selected="selected">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option> <option value="25">25</option> </select> <br>
-<textarea id="input" rows="6" class="fullwidth is_code" spellcheck="false"></textarea>
-<textarea id="output" rows="6" class="fullwidth is_code" disabled="true" spellcheck="false"></textarea>
-</div>
-</section>
-<section id="monoalphabetic-cipher" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="monoalphabetic-cipher"><span class="header-section-number">10.3.2</span> Monoalphabetic Cipher</h3>
-Use the following tool to encode or decode a monoalphabetic cipher text:
-<div id="random" style="display: flex; justify-content: center">
-<p><input type="button" id="random-encode" value="Choose a random encoding" class="italic"></p>
-</div>
-<div id="letters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px">
-<div id="a">
-A→ <input type="text" id="encode-a" size="1">
-</div>
-<div id="b">
-B→ <input type="text" id="encode-b" size="1">
-</div>
-<div id="c">
-C→ <input type="text" id="encode-c" size="1">
-</div>
-<div id="d">
-D→ <input type="text" id="encode-d" size="1">
-</div>
-<div id="e">
-E→ <input type="text" id="encode-e" size="1">
-</div>
-<div id="f">
-F→ <input type="text" id="encode-f" size="1">
-</div>
-<div id="g">
-G→ <input type="text" id="encode-g" size="1">
-</div>
-<div id="h">
-H→ <input type="text" id="encode-h" size="1">
-</div>
-<div id="i">
-I→ <input type="text" id="encode-i" size="1">
-</div>
-<div id="j">
-J→ <input type="text" id="encode-j" size="1">
-</div>
-<div id="k">
-K→ <input type="text" id="encode-k" size="1">
-</div>
-<div id="l">
-L→ <input type="text" id="encode-l" size="1">
-</div>
-<div id="m">
-M→ <input type="text" id="encode-m" size="1">
-</div>
-<div id="n">
-N→ <input type="text" id="encode-n" size="1">
-</div>
-<div id="o">
-O→ <input type="text" id="encode-o" size="1">
-</div>
-<div id="p">
-P→ <input type="text" id="encode-p" size="1">
-</div>
-<div id="q">
-Q→ <input type="text" id="encode-q" size="1">
-</div>
-<div id="r">
-R→ <input type="text" id="encode-r" size="1">
-</div>
-<div id="s">
-S→ <input type="text" id="encode-s" size="1">
-</div>
-<div id="t">
-T→ <input type="text" id="encode-t" size="1">
-</div>
-<div id="u">
-U→ <input type="text" id="encode-u" size="1">
-</div>
-<div id="v">
-V→ <input type="text" id="encode-v" size="1">
-</div>
-<div id="w">
-W→ <input type="text" id="encode-w" size="1">
-</div>
-<div id="x">
-X→ <input type="text" id="encode-x" size="1">
-</div>
-<div id="y">
-Y→ <input type="text" id="encode-y" size="1">
-</div>
-<div id="z">
-Z→ <input type="text" id="encode-z" size="1">
-</div>
-</div>
-<div id="encode-remaining">
-
-</div>
-<textarea id="input-encode" rows="6" class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck="false"></textarea>
-<textarea id="output-encode" rows="6" class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck="false"></textarea>
-</section>
-<section id="vigenère-cipher" class="level3" data-number="10.3.3">
-<h3 data-number="10.3.3" class="anchored" data-anchor-id="vigenère-cipher"><span class="header-section-number">10.3.3</span> Vigenère Cipher</h3>
-<p>Having decided on a key use the techniques you learnt earlier today to encode.</p>
-</section>
-</section>
-<section id="breaking-rsa" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="breaking-rsa"><span class="header-section-number">10.4</span> Breaking RSA</h2>
+<section id="breaking-rsa" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="breaking-rsa"><span class="header-section-number">10.3</span> Breaking RSA</h2>
 To aid in cracking RSA we have provided you with a tool that computes the quotient and remainder for two given numbers, i.e.&nbsp;given numbers <span class="math inline">\(n\)</span> and <span class="math inline">\(d\)</span> it returns the corresponding <span class="math inline">\(q\)</span> and <span class="math inline">\(r\)</span> from the equation: <span class="math display">\[\begin{equation*}
     n = q\cdot d + r
 \end{equation*}\]</span> HINT: This will speed up finding <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> as well as the Euclidean algorithm!
