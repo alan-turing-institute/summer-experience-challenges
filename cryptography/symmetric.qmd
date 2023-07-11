@@ -5,3 +5,7 @@ As mentioned before, ciphers usually involve some sort of *key*, used to encrypt
 For symmetric ciphers, we need to worry about "key management".  In order for someone to read the secret message you sent them, you first need to have shared the key - there's no point in having a sophisticated encryption algorithm if your adversary has they key!   But how do you share it securely?  (If you already have a secure communications channel for sending the key, why do you need to encrypt your message in the first place?)
 
 In fact, many of the challenges in cryptography are related to designing *protocols* for ensuring that keys can be exchanged safely.  The difficulty of sharing keys is also the motivation behind the development of *asymmetric* (or public/private key) ciphers, which we'll look at later on.   For now though, we'll not worry about how we'd share keys in practice, and we'll look at some examples of symmetric ciphers.
+
+![The progression of symmetric ciphers.](images/cipher_trafficlight.png)
+
+Today we'll go through three key symmetric ciphers in the history of cryptography: the Caesar (or shift) cipher, monoalphabetic ciphers and the Vigenère cipher.
