@@ -51,12 +51,10 @@ You can either enter each character of the cipher manually, or use the 'randomis
 <div id="y">Y→ <input type="text" id="encode-y" size=1></div>
 <div id="z">Z→ <input type="text" id="encode-z" size=1></div>
 </div>
-<div id="encode-remaining"></div>
+<div class="centred-container"><div id="encode-remaining" style="text-align: center;"></div></div>
+<br />
 <textarea id="input-encode" rows=6 class="fullwidth is_code" placeholder="Enter plain text here..." spellcheck=false></textarea>
 <textarea id="output-encode" rows=6 class="fullwidth is_code" placeholder="Cipher text will appear here..." disabled="true" spellcheck=false></textarea>
-<script type="module">
-{{< include monosub_encode.js >}}
-</script>
 
 ## Frequency analysis
 
@@ -94,10 +92,12 @@ For example, once you find the letter for 'E', it makes sense to look for potent
 
 ## Decryption
 
-With the above information, you should be able to have a go at decrypting this encrypted text, with the frequency distribution shown here:
+With the above information, you should be able to have a go at decrypting this encrypted text.
+The frequency distribution of letters is shown to the right:
+
 <div id="decode-container" style="display: flex; justify-content: center">
 <div id="content" style="width: 40%">
-<textarea rows=10 placeholder="ciphertext." class="fullwidth is_code" id="input-decode" spellcheck=false></textarea>
+<textarea rows=10 placeholder="ciphertext." class="fullwidth is_code" id="input-decode" spellcheck=false readonly></textarea>
 </div>
 <div id="decplot" style="width: 80%">
 <canvas id="decplot-canvas"></canvas>
@@ -134,13 +134,15 @@ With the above information, you should be able to have a go at decrypting this e
 <div id="dy">Y→ <input type="text" id="decode-y" size=1></div>
 <div id="dz">Z→ <input type="text" id="decode-z" size=1></div>
 </div>
-<div id="decode-remaining"></div>
-<div id="container" style="display: flex">
-<div id="content" style="width: 100%">
-<textarea rows=10 placeholder="Decrypted text" class="fullwidth is_code" id="output-decode" spellcheck=false></textarea>
-</div>
-</div>
+<div class="centred-container"><div id="decode-remaining" style="text-align: center;"></div></div>
+<br />
+
+The first 800 characters from the text above are shown here.
+In each of the lines below, the upper character represents the cipher text, and the lower character is the decoded plain text:
+
+<div id="plain-and-cipher" class="is_code" style="display: grid; grid-template-columns: repeat(auto-fill, 15px); grid-row-gap: 15px; line-height: 1.1; width: 100%"></div>
 <script type="module">
 {{< include samples.js >}}
 {{< include monosub_freq.js >}}
+{{< include monosub_encode.js >}}
 </script>
