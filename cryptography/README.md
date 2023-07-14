@@ -13,7 +13,7 @@
 * Point your web browser to the html, by typing into the URL bar something like:
 
   ```
-  file:///Users/myusername/ds-summerschool-challenges/cryptography/_book/index.html
+  file:///Users/myusername/summer-experience-challenges/cryptography/_book/index.html
   ```
 
   Alternatively, launch a HTTP server from the `_book` directory:
