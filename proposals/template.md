@@ -2,7 +2,7 @@
 
 **Summary:** _Short description of what this challenge is about and what participants will do_
 
-**Learning themes and outcomes:** _Data science/D&S-relevant topics participants will learn about_
+**Learning themes and outcomes:** _Topics participants will learn about_
 
 **Sessions:** _Rough outline of what participants/facilitators can do in each of these four sessions:_
 
