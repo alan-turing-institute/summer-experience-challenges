@@ -7,8 +7,8 @@ about:
   template: jolla
   links:
     - icon: filetype-ppt
-      text: Slides
-      href: https://thealanturininstitute-my.sharepoint.com/:p:/g/personal/cgavidia-calderon_turing_ac_uk/EYm1ajZcMLhEoqiNiUShhzsBskN8V2hH1PX1BG2FtlODhw?e=FYdykr
+      text: file-easel
+      href: https://prezi.com/p/zn7cj2u1mxjg/cv_catdog/
 ---
 
 :::{#hero-heading}
@@ -28,6 +28,6 @@ Learning themes and outcomes:
 
 ## Getting Started
 
-To get started, head to the Computer Vision challenge slides [at this link](https://thealanturininstitute-my.sharepoint.com/:p:/g/personal/cgavidia-calderon_turing_ac_uk/EYm1ajZcMLhEoqiNiUShhzsBskN8V2hH1PX1BG2FtlODhw?e=FYdykr).
+To get started, head to the Computer Vision challenge slides [at this link](https://prezi.com/p/zn7cj2u1mxjg/cv_catdog/).
 
 :::
