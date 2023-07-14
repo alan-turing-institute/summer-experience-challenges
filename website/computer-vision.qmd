@@ -6,8 +6,8 @@ about:
   id: hero-heading
   template: jolla
   links:
-    - icon: filetype-ppt
-      text: file-easel
+    - icon: file-easel
+      text: Slides
       href: https://prezi.com/p/zn7cj2u1mxjg/cv_catdog/
 ---
 
