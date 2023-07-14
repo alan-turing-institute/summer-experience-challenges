@@ -8,7 +8,7 @@ about:
   links:
     - icon: link
       text: Website
-      href: https://alan-turing-institute.github.io/ds-summerschool-challenges/cryptography/
+      href: https://alan-turing-institute.github.io/summer-experience-challenges/cryptography/
 ---
 
 :::{#hero-heading}
