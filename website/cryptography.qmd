@@ -23,6 +23,6 @@ In the second half, we’ll talk about asymmetric ciphers, where you and the rec
 
 ## Getting Started
 
-To get started, head over to the [Cryptography challenge website](https://alan-turing-institute.github.io/ds-summerschool-challenges/cryptography/).
+To get started, head over to the [Cryptography challenge website](https://alan-turing-institute.github.io/summer-experience-challenges/cryptography/).
 
 :::
