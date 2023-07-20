@@ -14,7 +14,7 @@ This challenge aims to teach participants both traditional and modern encryption
 
 2. Explore the modern RSA asymmetric encryption scheme to see how one-way problems can be used to provide security.
 
-3. Gain an appreciation for the use of cryptography in the context of defence and security (including cybersecurity).
+3. Gain an appreciation for the use of cryptography in real-life applications and communications.
 
 
 ## Sessions
@@ -22,7 +22,7 @@ This challenge aims to teach participants both traditional and modern encryption
 *Monday*: 5 minute video pitch describing the general structure of the challenge.
 
 *Thursday*:
- - Introduction (30 min): Discussion of the role of cryptography in defense and security, including historical examples and other real-life contexts.
+ - Introduction (30 min): Discussion of the role of cryptography in modern society, including historical examples and other real-life contexts.
  - Session 1 (90 min): *Symmetric encryption.*
    - 40 min: Interactive exercises / worksheets on: Caesar and Vigenere ciphers; ways to crack substitution ciphers (frequency analysis, chosen plaintext attacks, index of coincidence, etc.)
    - 10 min: Brief discussion of Enigma cipher, transposition ciphers, and AES: encryption schemes can be covered, but decryption is likely not possible given the time constraints (although we can emphasise that it is a generalisation of those seen previously).
