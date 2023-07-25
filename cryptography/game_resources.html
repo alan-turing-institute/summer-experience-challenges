@@ -201,9 +201,9 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#rules" id="toc-rules" class="nav-link active" data-scroll-target="#rules"><span class="header-section-number">10.1</span> RULES</a></li>
-  <li><a href="#asymetric-encryption-tools-rsa" id="toc-asymetric-encryption-tools-rsa" class="nav-link" data-scroll-target="#asymetric-encryption-tools-rsa"><span class="header-section-number">10.2</span> Asymetric Encryption Tools (RSA)</a>
+  <li><a href="#asymmetric-encryption-tools-rsa" id="toc-asymmetric-encryption-tools-rsa" class="nav-link" data-scroll-target="#asymmetric-encryption-tools-rsa"><span class="header-section-number">10.2</span> Asymmetric Encryption Tools (RSA)</a>
   <ul class="collapse">
-  <li><a href="#key-gen-by-recipient" id="toc-key-gen-by-recipient" class="nav-link" data-scroll-target="#key-gen-by-recipient"><span class="header-section-number">10.2.1</span> Key Gen (by recipient)</a></li>
+  <li><a href="#key-generation-by-recipient" id="toc-key-generation-by-recipient" class="nav-link" data-scroll-target="#key-generation-by-recipient"><span class="header-section-number">10.2.1</span> Key Generation (by recipient)</a></li>
   <li><a href="#encryption-and-decryption" id="toc-encryption-and-decryption" class="nav-link" data-scroll-target="#encryption-and-decryption"><span class="header-section-number">10.2.2</span> Encryption and Decryption</a></li>
   </ul></li>
   <li><a href="#breaking-rsa" id="toc-breaking-rsa" class="nav-link" data-scroll-target="#breaking-rsa"><span class="header-section-number">10.3</span> Breaking RSA</a></li>
@@ -3310,22 +3310,27 @@ generatePlainAndCipher();
 <section id="rules" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="rules"><span class="header-section-number">10.1</span> RULES</h2>
 <ol type="1">
-<li>All communication with you corresponding teams must be via the public channel.</li>
-<li>If using RSA for encryption no <span class="math inline">\(n=pq\)</span> greater than 500!</li>
+<li>All communication with your corresponding teams must be via the public channel.</li>
+<li>If using RSA for encryption, do not set <span class="math inline">\(n=pq\)</span> greater than 500!</li>
 <li>Any message can be sent via the public channel, but only those from the list of approved messages will score!</li>
 </ol>
 </section>
-<section id="asymetric-encryption-tools-rsa" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="asymetric-encryption-tools-rsa"><span class="header-section-number">10.2</span> Asymetric Encryption Tools (RSA)</h2>
+<section id="asymmetric-encryption-tools-rsa" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="asymmetric-encryption-tools-rsa"><span class="header-section-number">10.2</span> Asymmetric Encryption Tools (RSA)</h2>
 <p>Steps for implementing an RSA encryption scheme:</p>
-<section id="key-gen-by-recipient" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="key-gen-by-recipient"><span class="header-section-number">10.2.1</span> Key Gen (by recipient)</h3>
-<p>The goal is to compute a triple <span class="math inline">\((e, d, n=pq)\)</span>:</p>
+<section id="key-generation-by-recipient" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="key-generation-by-recipient"><span class="header-section-number">10.2.1</span> Key Generation (by recipient)</h3>
+<p>The goal is to compute three numbers:</p>
+<ul>
+<li><span class="math inline">\(e\)</span>, the encryption key</li>
+<li><span class="math inline">\(d\)</span>, the decryption key</li>
+<li><span class="math inline">\(n\)</span>, the product of two primes <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>.</li>
+</ul>
 <ol type="1">
-<li>Pick primes <span class="math inline">\(p, q\)</span> such that <span class="math inline">\(n=pq &gt; 127\)</span>, compute <span class="math inline">\(n\)</span>.</li>
-<li>Compute totient function <span class="math inline">\(\phi=(p-1)(q-1)\)</span> and pick <span class="math inline">\(e&lt;\phi\)</span> such that <span class="math inline">\(e\)</span> and <span class="math inline">\(\phi\)</span> are coprime (i.e.&nbsp;<span class="math inline">\(\gcd(e, \phi)=1\)</span>).</li>
+<li>Pick primes <span class="math inline">\(p, q\)</span> such that <span class="math inline">\(n = pq &gt; 127\)</span>, compute <span class="math inline">\(n\)</span>.</li>
+<li>Compute the totient function <span class="math inline">\(\phi=(p-1)(q-1)\)</span> and pick <span class="math inline">\(e&lt;\phi\)</span> such that <span class="math inline">\(e\)</span> and <span class="math inline">\(\phi\)</span> are coprime (i.e.&nbsp;<span class="math inline">\(\gcd(e, \phi)=1\)</span>).</li>
 <li>Pick <span class="math inline">\(d\)</span> such that <span class="math inline">\(de \equiv 1\mod\phi\)</span>.</li>
-<li>Send pair <span class="math inline">\((e, n)\)</span> to sender.</li>
+<li>Send the pair <span class="math inline">\((e, n)\)</span> to sender.</li>
 </ol>
 </section>
 <section id="encryption-and-decryption" class="level3" data-number="10.2.2">
@@ -3427,13 +3432,15 @@ generatePlainAndCipher();
 </tr>
 </tbody>
 </table>
-Then to encode or decode we simply need the subject, <span class="math inline">\(s\)</span> (either a message character integer <span class="math inline">\(m_i\)</span>, or a cipher text integer <span class="math inline">\(c_i\)</span>), the exponent (either <span class="math inline">\(e\)</span> for encyption or <span class="math inline">\(d\)</span> for decryption) and the modulus, <span class="math inline">\(n\)</span>, to either encrypt a cipher text: <span class="math display">\[\begin{equation*}
+<p>Then, to encrypt a message we take the message <span class="math inline">\(m_i\)</span>, the exponent <span class="math inline">\(e\)</span>, and the modulus, <span class="math inline">\(n\)</span>, and compute:</p>
+<span class="math display">\[\begin{equation*}
     c_i = m_i^e \mod n,
 \end{equation*}\]</span>
 <div style="display: flex; justify-content: center">
 <p><em>m</em> = &nbsp;<input type="text" size="4" id="c1">, &nbsp; <em>e</em> = &nbsp;<input type="text" size="4" id="d1">, &nbsp; <em>n</em> = &nbsp; <input type="text" size="4" id="n1">, &nbsp; <em>c</em> = &nbsp; <span id="m1-calc"></span></p>
 </div>
-or decrypt a message: <span class="math display">\[\begin{equation*}
+<p>Decryption is the same, but instead you use the decryption key <span class="math inline">\(d\)</span> instead of <span class="math inline">\(e\)</span>:</p>
+<span class="math display">\[\begin{equation*}
     m_i = c_i^d \mod n,
 \end{equation*}\]</span>
 <div style="display: flex; justify-content: center">
@@ -3443,9 +3450,11 @@ or decrypt a message: <span class="math display">\[\begin{equation*}
 </section>
 <section id="breaking-rsa" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="breaking-rsa"><span class="header-section-number">10.3</span> Breaking RSA</h2>
-To aid in cracking RSA we have provided you with a tool that computes the quotient and remainder for two given numbers, i.e.&nbsp;given numbers <span class="math inline">\(n\)</span> and <span class="math inline">\(d\)</span> it returns the corresponding <span class="math inline">\(q\)</span> and <span class="math inline">\(r\)</span> from the equation: <span class="math display">\[\begin{equation*}
+<p>To aid in cracking RSA we have provided you with a tool that computes the quotient and remainder for two given numbers, i.e.&nbsp;given numbers <span class="math inline">\(n\)</span> and <span class="math inline">\(d\)</span> it returns the corresponding <span class="math inline">\(q\)</span> and <span class="math inline">\(r\)</span> from the equation:</p>
+<p><span class="math display">\[\begin{equation*}
     n = q\cdot d + r
-\end{equation*}\]</span> HINT: This will speed up finding <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> as well as the Euclidean algorithm!
+\end{equation*}\]</span></p>
+<p>HINT: This will speed up finding <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> as well as the Euclidean algorithm!</p>
 <div style="display: flex; justify-content: center">
 <p><em>n</em> = &nbsp;<input type="text" size="4" id="nh">, &nbsp; <em>d</em> = &nbsp;<input type="text" size="4" id="dh">, &nbsp; <em>q</em> = &nbsp;<span id="qh-calc"></span>, &nbsp; <em>r</em> = &nbsp;<span id="rh-calc"></span></p>
 </div>
