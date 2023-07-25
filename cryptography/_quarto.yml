@@ -27,6 +27,9 @@ bibliography: references.bib
 format:
   html:
     theme: flatly
+    mainfont: Open Sans
+    monofont: Fira Code
+    linestretch: 1.9
     css: styles.css
     include-in-header:
         - text: |
