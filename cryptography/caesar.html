@@ -195,14 +195,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">2.1</span> Introduction</a></li>
-  <li><a href="#breaking-a-caesar-cipher" id="toc-breaking-a-caesar-cipher" class="nav-link" data-scroll-target="#breaking-a-caesar-cipher"><span class="header-section-number">2.2</span> Breaking a Caesar cipher</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -224,6 +217,58 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<script>
+function cleanText(id) {
+    // Capitalise all letters and remove all non-letters
+    const input = document.getElementById(id).value;
+    const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
+    document.getElementById(id).value = cleaned;
+}
+
+function caseInsensitiveEq(s1, s2) {
+    return typeof s1 === 'string' && typeof s2 === 'string'
+        ? s1.localeCompare(s2, undefined, { sensitivity: 'base' }) === 0
+        : s1 === s2;
+}
+
+function checkPassword(password) {
+    // Checks the password field against a specified password, and displays the
+    // rest of the page's contents if it is correct
+    const guess = document.forms["page-password-check"]["page-password"].value;
+    if (caseInsensitiveEq(guess, password)) {
+        document.forms["page-password-check"]["page-password"].style.backgroundColor = "#d7fae9";
+        setTimeout(() => {
+            document.getElementById("page-content").style.display = "block";
+            document.getElementById("page-password-form").style.display = "none";
+        }, 300);
+    }
+    else {
+        document.forms["page-password-check"]["page-password"].style.backgroundColor = "#fad9d7";
+        setTimeout(() => {
+            document.forms["page-password-check"]["page-password"].style.backgroundColor = "";
+        }, 300);
+    }
+}
+
+
+let requirePassword = false; // Whether this page should be password-protected
+password = "idk";            // The password for this page
+</script>
+<script type="module">
+if (!requirePassword) {
+    document.getElementById("page-password-form").style.display = "none";
+    document.getElementById("page-content").style.display = "block";
+}
+</script>
+<div id="page-password-form">
+<br>
+<p>
+<b>What is the airspeed velocity of an unladen swallow?</b>
+</p>
+<form name="page-password-check" onsubmit="checkPassword(password)" action="javascript:void(0)">
+<label for="page-password">Password:</label> <input type="text" id="page-password"> <input type="submit" value="Check">
+</form></div>
+<div id="page-content" style="display:none;">
 <section id="introduction" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
 <p>The Caesar cipher is the most basic type of encryption that we will look at. It is extraordinarily simple to use: each character of the alphabet is simply mapped to another character a fixed number of alphabet away.</p>
@@ -285,9 +330,10 @@ en_or_decrypt()
 <h2 data-number="2.2" class="anchored" data-anchor-id="breaking-a-caesar-cipher"><span class="header-section-number">2.2</span> Breaking a Caesar cipher</h2>
 <p>Since there are only 25 useful possibilities for encoding, it is almost trivial to break a Caesar cipher. You can perform a <strong>brute-force attack</strong>, which means trying each possibility until you find one that gives the correct text. For example, use the playground above to figure out this hidden message:</p>
 <p><code>OPKKLUTLZZHNL</code></p>
-
-
 </section>
+</div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
