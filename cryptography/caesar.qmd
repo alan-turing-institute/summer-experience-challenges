@@ -5,12 +5,21 @@ format: html
 
 <script>
 {{< include shared.js >}}
+let requirePassword = false; // Whether this page should be password-protected
+password = "idk";            // The password for this page
+</script>
+
+<script type="module">
+if (!requirePassword) {
+    document.getElementById("page-password-form").style.display = "none";
+    document.getElementById("page-content").style.display = "block";
+}
 </script>
 
 <div id="page-password-form">
 <br />
 <p><b>What is the airspeed velocity of an unladen swallow?</b></p>
-<form name="page-password-check" onsubmit="checkPassword('idk')" action="javascript:void(0)">
+<form name="page-password-check" onsubmit="checkPassword(password)" action="javascript:void(0)">
 <label for="page-password">Password:</label>
 <input type="text" id="page-password" />
 <input type="submit" value="Check" />
