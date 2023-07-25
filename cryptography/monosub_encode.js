@@ -1,11 +1,5 @@
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-function cleanText() {
-    const input = document.getElementById("input-encode").value;
-    const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
-    document.getElementById("input-encode").value = cleaned;
-}
-
 function getMappings(excluding, prefix="encode-") {
     let mappings = new Map();
     for (const c of alphabet) {
@@ -62,21 +56,30 @@ function encrypt() {
     if (mappings.size < 26) return;
     let output = "";
     for (const c of input) {
-
         output += mappings.get(c);
     }
     document.getElementById("output-encode").value = output;
 }
 
-function decrypt() {
+function generatePlainAndCipher() {
     const input = document.getElementById("input-decode").value;
     const mappings = getMappings([], "decode-");
-    let output = "";
+    const flexbox = document.getElementById("plain-and-cipher");
+    flexbox.innerHTML = "";
+    let n = 0;
     for (const c of input) {
-	if (mappings.get(c)) output += mappings.get(c);
-	else output += "?";
+        n += 1;
+        const cOut = mappings.get(c);
+        const node = document.createElement("span");
+        if (cOut === undefined) {
+            node.innerHTML = `${c}<br /><span style="color: #aaa">?</span>`;
+        }
+        else {
+            node.innerHTML = `<span class="text-${c}">${c}</span><br /><span class="text-${c}"><b>${cOut}</b></span>`;
+        }
+        flexbox.appendChild(node);
+        if (n > 800) break;
     }
-    document.getElementById("output-decode").value = output;
 }
 
 function randomise() {
@@ -94,13 +97,17 @@ function randomise() {
 
 function showRemainingChars() {
     for (const prefix of ["encode-", "decode-"]) {
-        const remaining = [...alphabet].filter(c => !alreadyMappedTo(c, [], prefix)).join("");
-        if (remaining.length == 0) {
-            document.getElementById(prefix + "remaining").innerHTML = "";
-        }
-        else {
-            document.getElementById(prefix + "remaining").innerHTML = `Remaining characters: ${remaining}`;
-        }
+        const remaining = [...alphabet].filter(c => !alreadyMappedTo(c, [], prefix)).join(" ");
+        let html = `<span class="is_code">` +
+            [...alphabet].map(c => {
+                if (remaining.includes(c)) {
+                    return `<b>${c}</b>`;
+                }
+                else {
+                    return `<span style="color: #aaa">${c}</span>`;
+                }
+            }).join(" ") + "</span><br />Remaining characters";
+        document.getElementById(prefix + "remaining").innerHTML = html;
     }
 }
 
@@ -127,6 +134,8 @@ function check() {
         const input = document.getElementById("decode-" + c.toLowerCase());
         const wrongColor = "#fad9d7";  // light red
         const rightColor = "#d7fae9";  // light green
+        const wrongTextColor = "#bf0a31";  // dark red
+        const rightTextColor = "#0f9111";  // dark green
         if (input.value === "") {
             div.style.backgroundColor = "";
             input.style.backgroundColor = "";
@@ -134,10 +143,12 @@ function check() {
         else if (input.value === answers.get(c)) {
             div.style.backgroundColor = rightColor;
             input.style.backgroundColor = rightColor;
+            document.querySelectorAll(".text-" + c).forEach(e => {e.style.color = rightTextColor;});
         }
         else {
             div.style.backgroundColor = wrongColor;
             input.style.backgroundColor = wrongColor;
+            document.querySelectorAll(".text-" + c).forEach(e => {e.style.color = wrongTextColor;});
         }
     }
 }
@@ -151,13 +162,13 @@ for (const c of alphabet) {
     var prefix = "decode-"
     var id = prefix + c.toLowerCase();
     document.getElementById(id).addEventListener("input", (_ => validate(c.toUpperCase(), prefix)));
-    document.getElementById(id).addEventListener("input", decrypt);
+    document.getElementById(id).addEventListener("input", generatePlainAndCipher);
     document.getElementById(id).addEventListener("input", check);
 }
 document.getElementById("random-encode").addEventListener("click", randomise);
-document.getElementById("input-encode").addEventListener("input", cleanText);
+document.getElementById("input-encode").addEventListener("input", () => cleanText("input-encode"));
 document.getElementById("input-encode").addEventListener("input", encrypt);
 document.getElementById("check").addEventListener("click", addToChecked);
 
 showRemainingChars();
-decrypt();
+generatePlainAndCipher();

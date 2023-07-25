@@ -17,12 +17,11 @@ While a *code* operates on *meanings*, a *cipher* operates on *symbols* (such as
 
 Suppose Alice wanted to send a message to her friend Bob, using a simple "mono-alphabetic cipher" where we replace each letter in our message with a different letter (we'll look in more detail at this type of cipher a bit later).   The message might look like:
 
-Tiuug Cgc,
+<p class="handwriting">Tiuug Cgc,</p>
 
-Tgz oji lgd?
-Uiq'h riiq gs Rgseol!
+<p class="handwriting">Tgz oji lgd?<br />Uiq'h riiq gs Rgseol!</p>
 
-Oupyi
+<p class="handwriting">Oupyi</p>
 
 > **Exercise:**  Could we use some simple logic and guesswork to have a go at decrypting this?  (When might Alice and Bob be planning to meet?)
 

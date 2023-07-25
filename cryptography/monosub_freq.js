@@ -3,6 +3,7 @@ function cleanText(textareaId = "text_analysis") {
     const cleaned = input.toUpperCase().replace(/[^A-Z]/g, "");
     document.getElementById(textareaId).value = cleaned;
 }
+
 function getCounts(words) {
     // Gather letter counts into a Map
     const counts = new Map();

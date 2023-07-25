@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.handwriting {
+    font-family: 'Itim', cursive;
+    font-size: 120%;
+}
+
 .is_code {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 .fullwidth {
@@ -17,4 +28,10 @@
 
 .hint {
     font-size: 70%;
+}
+
+.centred-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

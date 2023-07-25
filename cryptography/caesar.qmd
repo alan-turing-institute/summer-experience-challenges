@@ -3,6 +3,30 @@ title: "Caesar cipher"
 format: html
 ---
 
+<script>
+{{< include shared.js >}}
+let requirePassword = false; // Whether this page should be password-protected
+password = "idk";            // The password for this page
+</script>
+
+<script type="module">
+if (!requirePassword) {
+    document.getElementById("page-password-form").style.display = "none";
+    document.getElementById("page-content").style.display = "block";
+}
+</script>
+
+<div id="page-password-form">
+<br />
+<p><b>What is the airspeed velocity of an unladen swallow?</b></p>
+<form name="page-password-check" onsubmit="checkPassword(password)" action="javascript:void(0)">
+<label for="page-password">Password:</label>
+<input type="text" id="page-password" />
+<input type="submit" value="Check" />
+</div>
+
+<div id="page-content" style="display:none;">
+
 ## Introduction
 
 The Caesar cipher is the most basic type of encryption that we will look at.
@@ -65,3 +89,5 @@ You can perform a **brute-force attack**, which means trying each possibility un
 For example, use the playground above to figure out this hidden message:
 
 ```OPKKLUTLZZHNL```
+
+</div>
