@@ -23,16 +23,23 @@ Like Vigenère, Enigma is therefore a *polyalphabetic substitution cipher*: a gi
 Since Enigma is a symmetric cipher, the procedure is exactly the same for encrypting a plaintext message, or for decrypting a ciphertext message.
 
 > **Exercise:**  Have a go with the [Enigma emulator](https://www.101computing.net/enigma-machine-emulator/).   Some things to try:
- - Set the starting rotors to something (e.g. "A,B,C"), then type out a short message.  Note that after every keypress, the right hand rotor shifts by 1.
- - After the end of that message, reset the rotors to the original position, and then type out the ciphertext that you got from the previous step.  Hopefully you should now recover the original text.
- - You can also try pressing the same key many times - what do you notice about the output ciphertext?
+>  - Set the starting rotors to something (e.g. "A,B,C"), then type out a short message.  Note that after every keypress, the right hand rotor shifts by 1.
+>  - After the end of that message, reset the rotors to the original position, and then type out the ciphertext that you got from the previous step.  Hopefully you should now recover the original text.
+>  - You can also try pressing the same key many times - what do you notice about the output ciphertext?
 
 
 ## Cracking the Enigma
 
-The *reflector* next to the rotors gives the Enigma the nice property that the settings for encryption and decryption are identical.   However, it also gives rise to an important flaw (which you may have noticed from the exercise above): *it is impossible for a letter to encrypt to itself*.  This means that if you have a "crib" (i.e. a word or phrase that you are fairly sure will appear in the message), and you are trying out lots of possible keys, you can discard any where the same letter appears in the same position in the ciphertext and the proposed plaintext.
+The *reflector* next to the rotors gives the Enigma the nice property that the settings for encryption and decryption are identical.
+However, it also gives rise to an important flaw (which you may have noticed from the exercise above): *it is impossible for a letter to encrypt to itself*.
 
-Using this, and various flaws in the procedures that Enigma operators used, Polish cryptographers were able to break Enigma in the 1930s.  They then shared this knowledge with British and French cryptographers, and a cryptographic arms race ensued that lasted throughout World War II.   As extra layers of complexity were added to Enigma (a fourth rotor, a plug-board that mapped pairs of letters to one another, ...), so the scale and complexity of the code-breaking efforts increased.  An example of this is the development of the *Bombe* - an electro-mechanical device that could try all the 17576 (26x26x26) possible rotor positions in about 20 minutes.
+This means that if you have a "crib" (i.e. a word or phrase that you are fairly sure will appear in the message), and you are trying out lots of possible keys, you can discard any where the same letter appears in the same position in the ciphertext and the proposed plaintext.
+
+Using this, and various flaws in the procedures that Enigma operators used, Polish cryptographers were able to break Enigma in the 1930s.
+They then shared this knowledge with British and French cryptographers, and a cryptographic arms race ensued that lasted throughout World War II.
+
+As extra layers of complexity were added to Enigma (a fourth rotor, a plug-board that mapped pairs of letters to one another, ...), so the scale and complexity of the code-breaking efforts increased.
+An example of this is the development of the *Bombe* - an electro-mechanical device that could try all the 17576 (26×26×26) possible rotor positions in about 20 minutes.
 
 ![The bombe at Bletchley Park.  Image by Antoine Taveneaux (license:
 CC-BY-SA 3.0)](images/BletchleyParkBombe.jpg)

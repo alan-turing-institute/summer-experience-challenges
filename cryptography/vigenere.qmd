@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Both the *Caesar cipher* and the *Monoalphabetic substitution cipher* have a single, fixed mapping from input letters to ciphertext letters, making them vulnerable to letter frequency analysis.  It would be more secure if we could create a *polyalphabetic cipher* - i.e. the mapping from plaintext letters to ciphertext letters changes after every input character.   One example of this is an extension of the Caesar cipher, called a "Vigenère cipher" (named after the 16th-century French diplomat Blaise de Vigenère).
+Both the *Caesar cipher* and the *monoalphabetic substitution cipher* have a single, fixed mapping from input letters to ciphertext letters, making them vulnerable to letter frequency analysis.  It would be more secure if we could create a *polyalphabetic cipher* - i.e. the mapping from plaintext letters to ciphertext letters changes after every input character.   One example of this is an extension of the Caesar cipher, called a "Vigenère cipher" (named after the 16th-century French diplomat Blaise de Vigenère).
 
 In this cipher, we define the key as a word or phrase that is repeated as many times as necessary to cover the length of the message.  Each letter in this key is then used as the key for a Caesar cipher to encrypt the corresponding letter in the message.
 
@@ -13,7 +13,18 @@ SECRETKEYSECRETKE
 ```
 Since the first letter of the key is "S", which is the 19th letter of the alphabet, we shift the first letter of our message ("C") by 18 (since we start counting with "A" as zero, meaning "no shift"), to give us "U".
 
+There is a handy way to visualise this process, called a *Vigenère square*:
+
+![Vigenère square](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Vigen%C3%A8re_square_shading.svg/2048px-Vigen%C3%A8re_square_shading.svg.png)
+
+The cipher text is the column on the left, while the encryption letter is the top row.
+(In fact, doing it the other way around works too: *why*?)
+
 > **Exercise:** Using pen and paper, go ahead and encrypt the rest of that message.
+> ```
+> CRYPTOGRAPHYISFUN  <- message
+> SECRETKEYSECRETKE  <- key
+> ```
 
 <div id="vig-encrypt" style="display: flex; justify-content: center">
 <div id="buttons" style="margin: auto; display: flex; justify-content: center">
@@ -22,7 +33,7 @@ Since the first letter of the key is "S", which is the 19th letter of the alphab
 </div>
 <br>
 <div id="vig-answer" style="display: none; justify-content: center">
-UVAGXHQVYHLAZWYER
+UVAGX HQVYH LAZWY ER
 </div>
 <script>
     var button = document.getElementById("revealButton");
@@ -148,7 +159,7 @@ Proposed Key: <input type="text" id="key-decode" size=10 spellcheck=false class=
 
 ## Aside: One-time pads - the unbreakable cipher
 
-Since the way that we break the Vigenère cipher depends on the repetition of the key, it follows that if the key is (at least) as long as the message, we wouldn't be able to crack the cipher this way.   In fact, these so-called "one-time pads", where the key is a long sequence of randomly generated letters, are thought to be unbreakable (as long as the sequence is truly random, and is not re-used - hence the name).   These were used for some of the most secret communications in World War II.   However, of course, we still have the problem of how to securely share the key between the sender and the recipient!
+Since the way that we break the Vigenère cipher depends on the repetition of the key, it follows that if the key is (at least) as long as the message, we wouldn't be able to crack the cipher this way.   In fact, these so-called "one-time pads", where the key is a long sequence of randomly generated letters, are thought to be unbreakable (as long as the sequence is truly random, and is not reused - hence the name).   These were used for some of the most secret communications in World War II.   However, of course, we still have the problem of how to securely share the key between the sender and the recipient!
 </div>
 <script type="module">
 {{< include samples.js >}}

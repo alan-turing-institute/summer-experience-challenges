@@ -113,10 +113,10 @@ algorithm!
 *r* = &nbsp;<span id="rh-calc"></span>
 </div>
 
-## Vigènere Cipher Tools
+## Vigenère Cipher Tools
 
 Here is a quick tool which will help you encrypt and decrypt messages using
-the Vigènere cipher, should you decide to use it.
+the Vigenère cipher, should you decide to use it.
 
 Remember that you can only communicate via the public channel, and it is
 possible for your opponents to intercept your messages!

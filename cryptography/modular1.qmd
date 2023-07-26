@@ -39,7 +39,7 @@ Because $5$ and $8$ both 'become' the same number, they are congruent modulo $3$
 
 ## Calculator
 
-To help you get a feel for modular arithmetic, here is a calculator that accepts any mathematical expression in the left-hand side.
+To help you get a feel for modular arithmetic, here is a calculator that accepts (almost) any mathematical expression in the left-hand side.
 You can also specify a modulus, and the calculator will show you the result of the expression modulo that number.
 You may find this useful for the exercises below.
 
