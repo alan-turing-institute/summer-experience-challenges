@@ -112,3 +112,23 @@ algorithm!
 *q* = &nbsp;<span id="qh-calc"></span>, &nbsp;
 *r* = &nbsp;<span id="rh-calc"></span>
 </div>
+
+## Vigènere Cipher Tools
+
+Here is a quick tool which will help you encrypt and decrypt messages using
+the Vigènere cipher, should you decide to use it.
+
+Remember that you can only communicate via the public channel, and it is
+possible for your opponents to intercept your messages!
+
+<div style="display: flex; justify-content: center">
+<label for="vig-enc">Encode</label>
+<input type="radio" name="vig-enc" id="vig-enc" checked="checked" />
+<label for="vig-dec">Decode</label>
+<input type="radio" name="vig-enc" id="vig-dec" /><br />
+Key: <input type="text" size=6 id="vig-key" /><br />
+</div>
+<div style="display: flex; justify-content: center">
+<textarea class="is_code" id="vig-text" rows=5 style="width: 50%" spellcheck=false></textarea>
+<textarea class="is_code" id="vig-result" rows=5 style="width: 50%" disabled=true spellcheck=false></textarea>
+</div>
