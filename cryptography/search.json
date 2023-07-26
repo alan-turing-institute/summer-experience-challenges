@@ -194,5 +194,12 @@
     "title": "10  Cryptography Game Resources",
     "section": "10.3 Breaking RSA",
     "text": "10.3 Breaking RSA\nTo aid in cracking RSA we have provided you with a tool that computes the quotient and remainder for two given numbers, i.e. given numbers \\(n\\) and \\(d\\) it returns the corresponding \\(q\\) and \\(r\\) from the equation:\n\\[\\begin{equation*}\n    n = q\\cdot d + r\n\\end{equation*}\\]\nHINT: This will speed up finding \\(p\\) and \\(q\\) as well as the Euclidean algorithm!\n\nn =  ,   d =  ,   q =  ,   r ="
+  },
+  {
+    "objectID": "game_resources.html#vigènere-cipher-tools",
+    "href": "game_resources.html#vigènere-cipher-tools",
+    "title": "10  Cryptography Game Resources",
+    "section": "10.4 Vigènere Cipher Tools",
+    "text": "10.4 Vigènere Cipher Tools\nHere is a quick tool which will help you encrypt and decrypt messages using the Vigènere cipher, should you decide to use it.\nRemember that you can only communicate via the public channel, and it is possible for your opponents to intercept your messages!\n\nEncode  Decode  Key:"
   }
 ]
