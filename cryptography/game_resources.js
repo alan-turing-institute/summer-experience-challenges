@@ -121,12 +121,12 @@ function vigenereEnDecode() {
     if (encode) {
         const result = encrypt(document.getElementById("vig-text").value,
             document.getElementById("vig-key").value);
-        document.getElementById("vig-result").innerHTML = result;
+        document.getElementById("vig-result").value = result;
     }
     else {
         const result = decrypt(document.getElementById("vig-text").value,
             document.getElementById("vig-key").value);
-        document.getElementById("vig-result").innerHTML = result;
+        document.getElementById("vig-result").value = result;
     }
 }
 document.getElementById("vig-text").addEventListener("input", vigenereEnDecode);
