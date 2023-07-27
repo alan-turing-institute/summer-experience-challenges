@@ -1,6 +1,6 @@
 # Language modelling challenge
 
-Archive of useful material. Game of thrones dataset is in this folder as `game-of-thrones.txt`.
+Archive of useful material. Text dataset is in this folder as `shakespeare.txt`.
 
 Links to material:
 
