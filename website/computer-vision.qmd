@@ -1,6 +1,6 @@
 ---
 title: "Computer Vision"
-image: images/vaccinatingdrone.jpg
+image: images/eye.png
 image-alt: "Drone Shooting, after Henry Thomas Alken, Mike Licht, 2013, Flickr, CC BY 2.0"
 about:
   id: hero-heading
