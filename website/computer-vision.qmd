@@ -1,7 +1,7 @@
 ---
 title: "Computer Vision"
-image: images/eye.png
-image-alt: "Drone Shooting, after Henry Thomas Alken, Mike Licht, 2013, Flickr, CC BY 2.0"
+image: images/eye.jpg
+image-alt: "Digital Eye Vectors by Vecteezy https://www.vecteezy.com/free-vector/digital-eye"
 about:
   id: hero-heading
   template: jolla
