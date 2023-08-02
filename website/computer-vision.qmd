@@ -1,6 +1,6 @@
 ---
 title: "Computer Vision"
-image: images/eye.jpg
+image: images/eye.png
 image-alt: "Digital Eye Vectors by Vecteezy https://www.vecteezy.com/free-vector/digital-eye"
 about:
   id: hero-heading
