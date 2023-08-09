@@ -64,9 +64,33 @@ Prove the following statements:
 
 1. $(a + b) \equiv (p + q) \bmod n$.
 1. $(ab) \equiv (pq) \bmod n$.
-1. $(a^m) \equiv (p^m) \bmod n$, for all non-negative integers $m$.
 
-<!-- Note: the last one requires proof by induction, or a simplified form thereof. -->
+We will work through the first one.
+To do this proof, we need to use one key fact: if $a \equiv p \bmod n$, that means that there is some integer $k$ for which $a = p + cn$.
+In other words, $a$ is some multiple of $n$ plus $p$.
+
+If we do this separately for $a$ and $b$:
+$$\begin{align}
+a &= p + cn \\
+b &= q + dn
+\end{align}$$
+
+and then add these two together, we get:
+
+$$\begin{align}
+a + b &= p + q + cn + dn \\
+      &= p + q + (c + d)n
+\end{align}$$
+
+which means that $a + b$ is some multiple of $n$, plus $p + q$.
+This is exactly the same as saying $a + b \equiv p + q \bmod n$.
+
+You can use the same strategy to prove statement (2).
+
+> **Optional:** If you have studied proof by induction, try using it to show that
+> for all integers $m > 0$, $(a^m) \equiv (p^m) \bmod n$.
+
+## Applications
 
 These equalities make it far easier to perform some calculations.
 For example, what is $33^{594} \bmod{32}$?
@@ -81,6 +105,8 @@ $$33^{594} \equiv 1^{594} \equiv 1 \bmod{32},$$
 because $1$ to the power of anything is still $1$.
 
 > **Challenge:** Calculate $7^{175} \bmod{16}$.
+>
+> [If you are having trouble, try to find a pattern here: what is $7^1 \bmod 16$? and $7^2 \bmod 16$? and $7^3 \bmod 16$? Once you have found a pattern, think about why this might be the case. Can you use, for example, statement (3) above, noting that $7^{(am)} = (7^a)^m$?]
 
 <!-- The correct answer is 7, because 7^2 = 49 = (16 * 3) + 1 = 1 mod 16.
 So 7^n for any even n = 1 mod 16, and 7^n for any odd n = 7 mod 16.

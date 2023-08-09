@@ -21,6 +21,10 @@ In the first half of the day, we’ll be going through symmetric ciphers: these 
 
 In the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!
 
+Modern cryptography is founded upon mathematics: in particular, we will spend some time discussing modular arithmetic and how it can be used to generate keys for asymmetric encryption.
+If you are the sort of person who likes to know what’s going on under the hood, then this may be the challenge for you!
+However, fret not if you are not a mathematician: we will be providing you with all the tools you need to complete the challenge.
+
 ## Getting Started
 
 To get started, head over to the [Cryptography challenge website](https://alan-turing-institute.github.io/summer-experience-challenges/cryptography/).

@@ -135,7 +135,8 @@ The frequency distribution of letters is shown to the right:
 <div id="dz">Z→ <input type="text" id="decode-z" size=1></div>
 </div>
 <div class="centred-container"><div id="decode-remaining" style="text-align: center;"></div></div>
-<br />
+
+**Hint:** Once you have put together a few letters, look out for common, repeating, two- or three-letter patterns. The most common set of three letters in English is "THE". Can you find anywhere where this word might fit?
 
 The first 800 characters from the text above are shown here.
 In each of the lines below, the upper character represents the cipher text, and the lower character is the decoded plain text:

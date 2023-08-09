@@ -77,9 +77,5 @@ function splitByKeyLength() {
     }
 }
 
-//document.getElementById("key-encode").addEventListener("input", cleanKey);
-// document.getElementById("key-decode").addEventListener("input",  e => cleanKey("key-decode"));
-//document.getElementById("input-encode").addEventListener("input", splitByKeyLength);
-//document.getElementById("key-encode").addEventListener("input", encrypt);
-//document.getElementById("input-encode").addEventListener("input", encrypt);
+document.getElementById("key-decode").addEventListener("input", (_) => cleanKey("key-decode"));
 document.getElementById("key-decode").addEventListener("input",  decrypt);
