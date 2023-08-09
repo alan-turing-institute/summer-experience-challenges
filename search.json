@@ -1,24 +1,24 @@
 [
   {
-    "objectID": "cryptography.html",
-    "href": "cryptography.html",
-    "title": "Cryptography",
+    "objectID": "language-modelling.html",
+    "href": "language-modelling.html",
+    "title": "Language Modelling",
     "section": "",
-    "text": "In this challenge, you and your team will learn about codes and ciphers: ways of scrambling a message such that they cannot be read by unintended people.\n\n\nIn the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!\n\n\n\nTo get started, head over to the Cryptography challenge website.\n\n \n  \n   \n  \n    \n     Website"
+    "text": "Get hands on with models that generate text, like ChatGPT. Learn how to get the most out of these models, how to create your own, but also their vulnerabilities.\n\n\nWelcome to the Language Model Mastery Challenge, where you’ll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that’s not all! We’ll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!\n\n\n\nTo get started, head over to the Language Modelling challenge website.\n\n \n  \n   \n  \n    \n     Website"
   },
   {
-    "objectID": "cryptography.html#overview",
-    "href": "cryptography.html#overview",
-    "title": "Cryptography",
+    "objectID": "language-modelling.html#overview",
+    "href": "language-modelling.html#overview",
+    "title": "Language Modelling",
     "section": "",
-    "text": "In the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!"
+    "text": "Welcome to the Language Model Mastery Challenge, where you’ll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that’s not all! We’ll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!"
   },
   {
-    "objectID": "cryptography.html#getting-started",
-    "href": "cryptography.html#getting-started",
-    "title": "Cryptography",
+    "objectID": "language-modelling.html#getting-started",
+    "href": "language-modelling.html#getting-started",
+    "title": "Language Modelling",
     "section": "",
-    "text": "To get started, head over to the Cryptography challenge website."
+    "text": "To get started, head over to the Language Modelling challenge website."
   },
   {
     "objectID": "computer-vision.html",
@@ -56,24 +56,24 @@
     "text": "Challenge Links"
   },
   {
-    "objectID": "language-modelling.html",
-    "href": "language-modelling.html",
-    "title": "Language Modelling",
+    "objectID": "cryptography.html",
+    "href": "cryptography.html",
+    "title": "Cryptography",
     "section": "",
-    "text": "Get hands on with models that generate text, like ChatGPT. Learn how to get the most out of these models, how to create your own, but also their vulnerabilities.\n\n\nWelcome to the Language Model Mastery Challenge, where you’ll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that’s not all! We’ll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!\n\n\n\nTo get started, head over to the Language Modelling challenge website.\n\n \n  \n   \n  \n    \n     Website"
+    "text": "In this challenge, you and your team will learn about codes and ciphers: ways of scrambling a message such that they cannot be read by unintended people.\n\n\nIn the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!\nModern cryptography is founded upon mathematics: in particular, we will spend some time discussing modular arithmetic and how it can be used to generate keys for asymmetric encryption. If you are the sort of person who likes to know what’s going on under the hood, then this may be the challenge for you! However, fret not if you are not a mathematician: we will be providing you with all the tools you need to complete the challenge.\n\n\n\nTo get started, head over to the Cryptography challenge website.\n\n \n  \n   \n  \n    \n     Website"
   },
   {
-    "objectID": "language-modelling.html#overview",
-    "href": "language-modelling.html#overview",
-    "title": "Language Modelling",
+    "objectID": "cryptography.html#overview",
+    "href": "cryptography.html#overview",
+    "title": "Cryptography",
     "section": "",
-    "text": "Welcome to the Language Model Mastery Challenge, where you’ll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that’s not all! We’ll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!"
+    "text": "In the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!\nModern cryptography is founded upon mathematics: in particular, we will spend some time discussing modular arithmetic and how it can be used to generate keys for asymmetric encryption. If you are the sort of person who likes to know what’s going on under the hood, then this may be the challenge for you! However, fret not if you are not a mathematician: we will be providing you with all the tools you need to complete the challenge."
   },
   {
-    "objectID": "language-modelling.html#getting-started",
-    "href": "language-modelling.html#getting-started",
-    "title": "Language Modelling",
+    "objectID": "cryptography.html#getting-started",
+    "href": "cryptography.html#getting-started",
+    "title": "Cryptography",
     "section": "",
-    "text": "To get started, head over to the Language Modelling challenge website."
+    "text": "To get started, head over to the Cryptography challenge website."
   }
 ]
