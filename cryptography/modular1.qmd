@@ -83,7 +83,7 @@ a + b &= p + q + cn + dn \\
 \end{align}$$
 
 which means that $a + b$ is some multiple of $n$, plus $p + q$.
-This is exactly the same as saying $a + b \equiv p + q \bmod n$.
+This is exactly the same as saying $(a + b) \equiv (p + q) \bmod n$.
 
 You can use the same strategy to prove statement (2).
 
