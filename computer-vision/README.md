@@ -2,7 +2,11 @@
 
 Teachable Machines is available at: https://teachablemachine.withgoogle.com/train
 
-Slides available at: https://thealanturininstitute-my.sharepoint.com/:p:/g/personal/cgavidia-calderon_turing_ac_uk/EYm1ajZcMLhEoqiNiUShhzsBskN8V2hH1PX1BG2FtlODhw?e=K1aL5n
+Legacy Slides available at: https://thealanturininstitute-my.sharepoint.com/:p:/g/personal/cgavidia-calderon_turing_ac_uk/EYm1ajZcMLhEoqiNiUShhzsBskN8V2hH1PX1BG2FtlODhw?e=K1aL5n
+
+Prezzi slides available at: https://prezi.com/view/0lxvFI5QAjrQNdWEXWm1/
+
+Original MIT course: https://docs.google.com/document/d/1e9wx9oBg7CR0s5O7YnYHVmX7H7pnITfoDxNdrSGkp60/edit?usp=sharing
 
 ## Delivery Notes
 
