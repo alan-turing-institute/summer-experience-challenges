@@ -21,6 +21,27 @@
     "text": "To get started, head over to the Language Modelling challenge website."
   },
   {
+    "objectID": "cryptography.html",
+    "href": "cryptography.html",
+    "title": "Cryptography",
+    "section": "",
+    "text": "In this challenge, you and your team will learn about codes and ciphers: ways of scrambling a message such that they cannot be read by unintended people.\n\n\nIn the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!\nModern cryptography is founded upon mathematics: in particular, we will spend some time discussing modular arithmetic and how it can be used to generate keys for asymmetric encryption. If you are the sort of person who likes to know what’s going on under the hood, then this may be the challenge for you! However, fret not if you are not a mathematician: we will be providing you with all the tools you need to complete the challenge.\n\n\n\nTo get started, head over to the Cryptography challenge website.\n\n \n  \n   \n  \n    \n     Website"
+  },
+  {
+    "objectID": "cryptography.html#overview",
+    "href": "cryptography.html#overview",
+    "title": "Cryptography",
+    "section": "",
+    "text": "In the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!\nModern cryptography is founded upon mathematics: in particular, we will spend some time discussing modular arithmetic and how it can be used to generate keys for asymmetric encryption. If you are the sort of person who likes to know what’s going on under the hood, then this may be the challenge for you! However, fret not if you are not a mathematician: we will be providing you with all the tools you need to complete the challenge."
+  },
+  {
+    "objectID": "cryptography.html#getting-started",
+    "href": "cryptography.html#getting-started",
+    "title": "Cryptography",
+    "section": "",
+    "text": "To get started, head over to the Cryptography challenge website."
+  },
+  {
     "objectID": "computer-vision.html",
     "href": "computer-vision.html",
     "title": "Computer Vision",
@@ -54,26 +75,5 @@
     "title": "Turing Summer Experience 2023: Challenges",
     "section": "Challenge Links",
     "text": "Challenge Links"
-  },
-  {
-    "objectID": "cryptography.html",
-    "href": "cryptography.html",
-    "title": "Cryptography",
-    "section": "",
-    "text": "In this challenge, you and your team will learn about codes and ciphers: ways of scrambling a message such that they cannot be read by unintended people.\n\n\nIn the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!\nModern cryptography is founded upon mathematics: in particular, we will spend some time discussing modular arithmetic and how it can be used to generate keys for asymmetric encryption. If you are the sort of person who likes to know what’s going on under the hood, then this may be the challenge for you! However, fret not if you are not a mathematician: we will be providing you with all the tools you need to complete the challenge.\n\n\n\nTo get started, head over to the Cryptography challenge website.\n\n \n  \n   \n  \n    \n     Website"
-  },
-  {
-    "objectID": "cryptography.html#overview",
-    "href": "cryptography.html#overview",
-    "title": "Cryptography",
-    "section": "",
-    "text": "In the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!\nModern cryptography is founded upon mathematics: in particular, we will spend some time discussing modular arithmetic and how it can be used to generate keys for asymmetric encryption. If you are the sort of person who likes to know what’s going on under the hood, then this may be the challenge for you! However, fret not if you are not a mathematician: we will be providing you with all the tools you need to complete the challenge."
-  },
-  {
-    "objectID": "cryptography.html#getting-started",
-    "href": "cryptography.html#getting-started",
-    "title": "Cryptography",
-    "section": "",
-    "text": "To get started, head over to the Cryptography challenge website."
   }
 ]
