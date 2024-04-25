@@ -4,209 +4,407 @@
     "href": "index.html",
     "title": "Cryptography Challenge",
     "section": "",
-    "text": "Overview\nIn this challenge, you and your team will learn about codes and ciphers: ways of scrambling a message such that they cannot be read by unintended people.\nIn the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!"
+    "text": "Overview\nIn this challenge, you and your team will learn about codes and ciphers: ways of scrambling a message such that they cannot be read by unintended people.\nIn the first half of the day, we’ll be going through symmetric ciphers: these are ciphers where both you and the intended recipient share the same piece of knowledge (a key), which is used to both encode and decode the message. In particular, we’ll spend time on substitution ciphers, where each letter of the alphabet is replaced with another according to some rule.\nIn the second half, we’ll talk about asymmetric ciphers, where you and the recipient do not actually share a key. Although this might sound like a contradiction, this is possible, and is really important for the modern Internet, as you don’t want to be sending your key over the Internet where anybody can read it!",
+    "crumbs": [
+      "Overview"
+    ]
   },
   {
-    "objectID": "ciphers_vs_codes.html#codes-and-ciphers",
-    "href": "ciphers_vs_codes.html#codes-and-ciphers",
+    "objectID": "ciphers_vs_codes.html",
+    "href": "ciphers_vs_codes.html",
     "title": "1  Introduction to codes and ciphers",
-    "section": "1.1 Codes and Ciphers",
-    "text": "1.1 Codes and Ciphers\nWe may often talk of “code-breaking”, or the “Enigma code”, but in fact there is a subtle distinction between the meanings of code and cipher.\nA code is a mapping from some meaningful concept (a word, or a sentence), to an arbitrary symbol (perhaps a letter or a number). For example, we might have a code that assigns the sentence “It’s very cold today” to the number “67”. There’s no particular logic behind that, we just decided it, and wrote down this mapping in our code book so that it can be decoded later on.\nToday though, we will be looking at ciphers. While a code operates on meanings, a cipher operates on symbols (such as individual letters). It transforms the “plaintext” symbols to their “ciphertext” counterparts using an algorithm. This algorithm will usually be a mathematical operation involving the original message and some sort of key. If someone knows (or is able to deduce) the algorithm and the key, they will be able to decipher an encrypted message."
+    "section": "",
+    "text": "1.1 Codes and Ciphers\nWe may often talk of “code-breaking”, or the “Enigma code”, but in fact there is a subtle distinction between the meanings of code and cipher.\nA code is a mapping from some meaningful concept (a word, or a sentence), to an arbitrary symbol (perhaps a letter or a number). For example, we might have a code that assigns the sentence “It’s very cold today” to the number “67”. There’s no particular logic behind that, we just decided it, and wrote down this mapping in our code book so that it can be decoded later on.\nToday though, we will be looking at ciphers. While a code operates on meanings, a cipher operates on symbols (such as individual letters). It transforms the “plaintext” symbols to their “ciphertext” counterparts using an algorithm. This algorithm will usually be a mathematical operation involving the original message and some sort of key. If someone knows (or is able to deduce) the algorithm and the key, they will be able to decipher an encrypted message.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to codes and ciphers</span>"
+    ]
   },
   {
     "objectID": "ciphers_vs_codes.html#some-basics",
     "href": "ciphers_vs_codes.html#some-basics",
     "title": "1  Introduction to codes and ciphers",
     "section": "1.2 Some basics",
-    "text": "1.2 Some basics\nSuppose Alice wanted to send a message to her friend Bob, using a simple “mono-alphabetic cipher” where we replace each letter in our message with a different letter (we’ll look in more detail at this type of cipher a bit later). The message might look like:\n\nTiuug Cgc,\n\n\nTgz oji lgd?Uiq’h riiq gs Rgseol!\n\n\nOupyi\n\n\nExercise: Could we use some simple logic and guesswork to have a go at decrypting this? (When might Alice and Bob be planning to meet?)\n\nHints:\n\nWhat are common ways of greeting people?\nSince we know the names of both the sender and the recipient, could we look for those somewhere in the message?\nLook for things like double-letters, or places where the same letter appears in different words.\n\nAs a very basic step, even before we worry about what encryption algorithm to use, we can make life more difficult for someone who wants to snoop on our messages by taking a few simple steps:\n\nOnly use capital letters.\nIgnore spaces, new lines, and punctuation.\nPut letters into e.g. groups of five.\n\nIt would be much harder for someone to try to decrypt:\nTIUUG CGCTZ IGILG DUIQH RIIQG SRGSE OLOUP YI\nthan the message above!"
+    "text": "1.2 Some basics\nSuppose Alice wanted to send a message to her friend Bob, using a simple “mono-alphabetic cipher” where we replace each letter in our message with a different letter (we’ll look in more detail at this type of cipher a bit later). The message might look like:\n\nTiuug Cgc,\n\n\nTgz oji lgd?Uiq’h riiq gs Rgseol!\n\n\nOupyi\n\n\nExercise: Could we use some simple logic and guesswork to have a go at decrypting this? (When might Alice and Bob be planning to meet?)\n\nHints:\n\nWhat are common ways of greeting people?\nSince we know the names of both the sender and the recipient, could we look for those somewhere in the message?\nLook for things like double-letters, or places where the same letter appears in different words.\n\nAs a very basic step, even before we worry about what encryption algorithm to use, we can make life more difficult for someone who wants to snoop on our messages by taking a few simple steps:\n\nOnly use capital letters.\nIgnore spaces, new lines, and punctuation.\nPut letters into e.g. groups of five.\n\nIt would be much harder for someone to try to decrypt:\nTIUUG CGCTZ IGILG DUIQH RIIQG SRGSE OLOUP YI\nthan the message above!",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to codes and ciphers</span>"
+    ]
   },
   {
     "objectID": "symmetric.html",
     "href": "symmetric.html",
     "title": "Symmetric ciphers",
     "section": "",
-    "text": "As mentioned before, ciphers usually involve some sort of key, used to encrypt and decrypt messages. Ciphers where the encryption key and the decryption key are the same, are called symmetric ciphers. We will see a few examples here.\nFor symmetric ciphers, we need to worry about “key management”. In order for someone to read the secret message you sent them, you first need to have shared the key - there’s no point in having a sophisticated encryption algorithm if your adversary has the key! But how do you share it securely? (If you already have a secure communications channel for sending the key, why do you need to encrypt your message in the first place?)\nIn fact, many of the challenges in cryptography are related to designing protocols for ensuring that keys can be exchanged safely. The difficulty of sharing keys is also the motivation behind the development of asymmetric (or public/private key) ciphers, which we’ll look at later on. For now though, we’ll not worry about how we’d share keys in practice, and we’ll look at some examples of symmetric ciphers.\n\n\n\nThe progression of symmetric ciphers.\n\n\nToday we’ll go through three key symmetric ciphers in the history of cryptography: the Caesar (or shift) cipher, monoalphabetic ciphers and the Vigenère cipher."
+    "text": "As mentioned before, ciphers usually involve some sort of key, used to encrypt and decrypt messages. Ciphers where the encryption key and the decryption key are the same, are called symmetric ciphers. We will see a few examples here.\nFor symmetric ciphers, we need to worry about “key management”. In order for someone to read the secret message you sent them, you first need to have shared the key - there’s no point in having a sophisticated encryption algorithm if your adversary has the key! But how do you share it securely? (If you already have a secure communications channel for sending the key, why do you need to encrypt your message in the first place?)\nIn fact, many of the challenges in cryptography are related to designing protocols for ensuring that keys can be exchanged safely. The difficulty of sharing keys is also the motivation behind the development of asymmetric (or public/private key) ciphers, which we’ll look at later on. For now though, we’ll not worry about how we’d share keys in practice, and we’ll look at some examples of symmetric ciphers.\n\n\n\nThe progression of symmetric ciphers.\n\n\nToday we’ll go through three key symmetric ciphers in the history of cryptography: the Caesar (or shift) cipher, monoalphabetic ciphers and the Vigenère cipher.",
+    "crumbs": [
+      "Symmetric ciphers"
+    ]
   },
   {
     "objectID": "caesar.html#introduction",
     "href": "caesar.html#introduction",
     "title": "2  Caesar cipher",
     "section": "2.1 Introduction",
-    "text": "2.1 Introduction\nThe Caesar cipher is the most basic type of encryption that we will look at. It is extraordinarily simple to use: each character of the alphabet is simply mapped to another character a fixed number of alphabet away.\nFor example, using a shift of 2, A would be turned into C, B into D, and so on, all the way until the end where X is turned into Z, Y back into A, and Z into B.\nYou can try out the Caesar cipher with this simple form here:\n\n\n Encrypt   Decrypt  Shift:  0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25"
+    "text": "2.1 Introduction\nThe Caesar cipher is the most basic type of encryption that we will look at. It is extraordinarily simple to use: each character of the alphabet is simply mapped to another character a fixed number of alphabet away.\nFor example, using a shift of 2, A would be turned into C, B into D, and so on, all the way until the end where X is turned into Z, Y back into A, and Z into B.\nYou can try out the Caesar cipher with this simple form here:\n\n\n Encrypt   Decrypt  Shift:  0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Caesar cipher</span>"
+    ]
   },
   {
     "objectID": "caesar.html#breaking-a-caesar-cipher",
     "href": "caesar.html#breaking-a-caesar-cipher",
     "title": "2  Caesar cipher",
     "section": "2.2 Breaking a Caesar cipher",
-    "text": "2.2 Breaking a Caesar cipher\nSince there are only 25 useful possibilities for encoding, it is almost trivial to break a Caesar cipher. You can perform a brute-force attack, which means trying each possibility until you find one that gives the correct text. For example, use the playground above to figure out this hidden message:\nOPKKLUTLZZHNL"
+    "text": "2.2 Breaking a Caesar cipher\nSince there are only 25 useful possibilities for encoding, it is almost trivial to break a Caesar cipher. You can perform a brute-force attack, which means trying each possibility until you find one that gives the correct text. For example, use the playground above to figure out this hidden message:\nOPKKLUTLZZHNL",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Caesar cipher</span>"
+    ]
+  },
+  {
+    "objectID": "monosub.html",
+    "href": "monosub.html",
+    "title": "3  Monoalphabetic ciphers",
+    "section": "",
+    "text": "3.1 Introduction\nClearly, the Caesar cipher is not very secure. It’s probably enough if you were sending an unimaginative message to a friend, but for anything mildly important, you probably want to crank up the security a little bit!\nThe Caesar cipher is a very simple example of a monoalphabetic substitution cipher: one where each alphabet is replaced with another one. This means that there’s a one-to-one mapping between pairs of alphabet in the plain and cipher text. The problem with the Caesar cipher is that the replacement follows a very simple pattern, so once you know one mapping, the rest can be figured out right away.\nWe can go one step further and use a cipher where the mapping is completely random. For example, A can be mapped to B, but B can be mapped to Q, and C to I, and so on.\nTry encoding a piece of text by choosing your own cipher. You can either enter each character of the cipher manually, or use the ‘randomise’ button to generate a random cipher.",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Monoalphabetic ciphers</span>"
+    ]
   },
   {
     "objectID": "monosub.html#introduction",
     "href": "monosub.html#introduction",
     "title": "3  Monoalphabetic ciphers",
-    "section": "3.1 Introduction",
-    "text": "3.1 Introduction\nClearly, the Caesar cipher is not very secure. It’s probably enough if you were sending an unimaginative message to a friend, but for anything mildly important, you probably want to crank up the security a little bit!\nThe Caesar cipher is a very simple example of a monoalphabetic substitution cipher: one where each alphabet is replaced with another one. This means that there’s a one-to-one mapping between pairs of alphabet in the plain and cipher text. The problem with the Caesar cipher is that the replacement follows a very simple pattern, so once you know one mapping, the rest can be figured out right away.\nWe can go one step further and use a cipher where the mapping is completely random. For example, A can be mapped to B, but B can be mapped to Q, and C to I, and so on.\n\nQuestion: How many possible encryptions are there? Would a brute-force attack on such a cipher be sensible?\n\nTry encoding a piece of text by choosing your own cipher. You can either enter each character of the cipher manually, or use the ‘randomise’ button to generate a random cipher.\n\n\n\n\n\nA→ \n\n\nB→ \n\n\nC→ \n\n\nD→ \n\n\nE→ \n\n\nF→ \n\n\nG→ \n\n\nH→ \n\n\nI→ \n\n\nJ→ \n\n\nK→ \n\n\nL→ \n\n\nM→ \n\n\nN→ \n\n\nO→ \n\n\nP→ \n\n\nQ→ \n\n\nR→ \n\n\nS→ \n\n\nT→ \n\n\nU→ \n\n\nV→ \n\n\nW→ \n\n\nX→ \n\n\nY→ \n\n\nZ→"
+    "section": "",
+    "text": "Question: How many possible encryptions are there? Would a brute-force attack on such a cipher be sensible?\n\n\n\n\n\n\n\nA→ \n\n\nB→ \n\n\nC→ \n\n\nD→ \n\n\nE→ \n\n\nF→ \n\n\nG→ \n\n\nH→ \n\n\nI→ \n\n\nJ→ \n\n\nK→ \n\n\nL→ \n\n\nM→ \n\n\nN→ \n\n\nO→ \n\n\nP→ \n\n\nQ→ \n\n\nR→ \n\n\nS→ \n\n\nT→ \n\n\nU→ \n\n\nV→ \n\n\nW→ \n\n\nX→ \n\n\nY→ \n\n\nZ→",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Monoalphabetic ciphers</span>"
+    ]
   },
   {
     "objectID": "monosub.html#frequency-analysis",
     "href": "monosub.html#frequency-analysis",
     "title": "3  Monoalphabetic ciphers",
     "section": "3.2 Frequency analysis",
-    "text": "3.2 Frequency analysis\nAlthough we realistically cannot use brute force, there is a much more clever way to crack such a code. It relies on the fact that certain letters of the alphabet are much more common than others in typical English text.\nTry pasting some text into the box below (or clicking the samples), and observe the frequency distribution of the letters in the plot that appears:\n\nSamples:   \n\n\n\n\n\n\n\n\n\n\n\nQuestion: Try a few different text sources. What are the most and least common letters? Can you think of any reasons why this distribution might systematically vary from text to text?\nIf you speak a foreign language, try analysing some text in that language to observe how the distribution might change. (Sadly, the box above ignores all accented characters! The schemes we’re discussing today can be adapted to work on non-English letters, but today we’ll focus only on the 26 English alphabet.)\n\nIn English, the most common letter is by far ‘E’. If we perform the same analysis on the cipher text, and find that ‘R’ is the most common letter, then it’s likely that ‘R’ decodes to ‘E’ in the plain text.\nOnce we have a match, we can fill it in and try to solve the rest in an iterative manner.\nAnother useful piece of information you can get from the cipher text is to find repeated sequences of letters. For example, once you find the letter for ‘E’, it makes sense to look for potential spots where ‘THE’ might be encoded."
+    "text": "3.2 Frequency analysis\nAlthough we realistically cannot use brute force, there is a much more clever way to crack such a code. It relies on the fact that certain letters of the alphabet are much more common than others in typical English text.\nTry pasting some text into the box below (or clicking the samples), and observe the frequency distribution of the letters in the plot that appears:\n\nSamples:   \n\n\n\n\n\n\n\n\n\n\n\nQuestion: Try a few different text sources. What are the most and least common letters? Can you think of any reasons why this distribution might systematically vary from text to text?\nIf you speak a foreign language, try analysing some text in that language to observe how the distribution might change. (Sadly, the box above ignores all accented characters! The schemes we’re discussing today can be adapted to work on non-English letters, but today we’ll focus only on the 26 English alphabet.)\n\nIn English, the most common letter is by far ‘E’. If we perform the same analysis on the cipher text, and find that ‘R’ is the most common letter, then it’s likely that ‘R’ decodes to ‘E’ in the plain text.\nOnce we have a match, we can fill it in and try to solve the rest in an iterative manner.\nAnother useful piece of information you can get from the cipher text is to find repeated sequences of letters. For example, once you find the letter for ‘E’, it makes sense to look for potential spots where ‘THE’ might be encoded.",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Monoalphabetic ciphers</span>"
+    ]
   },
   {
     "objectID": "monosub.html#decryption",
     "href": "monosub.html#decryption",
     "title": "3  Monoalphabetic ciphers",
     "section": "3.3 Decryption",
-    "text": "3.3 Decryption\nWith the above information, you should be able to have a go at decrypting this encrypted text. The frequency distribution of letters is shown to the right:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA→ \n\n\nB→ \n\n\nC→ \n\n\nD→ \n\n\nE→ \n\n\nF→ \n\n\nG→ \n\n\nH→ \n\n\nI→ \n\n\nJ→ \n\n\nK→ \n\n\nL→ \n\n\nM→ \n\n\nN→ \n\n\nO→ \n\n\nP→ \n\n\nQ→ \n\n\nR→ \n\n\nS→ \n\n\nT→ \n\n\nU→ \n\n\nV→ \n\n\nW→ \n\n\nX→ \n\n\nY→ \n\n\nZ→ \n\n\n\n\n\n\n\nHint: Once you have put together a few letters, look out for common, repeating, two- or three-letter patterns. The most common set of three letters in English is “THE”. Can you find anywhere where this word might fit?\nThe first 800 characters from the text above are shown here. In each of the lines below, the upper character represents the cipher text, and the lower character is the decoded plain text:"
+    "text": "3.3 Decryption\nWith the above information, you should be able to have a go at decrypting this encrypted text. The frequency distribution of letters is shown to the right:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA→ \n\n\nB→ \n\n\nC→ \n\n\nD→ \n\n\nE→ \n\n\nF→ \n\n\nG→ \n\n\nH→ \n\n\nI→ \n\n\nJ→ \n\n\nK→ \n\n\nL→ \n\n\nM→ \n\n\nN→ \n\n\nO→ \n\n\nP→ \n\n\nQ→ \n\n\nR→ \n\n\nS→ \n\n\nT→ \n\n\nU→ \n\n\nV→ \n\n\nW→ \n\n\nX→ \n\n\nY→ \n\n\nZ→ \n\n\n\n\n\n\n\nHint: Once you have put together a few letters, look out for common, repeating, two- or three-letter patterns. The most common set of three letters in English is “THE”. Can you find anywhere where this word might fit?\nThe first 800 characters from the text above are shown here. In each of the lines below, the upper character represents the cipher text, and the lower character is the decoded plain text:",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Monoalphabetic ciphers</span>"
+    ]
+  },
+  {
+    "objectID": "vigenere.html",
+    "href": "vigenere.html",
+    "title": "4  Vigenère cipher",
+    "section": "",
+    "text": "4.1 Introduction\nBoth the Caesar cipher and the monoalphabetic substitution cipher have a single, fixed mapping from input letters to ciphertext letters, making them vulnerable to letter frequency analysis. It would be more secure if we could create a polyalphabetic cipher - i.e. the mapping from plaintext letters to ciphertext letters changes after every input character. One example of this is an extension of the Caesar cipher, called a “Vigenère cipher” (named after the 16th-century French diplomat Blaise de Vigenère).\nIn this cipher, we define the key as a word or phrase that is repeated as many times as necessary to cover the length of the message. Each letter in this key is then used as the key for a Caesar cipher to encrypt the corresponding letter in the message.\nFor example, if the message is “Cryptography is fun” and the key is “SECRETKEY”, we would write the message and the repeated key together:\nSince the first letter of the key is “S”, which is the 19th letter of the alphabet, we shift the first letter of our message (“C”) by 18 (since we start counting with “A” as zero, meaning “no shift”), to give us “U”.\nThere is a handy way to visualise this process, called a Vigenère square:\nThe cipher text is the column on the left, while the encryption letter is the top row. (In fact, doing it the other way around works too: why?)",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Vigenère cipher</span>"
+    ]
   },
   {
     "objectID": "vigenere.html#introduction",
     "href": "vigenere.html#introduction",
     "title": "4  Vigenère cipher",
-    "section": "4.1 Introduction",
-    "text": "4.1 Introduction\nBoth the Caesar cipher and the monoalphabetic substitution cipher have a single, fixed mapping from input letters to ciphertext letters, making them vulnerable to letter frequency analysis. It would be more secure if we could create a polyalphabetic cipher - i.e. the mapping from plaintext letters to ciphertext letters changes after every input character. One example of this is an extension of the Caesar cipher, called a “Vigenère cipher” (named after the 16th-century French diplomat Blaise de Vigenère).\nIn this cipher, we define the key as a word or phrase that is repeated as many times as necessary to cover the length of the message. Each letter in this key is then used as the key for a Caesar cipher to encrypt the corresponding letter in the message.\nFor example, if the message is “Cryptography is fun” and the key is “SECRETKEY”, we would write the message and the repeated key together:\nCRYPTOGRAPHYISFUN\nSECRETKEYSECRETKE\nSince the first letter of the key is “S”, which is the 19th letter of the alphabet, we shift the first letter of our message (“C”) by 18 (since we start counting with “A” as zero, meaning “no shift”), to give us “U”.\nThere is a handy way to visualise this process, called a Vigenère square:\n\n\n\nVigenère square\n\n\nThe cipher text is the column on the left, while the encryption letter is the top row. (In fact, doing it the other way around works too: why?)\n\nExercise: Using pen and paper, go ahead and encrypt the rest of that message.\nCRYPTOGRAPHYISFUN  &lt;- message\nSECRETKEYSECRETKE  &lt;- key\n\n\n\n\n\n\n\n\nUVAGX HQVYH LAZWY ER"
+    "section": "",
+    "text": "CRYPTOGRAPHYISFUN\nSECRETKEYSECRETKE\n\n\n\n\n\nVigenère square\n\n\n\n\nExercise: Using pen and paper, go ahead and encrypt the rest of that message.\nCRYPTOGRAPHYISFUN  &lt;- message\nSECRETKEYSECRETKE  &lt;- key\n\n\n\n\n\n\n\n\nUVAGX HQVYH LAZWY ER",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Vigenère cipher</span>"
+    ]
   },
   {
     "objectID": "vigenere.html#cracking-the-vigenère-cipher",
     "href": "vigenere.html#cracking-the-vigenère-cipher",
     "title": "4  Vigenère cipher",
     "section": "4.2 Cracking the Vigenère cipher",
-    "text": "4.2 Cracking the Vigenère cipher\nLuckily, the Vigenère cipher still contains a point of weakness that we can use to attack it: the periodicity of the key, or in other words, the fact that it repeats itself every \\(n\\) characters.\nThis means that, if the key length is 3, then the 1st, 4th, 7th, … characters are encoded in the same way, and we can tackle it just like we did for the simple ciphers seen already.\nBut, to do this, we first need to know the key length!\n\n4.2.1 Index of Coincidence\nTo find the key length, we need to understand another fundamental property of English text: the index of coincidence (IoC). If we have a piece of text and randomly pull two letters out of it, the IoC tells us how likely it is that these two letters are the same.\nMathematically, we can define the IoC as:\n\\[\\text{IoC} = 26 \\cdot \\frac{n_\\text{A}(n_\\text{A} - 1) + n_\\text{B}(n_\\text{B} - 1) + \\cdots + n_\\text{Z}(n_\\text{Z} - 1)}{N(N - 1)},\\]\nwhere \\(n_i\\) is the number of times the letter \\(i\\) appears in the text, and \\(N\\) is the length of the text.\n\nQuestion: Show that if all letters have the same probability of occurring, then the IoC is equal to 1. (Assume that the text is long enough, such that the \\(n_i\\)’s are much larger than 1.)\n\nBecause letters are not uniformly distributed in English (recall that ’E’s were particularly common), this quantity is, on average, greater than 1 for typical English texts.\nHave a play around with this plot, and find out what the IoC is for some typical text. The same samples as before are included, plus a random sequence of letters:\n\nSamples:    \n\n\n\n\n\n\n\n\n\n\n\n\n4.2.2 Using IoC to determine Key Length\nWe can exploit the fact that the IoC has different values for English text and for random sequences of letters, to identify the key length. If the key had a length of e.g. 4, we would know that the 1st, 5th, 9th, … letters were encrypted with the same letter of the key, and we would expect the IoC of this collection of letters (and also the 2nd, 6th, 10th, …) to be higher than what we would see for random. If on the other hand, the key had length 5, we would expect the same to be true if we looked at the 1st, 6th, 11th, 16th, … letters. (This periodic property is going to be looked at in more detail in “Modular Arithmetic”, which we’ll cover this afternoon.)\n\nExercise: Decrypt the following ciphertext.\n\n\n\n\n\nPart 1: First, look at the Index of Coincidence and Letter Frequency graphs for the subsets of the ciphertext that we’d expect to see if the key length were 2, 3, or 4.\n\nChoose a key length to try:\n\nProposed key length:   \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPart 2: Now we have identified the most likely key length, we should be able to look at the individual letter frequency graphs, and work out how much we’d need to shift them (like a Caesar cipher) to identify each letter of the key.\n\n\nHint 1: Remember, the most common letter in English text is “E”.\n\n\nHint 2: When we encrypt a letter using the Vigenère cipher, the letter “A” corresponds to a shift of 0. So, if the most common letter in the first of the graphs above was “F”, this would imply that we had a Caeser cipher of shift=1 (to move “E”s to “F”s), corresponding to the first letter of the key being “B”.\n\nProposed Key:"
+    "text": "4.2 Cracking the Vigenère cipher\nLuckily, the Vigenère cipher still contains a point of weakness that we can use to attack it: the periodicity of the key, or in other words, the fact that it repeats itself every \\(n\\) characters.\nThis means that, if the key length is 3, then the 1st, 4th, 7th, … characters are encoded in the same way, and we can tackle it just like we did for the simple ciphers seen already.\nBut, to do this, we first need to know the key length!\n\n4.2.1 Index of Coincidence\nTo find the key length, we need to understand another fundamental property of English text: the index of coincidence (IoC). If we have a piece of text and randomly pull two letters out of it, the IoC tells us how likely it is that these two letters are the same.\nMathematically, we can define the IoC as:\n\\[\\text{IoC} = 26 \\cdot \\frac{n_\\text{A}(n_\\text{A} - 1) + n_\\text{B}(n_\\text{B} - 1) + \\cdots + n_\\text{Z}(n_\\text{Z} - 1)}{N(N - 1)},\\]\nwhere \\(n_i\\) is the number of times the letter \\(i\\) appears in the text, and \\(N\\) is the length of the text.\n\nQuestion: Show that if all letters have the same probability of occurring, then the IoC is equal to 1. (Assume that the text is long enough, such that the \\(n_i\\)’s are much larger than 1.)\n\nBecause letters are not uniformly distributed in English (recall that ’E’s were particularly common), this quantity is, on average, greater than 1 for typical English texts.\nHave a play around with this plot, and find out what the IoC is for some typical text. The same samples as before are included, plus a random sequence of letters:\n\nSamples:    \n\n\n\n\n\n\n\n\n\n\n\n\n4.2.2 Using IoC to determine Key Length\nWe can exploit the fact that the IoC has different values for English text and for random sequences of letters, to identify the key length. If the key had a length of e.g. 4, we would know that the 1st, 5th, 9th, … letters were encrypted with the same letter of the key, and we would expect the IoC of this collection of letters (and also the 2nd, 6th, 10th, …) to be higher than what we would see for random. If on the other hand, the key had length 5, we would expect the same to be true if we looked at the 1st, 6th, 11th, 16th, … letters. (This periodic property is going to be looked at in more detail in “Modular Arithmetic”, which we’ll cover this afternoon.)\n\nExercise: Decrypt the following ciphertext.\n\n\n\n\n\nPart 1: First, look at the Index of Coincidence and Letter Frequency graphs for the subsets of the ciphertext that we’d expect to see if the key length were 2, 3, or 4.\n\nChoose a key length to try:\n\nProposed key length:   \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPart 2: Now we have identified the most likely key length, we should be able to look at the individual letter frequency graphs, and work out how much we’d need to shift them (like a Caesar cipher) to identify each letter of the key.\n\n\nHint 1: Remember, the most common letter in English text is “E”.\n\n\nHint 2: When we encrypt a letter using the Vigenère cipher, the letter “A” corresponds to a shift of 0. So, if the most common letter in the first of the graphs above was “F”, this would imply that we had a Caeser cipher of shift=1 (to move “E”s to “F”s), corresponding to the first letter of the key being “B”.\n\nProposed Key:",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Vigenère cipher</span>"
+    ]
   },
   {
     "objectID": "vigenere.html#aside-one-time-pads---the-unbreakable-cipher",
     "href": "vigenere.html#aside-one-time-pads---the-unbreakable-cipher",
     "title": "4  Vigenère cipher",
     "section": "4.3 Aside: One-time pads - the unbreakable cipher",
-    "text": "4.3 Aside: One-time pads - the unbreakable cipher\nSince the way that we break the Vigenère cipher depends on the repetition of the key, it follows that if the key is (at least) as long as the message, we wouldn’t be able to crack the cipher this way. In fact, these so-called “one-time pads”, where the key is a long sequence of randomly generated letters, are thought to be unbreakable (as long as the sequence is truly random, and is not reused - hence the name). These were used for some of the most secret communications in World War II. However, of course, we still have the problem of how to securely share the key between the sender and the recipient!"
+    "text": "4.3 Aside: One-time pads - the unbreakable cipher\nSince the way that we break the Vigenère cipher depends on the repetition of the key, it follows that if the key is (at least) as long as the message, we wouldn’t be able to crack the cipher this way. In fact, these so-called “one-time pads”, where the key is a long sequence of randomly generated letters, are thought to be unbreakable (as long as the sequence is truly random, and is not reused - hence the name). These were used for some of the most secret communications in World War II. However, of course, we still have the problem of how to securely share the key between the sender and the recipient!",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Vigenère cipher</span>"
+    ]
+  },
+  {
+    "objectID": "enigma.html",
+    "href": "enigma.html",
+    "title": "5  Enigma",
+    "section": "",
+    "text": "5.1 The Enigma cipher machine.\nThe Enigma machine was used by the German military during World War II to decode and encode secret communications. The simplest version of the machine consists of:\nThe choice of which rotors to use, in which slots, and their starting rotations, constitutes the encryption (and decryption) key.\nWhen the machine is setup in the specified starting position, the user can press a key on the keyboard, and an electrical current will flow through the rotors from right-to-left, then through the reflector, then back through the rotors from left-to-right, and will cause a letter-lamp to light up. At least one of the rotors will then rotate by one step (the right-hand rotor rotates after every key press, the others less frequently), so that when the next key is pressed, the mappings from the keyboard to the lamps will be different.\nLike Vigenère, Enigma is therefore a polyalphabetic substitution cipher: a given configuration of the machine is a mono-alphabetic substitution cipher, but we get a different configuration after every key press.\nSince Enigma is a symmetric cipher, the procedure is exactly the same for encrypting a plaintext message, or for decrypting a ciphertext message.",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Enigma</span>"
+    ]
   },
   {
     "objectID": "enigma.html#the-enigma-cipher-machine.",
     "href": "enigma.html#the-enigma-cipher-machine.",
     "title": "5  Enigma",
-    "section": "5.1 The Enigma cipher machine.",
-    "text": "5.1 The Enigma cipher machine.\n\nThe Enigma machine was used by the German military during World War II to decode and encode secret communications. The simplest version of the machine consists of:\n\nA typewriter-style keyboard, which could be used to type out the message.\nA set of lamps, one for each letter of the alphabet. One of these lamps will light up every time a key on the keyboard is pressed.\nThree (or later four) rotors, chosen from a selection of five, each of which has 26 electrical contact pins on each side, and a different mapping of connections between them.\nAn electrical reflector next to the left-hand rotor.\n\nThe choice of which rotors to use, in which slots, and their starting rotations, constitutes the encryption (and decryption) key.\nWhen the machine is setup in the specified starting position, the user can press a key on the keyboard, and an electrical current will flow through the rotors from right-to-left, then through the reflector, then back through the rotors from left-to-right, and will cause a letter-lamp to light up. At least one of the rotors will then rotate by one step (the right-hand rotor rotates after every key press, the others less frequently), so that when the next key is pressed, the mappings from the keyboard to the lamps will be different.\nLike Vigenère, Enigma is therefore a polyalphabetic substitution cipher: a given configuration of the machine is a mono-alphabetic substitution cipher, but we get a different configuration after every key press.\nSince Enigma is a symmetric cipher, the procedure is exactly the same for encrypting a plaintext message, or for decrypting a ciphertext message.\n\nExercise: Have a go with the Enigma emulator. Some things to try: - Set the starting rotors to something (e.g. “A,B,C”), then type out a short message. Note that after every keypress, the right hand rotor shifts by 1. - After the end of that message, reset the rotors to the original position, and then type out the ciphertext that you got from the previous step. Hopefully you should now recover the original text. - You can also try pressing the same key many times - what do you notice about the output ciphertext?"
+    "section": "",
+    "text": "A typewriter-style keyboard, which could be used to type out the message.\nA set of lamps, one for each letter of the alphabet. One of these lamps will light up every time a key on the keyboard is pressed.\nThree (or later four) rotors, chosen from a selection of five, each of which has 26 electrical contact pins on each side, and a different mapping of connections between them.\nAn electrical reflector next to the left-hand rotor.\n\n\n\n\n\n\nExercise: Have a go with the Enigma emulator. Some things to try: - Set the starting rotors to something (e.g. “A,B,C”), then type out a short message. Note that after every keypress, the right hand rotor shifts by 1. - After the end of that message, reset the rotors to the original position, and then type out the ciphertext that you got from the previous step. Hopefully you should now recover the original text. - You can also try pressing the same key many times - what do you notice about the output ciphertext?",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Enigma</span>"
+    ]
   },
   {
     "objectID": "enigma.html#cracking-the-enigma",
     "href": "enigma.html#cracking-the-enigma",
     "title": "5  Enigma",
     "section": "5.2 Cracking the Enigma",
-    "text": "5.2 Cracking the Enigma\nThe reflector next to the rotors gives the Enigma the nice property that the settings for encryption and decryption are identical. However, it also gives rise to an important flaw (which you may have noticed from the exercise above): it is impossible for a letter to encrypt to itself.\nThis means that if you have a “crib” (i.e. a word or phrase that you are fairly sure will appear in the message), and you are trying out lots of possible keys, you can discard any where the same letter appears in the same position in the ciphertext and the proposed plaintext.\nUsing this, and various flaws in the procedures that Enigma operators used, Polish cryptographers were able to break Enigma in the 1930s. They then shared this knowledge with British and French cryptographers, and a cryptographic arms race ensued that lasted throughout World War II.\nAs extra layers of complexity were added to Enigma (a fourth rotor, a plug-board that mapped pairs of letters to one another, …), so the scale and complexity of the code-breaking efforts increased. An example of this is the development of the Bombe - an electro-mechanical device that could try all the 17576 (26×26×26) possible rotor positions in about 20 minutes.\n\n\n\nThe bombe at Bletchley Park. Image by Antoine Taveneaux (license: CC-BY-SA 3.0)"
+    "text": "5.2 Cracking the Enigma\nThe reflector next to the rotors gives the Enigma the nice property that the settings for encryption and decryption are identical. However, it also gives rise to an important flaw (which you may have noticed from the exercise above): it is impossible for a letter to encrypt to itself.\nThis means that if you have a “crib” (i.e. a word or phrase that you are fairly sure will appear in the message), and you are trying out lots of possible keys, you can discard any where the same letter appears in the same position in the ciphertext and the proposed plaintext.\nUsing this, and various flaws in the procedures that Enigma operators used, Polish cryptographers were able to break Enigma in the 1930s. They then shared this knowledge with British and French cryptographers, and a cryptographic arms race ensued that lasted throughout World War II.\nAs extra layers of complexity were added to Enigma (a fourth rotor, a plug-board that mapped pairs of letters to one another, …), so the scale and complexity of the code-breaking efforts increased. An example of this is the development of the Bombe - an electro-mechanical device that could try all the 17576 (26×26×26) possible rotor positions in about 20 minutes.\n\n\n\nThe bombe at Bletchley Park. Image by Antoine Taveneaux (license: CC-BY-SA 3.0)",
+    "crumbs": [
+      "Symmetric ciphers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Enigma</span>"
+    ]
   },
   {
     "objectID": "asymmetric.html",
     "href": "asymmetric.html",
     "title": "Asymmetric ciphers",
     "section": "",
-    "text": "Asymmetric cryptography refers to an encoding/decoding algorithm that requires two separate keys, known as a public key and a private key.\nLet’s say Bob wants to send Alice an encoded message that only she can read. Alice must first generate both a public key and a private key for herself. She sends the public key to Bob, and keeps the private key to herself.\nBob can then use the public key to encrypt his message to Alice; and Alice uses her private key to decrypt it. Since only Alice has the private key, only she can decrypt the message.\nYou can think of this as Alice giving Bob a lock, but keeping the key for herself.\n\n\n\nAlice gives Bob her public key so Bob can encrypt a message, which she then decrypts with her private key.\n\n\nIn this section, we’ll look at one specific example of an asymmetric scheme, namely the RSA system."
+    "text": "Asymmetric cryptography refers to an encoding/decoding algorithm that requires two separate keys, known as a public key and a private key.\nLet’s say Bob wants to send Alice an encoded message that only she can read. Alice must first generate both a public key and a private key for herself. She sends the public key to Bob, and keeps the private key to herself.\nBob can then use the public key to encrypt his message to Alice; and Alice uses her private key to decrypt it. Since only Alice has the private key, only she can decrypt the message.\nYou can think of this as Alice giving Bob a lock, but keeping the key for herself.\n\n\n\nAlice gives Bob her public key so Bob can encrypt a message, which she then decrypts with her private key.\n\n\nIn this section, we’ll look at one specific example of an asymmetric scheme, namely the RSA system.",
+    "crumbs": [
+      "Asymmetric ciphers"
+    ]
+  },
+  {
+    "objectID": "modular1.html",
+    "href": "modular1.html",
+    "title": "6  Modular arithmetic I",
+    "section": "",
+    "text": "6.1 Calculator\nTo help you get a feel for modular arithmetic, here is a calculator that accepts (almost) any mathematical expression in the left-hand side. You can also specify a modulus, and the calculator will show you the result of the expression modulo that number. You may find this useful for the exercises below.",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Modular arithmetic I</span>"
+    ]
   },
   {
     "objectID": "modular1.html#calculator",
     "href": "modular1.html#calculator",
     "title": "6  Modular arithmetic I",
-    "section": "6.1 Calculator",
-    "text": "6.1 Calculator\nTo help you get a feel for modular arithmetic, here is a calculator that accepts (almost) any mathematical expression in the left-hand side. You can also specify a modulus, and the calculator will show you the result of the expression modulo that number. You may find this useful for the exercises below.\n\n\n\n mod \n\n\nAnswer:"
+    "section": "",
+    "text": "mod \n\n\nAnswer:",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Modular arithmetic I</span>"
+    ]
   },
   {
     "objectID": "modular1.html#exercises",
     "href": "modular1.html#exercises",
     "title": "6  Modular arithmetic I",
     "section": "6.2 Exercises",
-    "text": "6.2 Exercises\nSuppose that \\(a \\equiv p \\bmod n\\) and \\(b \\equiv q \\bmod n\\). Prove the following statements:\n\n\\((a + b) \\equiv (p + q) \\bmod n\\).\n\\((ab) \\equiv (pq) \\bmod n\\).\n\nWe will work through the first one. To do this proof, we need to use one key fact: if \\(a \\equiv p \\bmod n\\), that means that there is some integer \\(k\\) for which \\(a = p + cn\\). In other words, \\(a\\) is some multiple of \\(n\\) plus \\(p\\).\nIf we do this separately for \\(a\\) and \\(b\\): \\[\\begin{align}\na &= p + cn \\\\\nb &= q + dn\n\\end{align}\\]\nand then add these two together, we get:\n\\[\\begin{align}\na + b &= p + q + cn + dn \\\\\n      &= p + q + (c + d)n\n\\end{align}\\]\nwhich means that \\(a + b\\) is some multiple of \\(n\\), plus \\(p + q\\). This is exactly the same as saying \\((a + b) \\equiv (p + q) \\bmod n\\).\nYou can use the same strategy to prove statement (2).\n\nOptional: If you have studied proof by induction, try using it to show that for all integers \\(m &gt; 0\\), \\((a^m) \\equiv (p^m) \\bmod n\\)."
+    "text": "6.2 Exercises\nSuppose that \\(a \\equiv p \\bmod n\\) and \\(b \\equiv q \\bmod n\\). Prove the following statements:\n\n\\((a + b) \\equiv (p + q) \\bmod n\\).\n\\((ab) \\equiv (pq) \\bmod n\\).\n\nWe will work through the first one. To do this proof, we need to use one key fact: if \\(a \\equiv p \\bmod n\\), that means that there is some integer \\(k\\) for which \\(a = p + cn\\). In other words, \\(a\\) is some multiple of \\(n\\) plus \\(p\\).\nIf we do this separately for \\(a\\) and \\(b\\): \\[\\begin{align}\na &= p + cn \\\\\nb &= q + dn\n\\end{align}\\]\nand then add these two together, we get:\n\\[\\begin{align}\na + b &= p + q + cn + dn \\\\\n      &= p + q + (c + d)n\n\\end{align}\\]\nwhich means that \\(a + b\\) is some multiple of \\(n\\), plus \\(p + q\\). This is exactly the same as saying \\((a + b) \\equiv (p + q) \\bmod n\\).\nYou can use the same strategy to prove statement (2).\n\nOptional: If you have studied proof by induction, try using it to show that for all integers \\(m &gt; 0\\), \\((a^m) \\equiv (p^m) \\bmod n\\).",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Modular arithmetic I</span>"
+    ]
   },
   {
     "objectID": "modular1.html#applications",
     "href": "modular1.html#applications",
     "title": "6  Modular arithmetic I",
     "section": "6.3 Applications",
-    "text": "6.3 Applications\nThese equalities make it far easier to perform some calculations. For example, what is \\(33^{594} \\bmod{32}\\)?\nWe might first think about calculating \\(33\\) to the power of \\(594\\), and then dividing that by \\(32\\) to find the remainder. That sounds difficult: even a computer would struggle with such a large number! (Try using the calculator above, or Google’s built-in calculator, to calculate \\(33^{594}\\).)\nBut if we notice that \\(33 \\equiv 1 \\bmod{32}\\), then we can use formula (3) to see that\n\\[33^{594} \\equiv 1^{594} \\equiv 1 \\bmod{32},\\]\nbecause \\(1\\) to the power of anything is still \\(1\\).\n\nChallenge: Calculate \\(7^{175} \\bmod{16}\\).\n[If you are having trouble, try to find a pattern here: what is \\(7^1 \\bmod 16\\)? and \\(7^2 \\bmod 16\\)? and \\(7^3 \\bmod 16\\)? Once you have found a pattern, think about why this might be the case. Can you use, for example, statement (3) above, noting that \\(7^{(am)} = (7^a)^m\\)?]"
+    "text": "6.3 Applications\nThese equalities make it far easier to perform some calculations. For example, what is \\(33^{594} \\bmod{32}\\)?\nWe might first think about calculating \\(33\\) to the power of \\(594\\), and then dividing that by \\(32\\) to find the remainder. That sounds difficult: even a computer would struggle with such a large number! (Try using the calculator above, or Google’s built-in calculator, to calculate \\(33^{594}\\).)\nBut if we notice that \\(33 \\equiv 1 \\bmod{32}\\), then we can use formula (3) to see that\n\\[33^{594} \\equiv 1^{594} \\equiv 1 \\bmod{32},\\]\nbecause \\(1\\) to the power of anything is still \\(1\\).\n\nChallenge: Calculate \\(7^{175} \\bmod{16}\\).\n[If you are having trouble, try to find a pattern here: what is \\(7^1 \\bmod 16\\)? and \\(7^2 \\bmod 16\\)? and \\(7^3 \\bmod 16\\)? Once you have found a pattern, think about why this might be the case. Can you use, for example, statement (3) above, noting that \\(7^{(am)} = (7^a)^m\\)?]",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Modular arithmetic I</span>"
+    ]
+  },
+  {
+    "objectID": "rsa1.html",
+    "href": "rsa1.html",
+    "title": "7  RSA scheme I",
+    "section": "",
+    "text": "7.1 Introduction\nThe RSA scheme revolves around modular arithmetic, which the previous page touched briefly on.\nSpecifically, it assumes that the message you want to transmit is first translated into an integer \\(m\\) (which stands for message).\nThe two equations above imply together that:\n\\[m \\equiv (m^e)^d \\mod n,\\]\nand crucially, this is true of all messages \\(m &lt; n\\), meaning that the keys can be used for whatever message you choose to send.\nIn general, if we just pick any random numbers \\(e\\), \\(d\\), and \\(n\\), this will not be true! The RSA scheme works because these numbers are specifically chosen in a way that not only satisfies the equation above, but is also difficult to reverse-engineer.\nSpecifically, if you were an attacker and you knew the public key (i.e. \\(e\\) and \\(n\\)) as well as the ciphertext \\(c\\), it’s still extremely difficult to find the correct value of \\(d\\) to correctly decode the message.",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>RSA scheme I</span>"
+    ]
   },
   {
     "objectID": "rsa1.html#introduction",
     "href": "rsa1.html#introduction",
     "title": "7  RSA scheme I",
-    "section": "7.1 Introduction",
-    "text": "7.1 Introduction\nThe RSA scheme revolves around modular arithmetic, which the previous page touched briefly on.\nSpecifically, it assumes that the message you want to transmit is first translated into an integer \\(m\\) (which stands for message).\n\nQuestion: Can you come up with a way of translating a plain-text message into an integer?\n\n\nThe encoding step involves the sender taking the message \\(m\\) and raising it to a power \\(e\\) (for ‘encryption’), modulo some number \\(n\\):\n\\[c \\equiv m^e \\mod n\\]\nwhere \\(c\\) is the ciphertext. The combination of \\(e\\) and \\(n\\) forms the public key of the RSA scheme.\nThis ciphertext is then passed to the recipient, who then decodes it by raising it to a power \\(d\\) (for ‘decryption’), modulo \\(n\\):\n\\[m \\equiv c^d \\mod n.\\]\n\\(d\\) forms part of the private key, which only the recipient is allowed to know.\n\nThe two equations above imply together that:\n\\[m \\equiv (m^e)^d \\mod n,\\]\nand crucially, this is true of all messages \\(m &lt; n\\), meaning that the keys can be used for whatever message you choose to send.\nIn general, if we just pick any random numbers \\(e\\), \\(d\\), and \\(n\\), this will not be true! The RSA scheme works because these numbers are specifically chosen in a way that not only satisfies the equation above, but is also difficult to reverse-engineer.\nSpecifically, if you were an attacker and you knew the public key (i.e. \\(e\\) and \\(n\\)) as well as the ciphertext \\(c\\), it’s still extremely difficult to find the correct value of \\(d\\) to correctly decode the message."
+    "section": "",
+    "text": "Question: Can you come up with a way of translating a plain-text message into an integer?\n\n\nThe encoding step involves the sender taking the message \\(m\\) and raising it to a power \\(e\\) (for ‘encryption’), modulo some number \\(n\\):\n\\[c \\equiv m^e \\mod n\\]\nwhere \\(c\\) is the ciphertext. The combination of \\(e\\) and \\(n\\) forms the public key of the RSA scheme.\nThis ciphertext is then passed to the recipient, who then decodes it by raising it to a power \\(d\\) (for ‘decryption’), modulo \\(n\\):\n\\[m \\equiv c^d \\mod n.\\]\n\\(d\\) forms part of the private key, which only the recipient is allowed to know.",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>RSA scheme I</span>"
+    ]
   },
   {
     "objectID": "rsa1.html#key-generation",
     "href": "rsa1.html#key-generation",
     "title": "7  RSA scheme I",
     "section": "7.2 Key generation",
-    "text": "7.2 Key generation\nBecause the RSA scheme is asymmetric, it only works for communication in one way. The recipient is responsible for generating the three integers \\(e\\), \\(d\\), and \\(n\\). They do so using the following algorithm:\n\nChoose two prime numbers \\(p\\) and \\(q\\), and set \\(n = pq\\).\nFor example, if we choose \\(p = 5\\) and \\(q = 13\\), then \\(n = 65\\).\nCalculate the totient function, defined by \\(\\phi = (p - 1)(q - 1)\\). (That symbol is the Greek letter phi.) In this case, we would have \\(\\phi = 4 \\times 12 = 48\\).\nThen, choose an integer \\(e\\) which is smaller than \\(\\phi\\) and has no common prime factors with \\(\\phi\\). Here, the only prime factors of \\(48\\) are \\(2\\) and \\(3\\): so, a valid choice would be \\(e = 5\\).\n\\(e\\) and \\(n\\) are part of the public key, and can be shared with the sender.\nFinally, choose \\(d\\) such that \\(de \\equiv 1 \\bmod\\phi\\).\nIn this case, we need \\(d \\times 5 \\equiv 1 \\bmod 48\\): the smallest value of \\(d\\) for which this holds true is \\(d = 29\\). (Can you verify this?)\n\\(d\\) is part of the private key, and must be kept secret.\n\nThis setup ensures that regardless of what message \\(m\\) is being sent, \\[(m^e)^d \\equiv m \\bmod n,\\] as required by the RSA algorithm.\nTry this out using the interactive form here. It has been pre-filled with the numbers from the example above, but you should try it out with your own choice of numbers.\n\nStep 1: Choose \\(p\\) and \\(q\\) (must be prime)\n\n\n\\(p\\):  \\(q\\):        \n\n\n\n\n\nStep 2: Choose \\(e\\) (encryption key: must be smaller than \\(\\phi\\), and cannot share prime factors with \\(\\phi\\))\n\n\n\\(e\\):        \n\n\n\n\n\nStep 3: Choose \\(d\\) (decryption key: must satisfy \\(de \\equiv 1 \\bmod \\phi\\))\n\n\n\\(d\\):        \n\n\n\n\n\nStep 4: Choose \\(m\\) (message: must be smaller than \\(n\\))\n\n\n\\(m\\):"
+    "text": "7.2 Key generation\nBecause the RSA scheme is asymmetric, it only works for communication in one way. The recipient is responsible for generating the three integers \\(e\\), \\(d\\), and \\(n\\). They do so using the following algorithm:\n\nChoose two prime numbers \\(p\\) and \\(q\\), and set \\(n = pq\\).\nFor example, if we choose \\(p = 5\\) and \\(q = 13\\), then \\(n = 65\\).\nCalculate the totient function, defined by \\(\\phi = (p - 1)(q - 1)\\). (That symbol is the Greek letter phi.) In this case, we would have \\(\\phi = 4 \\times 12 = 48\\).\nThen, choose an integer \\(e\\) which is smaller than \\(\\phi\\) and has no common prime factors with \\(\\phi\\). Here, the only prime factors of \\(48\\) are \\(2\\) and \\(3\\): so, a valid choice would be \\(e = 5\\).\n\\(e\\) and \\(n\\) are part of the public key, and can be shared with the sender.\nFinally, choose \\(d\\) such that \\(de \\equiv 1 \\bmod\\phi\\).\nIn this case, we need \\(d \\times 5 \\equiv 1 \\bmod 48\\): the smallest value of \\(d\\) for which this holds true is \\(d = 29\\). (Can you verify this?)\n\\(d\\) is part of the private key, and must be kept secret.\n\nThis setup ensures that regardless of what message \\(m\\) is being sent, \\[(m^e)^d \\equiv m \\bmod n,\\] as required by the RSA algorithm.\nTry this out using the interactive form here. It has been pre-filled with the numbers from the example above, but you should try it out with your own choice of numbers.\n\nStep 1: Choose \\(p\\) and \\(q\\) (must be prime)\n\n\n\\(p\\):  \\(q\\):        \n\n\n\n\n\nStep 2: Choose \\(e\\) (encryption key: must be smaller than \\(\\phi\\), and cannot share prime factors with \\(\\phi\\))\n\n\n\\(e\\):        \n\n\n\n\n\nStep 3: Choose \\(d\\) (decryption key: must satisfy \\(de \\equiv 1 \\bmod \\phi\\))\n\n\n\\(d\\):        \n\n\n\n\n\nStep 4: Choose \\(m\\) (message: must be smaller than \\(n\\))\n\n\n\\(m\\):",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>RSA scheme I</span>"
+    ]
   },
   {
     "objectID": "rsa1.html#next-steps",
     "href": "rsa1.html#next-steps",
     "title": "7  RSA scheme I",
     "section": "7.3 Next steps",
-    "text": "7.3 Next steps\nWe’ve managed to show here that the RSA scheme works. However, there are several questions that remain:\n\nUnless you chose very small numbers for \\(p\\), \\(q\\), and \\(e\\), you probably found it hard to calculate \\(d\\). How can this be done quickly?\nHow do we know that the RSA scheme is secure? Is it possible to obtain the private key, \\(d\\), if you have the public key (\\(e\\) and \\(n\\))?\nwhy does the RSA algorithm work at all, i.e. why is it always true that \\((m^e)^d \\equiv m \\bmod n\\)?\n\nWe’ll cover the first two questions in the remainder of today.\nThe proof that RSA works requires slightly more mathematical knowledge than we’ve seen so far, so we will not be covering it today. If you are curious, you can find it on Wikipedia!"
+    "text": "7.3 Next steps\nWe’ve managed to show here that the RSA scheme works. However, there are several questions that remain:\n\nUnless you chose very small numbers for \\(p\\), \\(q\\), and \\(e\\), you probably found it hard to calculate \\(d\\). How can this be done quickly?\nHow do we know that the RSA scheme is secure? Is it possible to obtain the private key, \\(d\\), if you have the public key (\\(e\\) and \\(n\\))?\nwhy does the RSA algorithm work at all, i.e. why is it always true that \\((m^e)^d \\equiv m \\bmod n\\)?\n\nWe’ll cover the first two questions in the remainder of today.\nThe proof that RSA works requires slightly more mathematical knowledge than we’ve seen so far, so we will not be covering it today. If you are curious, you can find it on Wikipedia!",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>RSA scheme I</span>"
+    ]
+  },
+  {
+    "objectID": "modular2.html",
+    "href": "modular2.html",
+    "title": "8  Modular arithmetic II",
+    "section": "",
+    "text": "8.1 Introduction\nIn this section, we’ll look at the extended Euclidean algorithm. An algorithm is a series of steps which can be used to solve a problem: think of it as a recipe, but for maths.\nIn this case, the problem we’re trying to solve is finding the values of \\(x\\) and \\(y\\) in the equation\n\\[ax + by = \\gcd(a, b) \\tag{1}\\]\nwhere \\(a\\) and \\(b\\) are known integers, \\(x\\) and \\(y\\) are unknown integers, and \\(\\gcd(a, b)\\) denotes the greatest common divisor of \\(a\\) and \\(b\\), i.e. the largest whole number that divides both \\(a\\) and \\(b\\).\nFormulated this way, this equation might not immediately seem relevant. However, in fact, it is precisely what we need to find the value of \\(d\\) in the RSA algorithm.\nRecall that we chose \\(e\\) and \\(d\\) such that:",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modular arithmetic II</span>"
+    ]
   },
   {
     "objectID": "modular2.html#introduction",
     "href": "modular2.html#introduction",
     "title": "8  Modular arithmetic II",
-    "section": "8.1 Introduction",
-    "text": "8.1 Introduction\nIn this section, we’ll look at the extended Euclidean algorithm. An algorithm is a series of steps which can be used to solve a problem: think of it as a recipe, but for maths.\nIn this case, the problem we’re trying to solve is finding the values of \\(x\\) and \\(y\\) in the equation\n\\[ax + by = \\gcd(a, b) \\tag{1}\\]\nwhere \\(a\\) and \\(b\\) are known integers, \\(x\\) and \\(y\\) are unknown integers, and \\(\\gcd(a, b)\\) denotes the greatest common divisor of \\(a\\) and \\(b\\), i.e. the largest whole number that divides both \\(a\\) and \\(b\\).\nFormulated this way, this equation might not immediately seem relevant. However, in fact, it is precisely what we need to find the value of \\(d\\) in the RSA algorithm.\nRecall that we chose \\(e\\) and \\(d\\) such that:\n\n\\(e\\) and \\(\\phi\\) have no common factors. This means that \\(\\gcd(e, \\phi) = 1\\).\n\\(ed \\bmod \\phi = 1\\).\n\n\nQuestion: Reformulate the second condition in terms of equation (1).\n\n\nExercise: Play around with the geometric representation of GCD to get an idea of how Euclid’s algorithm can be used to solve for the uknowns."
+    "section": "",
+    "text": "\\(e\\) and \\(\\phi\\) have no common factors. This means that \\(\\gcd(e, \\phi) = 1\\).\n\\(ed \\bmod \\phi = 1\\).\n\n\nQuestion: Reformulate the second condition in terms of equation (1).\n\n\nExercise: Play around with the geometric representation of GCD to get an idea of how Euclid’s algorithm can be used to solve for the uknowns.",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modular arithmetic II</span>"
+    ]
   },
   {
     "objectID": "modular2.html#the-extended-euclidean-algorithm",
     "href": "modular2.html#the-extended-euclidean-algorithm",
     "title": "8  Modular arithmetic II",
     "section": "8.2 The extended Euclidean algorithm",
-    "text": "8.2 The extended Euclidean algorithm\nYou probably found above that we are trying to solve the equation \\(ed + \\phi y = 1\\). We already know the values of \\(e\\) and \\(\\phi\\), and the Euclidean algorithm will let us obtain the values of \\(d\\) and \\(y\\).\nOf course, we’re only really interested in \\(d\\), so even though we’ll also get the value of \\(y\\), we can just throw it away.\nLet’s reuse the example from the previous page, where \\(\\phi = 48\\) and \\(e = 5\\). Substituting that in:\n\\[5d + 48y = 1\\]\nEach step of the Euclidean algorithm is a simple division. We start off with the larger number (48), and divide it by the smaller number (5). In this case, \\(48\\) divided by \\(5\\) is \\(9\\), with a remainder of \\(3\\):\n\\[\\underset{\\text{big number}}{\\color{blue}{48}} = (9 \\times \\underset{\\text{small number}}{\\color{red}{5}}) + \\underset{\\text{remainder}}{\\color{green}{3}}\\]\nWe repeat this, but the small number from the previous equation (\\(5\\)) becomes the ‘big number’, and the remainder (\\(3\\)) becomes the ‘small number’.\n\\[\\underset{\\text{big number}}{\\color{blue}{5}} = (1 \\times \\underset{\\text{small number}}{\\color{red}{3}}) + \\underset{\\text{remainder}}{\\color{green}{2}}\\]\nAnd again:\n\\[\\underset{\\text{big number}}{\\color{blue}{3}} = (1 \\times \\underset{\\text{small number}}{\\color{red}{2}}) + \\underset{\\text{remainder}}{\\color{green}{1}}\\]\nWe can stop when we get to the remainder of \\(1\\), because that’s the number on the right-hand side of our original equation!\nBut how does this help us to find \\(d\\) and \\(y\\)?\nWe can rewrite each of the equations above by bringing the remainders to one side:\n\\[\\begin{align}\n{\\color{green}{3}} &= {\\color{blue}{48}} - (9 \\times {\\color{red}{5}}) \\\\\n{\\color{green}{2}} &= {\\color{blue}{5}} - (1 \\times {\\color{red}{3}}) \\\\\n{\\color{green}{1}} &= {\\color{blue}{3}} - (1 \\times {\\color{red}{2}})\n\\end{align}\\]\nAt the very top, we have an equation that links 3 to our original numbers, 48 and 5. At the bottom, we have an equation that links our target 1 to 3 and 2. So we just need to substitute the equations above into the ones below, in order to relate our target 1 to the original 48 and 5.\n\nExercise: Substitute the equations above into the third equation to express 1 in terms of multiples of 48 and 5. You will have to do this in several steps to make sure that all the 2’s and 3’s are eliminated.\n\nYou might eventually end up at this answer:\n\\[1 = (\\underset{y}{2} \\times \\underset{\\phi}{48}) + (\\underset{d}{-19} \\times \\underset{e}{5}).\\]\nwhich suggests that \\(d = -19\\) and \\(y = 2\\).\nBut we can’t have a negative number for \\(d\\)!\nThankfully, we can add and subtract multiples of \\(48\\) and \\(5\\):\n\\[\\begin{align}\n1 &= (2 \\times 48) - (19 \\times 5) \\\\\n  &= (2 \\times 48) - (5 \\times 48) + (48 \\times 5) - (19 \\times 5) \\\\\n  &= (\\underset{y}{-3} \\times \\underset{\\phi}{48}) + (\\underset{d}{29} \\times \\underset{e}{5}).\n\\end{align}\\]\nwhich tells us that \\(d = 29\\) is a valid choice for the decryption key.\n\nExercise: Try your hand at calculating \\(d\\) for another set of \\(e\\) and \\(\\phi\\).\nFor example, if we choose \\(p = 17\\) and \\(q = 23\\), then \\(\\phi = 16 \\times 22 = 352\\) and we can choose \\(e = 13\\). What is the correct value of \\(d\\) for this configuration? \n\nYour answer: d =       \n\n\n\nAs we will soon see, the values of \\(p\\) and \\(q\\) actually used in practice are extremely large! It would be very unfeasible to try and calculate \\(d\\) just by testing one number after another. So, having a fast algorithm to calculate \\(d\\) is very important."
+    "text": "8.2 The extended Euclidean algorithm\nYou probably found above that we are trying to solve the equation \\(ed + \\phi y = 1\\). We already know the values of \\(e\\) and \\(\\phi\\), and the Euclidean algorithm will let us obtain the values of \\(d\\) and \\(y\\).\nOf course, we’re only really interested in \\(d\\), so even though we’ll also get the value of \\(y\\), we can just throw it away.\nLet’s reuse the example from the previous page, where \\(\\phi = 48\\) and \\(e = 5\\). Substituting that in:\n\\[5d + 48y = 1\\]\nEach step of the Euclidean algorithm is a simple division. We start off with the larger number (48), and divide it by the smaller number (5). In this case, \\(48\\) divided by \\(5\\) is \\(9\\), with a remainder of \\(3\\):\n\\[\\underset{\\text{big number}}{\\color{blue}{48}} = (9 \\times \\underset{\\text{small number}}{\\color{red}{5}}) + \\underset{\\text{remainder}}{\\color{green}{3}}\\]\nWe repeat this, but the small number from the previous equation (\\(5\\)) becomes the ‘big number’, and the remainder (\\(3\\)) becomes the ‘small number’.\n\\[\\underset{\\text{big number}}{\\color{blue}{5}} = (1 \\times \\underset{\\text{small number}}{\\color{red}{3}}) + \\underset{\\text{remainder}}{\\color{green}{2}}\\]\nAnd again:\n\\[\\underset{\\text{big number}}{\\color{blue}{3}} = (1 \\times \\underset{\\text{small number}}{\\color{red}{2}}) + \\underset{\\text{remainder}}{\\color{green}{1}}\\]\nWe can stop when we get to the remainder of \\(1\\), because that’s the number on the right-hand side of our original equation!\nBut how does this help us to find \\(d\\) and \\(y\\)?\nWe can rewrite each of the equations above by bringing the remainders to one side:\n\\[\\begin{align}\n{\\color{green}{3}} &= {\\color{blue}{48}} - (9 \\times {\\color{red}{5}}) \\\\\n{\\color{green}{2}} &= {\\color{blue}{5}} - (1 \\times {\\color{red}{3}}) \\\\\n{\\color{green}{1}} &= {\\color{blue}{3}} - (1 \\times {\\color{red}{2}})\n\\end{align}\\]\nAt the very top, we have an equation that links 3 to our original numbers, 48 and 5. At the bottom, we have an equation that links our target 1 to 3 and 2. So we just need to substitute the equations above into the ones below, in order to relate our target 1 to the original 48 and 5.\n\nExercise: Substitute the equations above into the third equation to express 1 in terms of multiples of 48 and 5. You will have to do this in several steps to make sure that all the 2’s and 3’s are eliminated.\n\nYou might eventually end up at this answer:\n\\[1 = (\\underset{y}{2} \\times \\underset{\\phi}{48}) + (\\underset{d}{-19} \\times \\underset{e}{5}).\\]\nwhich suggests that \\(d = -19\\) and \\(y = 2\\).\nBut we can’t have a negative number for \\(d\\)!\nThankfully, we can add and subtract multiples of \\(48\\) and \\(5\\):\n\\[\\begin{align}\n1 &= (2 \\times 48) - (19 \\times 5) \\\\\n  &= (2 \\times 48) - (5 \\times 48) + (48 \\times 5) - (19 \\times 5) \\\\\n  &= (\\underset{y}{-3} \\times \\underset{\\phi}{48}) + (\\underset{d}{29} \\times \\underset{e}{5}).\n\\end{align}\\]\nwhich tells us that \\(d = 29\\) is a valid choice for the decryption key.\n\nExercise: Try your hand at calculating \\(d\\) for another set of \\(e\\) and \\(\\phi\\).\nFor example, if we choose \\(p = 17\\) and \\(q = 23\\), then \\(\\phi = 16 \\times 22 = 352\\) and we can choose \\(e = 13\\). What is the correct value of \\(d\\) for this configuration? \n\nYour answer: d =       \n\n\n\nAs we will soon see, the values of \\(p\\) and \\(q\\) actually used in practice are extremely large! It would be very unfeasible to try and calculate \\(d\\) just by testing one number after another. So, having a fast algorithm to calculate \\(d\\) is very important.",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Modular arithmetic II</span>"
+    ]
+  },
+  {
+    "objectID": "rsa2.html",
+    "href": "rsa2.html",
+    "title": "9  RSA scheme II",
+    "section": "",
+    "text": "9.1 Security\nFinally, let’s explore how secure the RSA scheme really is.\nSpecifically, let’s consider the case where as an attacker, you already know the public key (\\(n\\) and \\(e\\)) as well as the cipher text, \\(c = m^e \\bmod n\\). Can you recover the message \\(m\\)?\nYou probably found that the key to cracking the message is figuring out the prime factors \\(p\\) and \\(q\\). Once you have those, you can calculate \\(\\phi\\) easily, and then \\(d\\) using the extended Euclidean algorithm.\nIn the first case, this was easy enough. But in the second case, finding \\(p\\) and \\(q\\) is a lot harder, because \\(n\\) is a lot bigger.\nBut, we could get a computer to do it!",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>RSA scheme II</span>"
+    ]
   },
   {
     "objectID": "rsa2.html#security",
     "href": "rsa2.html#security",
     "title": "9  RSA scheme II",
-    "section": "9.1 Security",
-    "text": "9.1 Security\nFinally, let’s explore how secure the RSA scheme really is.\nSpecifically, let’s consider the case where as an attacker, you already know the public key (\\(n\\) and \\(e\\)) as well as the cipher text, \\(c = m^e \\bmod n\\). Can you recover the message \\(m\\)?\n\nExercise 1: Suppose you know that \\(n = 143\\) and \\(e = 7\\). You also know the encoded message is \\(c = 41\\). Can you recover the decoded message \\(m\\)? \n\nHint: The message can be recovered using the formula \\(m = c^d \\bmod n\\).\nSince you already know \\(n\\) and \\(c\\), the only thing you need to find is \\(d\\). Recall that \\(d\\) is specified by the equation \\(de \\equiv 1 \\bmod \\phi\\), and \\(\\phi = (p - 1)(q - 1)\\).\nOnce you have found \\(d\\), you can key in its value below to quickly calculate \\(m\\), and submit your answer.\n\n\nIf c =  , d = , and n = , then m is: \n\n\n\n\nYour answer: m =       \n\n\n\nExercise 2: Suppose you know that \\(n = 373577\\) and \\(e = 7\\). You also know the encoded message is \\(c = 226918\\). Can you recover the decoded message \\(m\\), using the same strategy as above? \nChances are, you can’t do this on your own! However, if you’re feeling confident, you can try to guess the answer anyway:\n\nIf c =  , d = , and n = , then m is: \n\n\n\n\nYour answer: m =       \n\n\nYou probably found that the key to cracking the message is figuring out the prime factors \\(p\\) and \\(q\\). Once you have those, you can calculate \\(\\phi\\) easily, and then \\(d\\) using the extended Euclidean algorithm.\nIn the first case, this was easy enough. But in the second case, finding \\(p\\) and \\(q\\) is a lot harder, because \\(n\\) is a lot bigger.\nBut, we could get a computer to do it!"
+    "section": "",
+    "text": "Exercise 1: Suppose you know that \\(n = 143\\) and \\(e = 7\\). You also know the encoded message is \\(c = 41\\). Can you recover the decoded message \\(m\\)? \n\nHint: The message can be recovered using the formula \\(m = c^d \\bmod n\\).\nSince you already know \\(n\\) and \\(c\\), the only thing you need to find is \\(d\\). Recall that \\(d\\) is specified by the equation \\(de \\equiv 1 \\bmod \\phi\\), and \\(\\phi = (p - 1)(q - 1)\\).\nOnce you have found \\(d\\), you can key in its value below to quickly calculate \\(m\\), and submit your answer.\n\n\nIf c =  , d = , and n = , then m is: \n\n\n\n\nYour answer: m =       \n\n\n\nExercise 2: Suppose you know that \\(n = 373577\\) and \\(e = 7\\). You also know the encoded message is \\(c = 226918\\). Can you recover the decoded message \\(m\\), using the same strategy as above? \nChances are, you can’t do this on your own! However, if you’re feeling confident, you can try to guess the answer anyway:\n\nIf c =  , d = , and n = , then m is: \n\n\n\n\nYour answer: m =",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>RSA scheme II</span>"
+    ]
   },
   {
     "objectID": "rsa2.html#prime-factorisation",
     "href": "rsa2.html#prime-factorisation",
     "title": "9  RSA scheme II",
     "section": "9.2 Prime factorisation",
-    "text": "9.2 Prime factorisation\nAlthough it is pretty slow for a human to figure out the primes \\(p\\) and \\(q\\) from their product, computers are much better at it.\nType a number into this box, and watch as the computer factorises it:\n\n     11 × 13   \n\nWith this tool, you can revisit the second exercise above.\nThis isn’t looking very promising so far, though. If the computer can factorise \\(n\\) so easily, then the RSA scheme cannot be very secure at all!\nIn fact, the key to getting around this is to use really large numbers: ones which even computers cannot factorise in a reasonable amount of time.\nHere are a few large numbers which you can try in the calculator above. Notice how the time taken to factorise them increases as the numbers get larger. You can make up your own numbers to try as well: pick a couple of prime numbers from this list, multiply them together, and see how long it takes to factorise it."
+    "text": "9.2 Prime factorisation\nAlthough it is pretty slow for a human to figure out the primes \\(p\\) and \\(q\\) from their product, computers are much better at it.\nType a number into this box, and watch as the computer factorises it:\n\n     11 × 13   \n\nWith this tool, you can revisit the second exercise above.\nThis isn’t looking very promising so far, though. If the computer can factorise \\(n\\) so easily, then the RSA scheme cannot be very secure at all!\nIn fact, the key to getting around this is to use really large numbers: ones which even computers cannot factorise in a reasonable amount of time.\nHere are a few large numbers which you can try in the calculator above. Notice how the time taken to factorise them increases as the numbers get larger. You can make up your own numbers to try as well: pick a couple of prime numbers from this list, multiply them together, and see how long it takes to factorise it.",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>RSA scheme II</span>"
+    ]
   },
   {
     "objectID": "rsa2.html#rsa-in-practice",
     "href": "rsa2.html#rsa-in-practice",
     "title": "9  RSA scheme II",
     "section": "9.3 RSA in practice",
-    "text": "9.3 RSA in practice\nClearly, if we make \\(n\\) enough, there will be a point where it takes years or even longer to factorise it.\nWe can’t find that out for ourselves today (we don’t have that much time!), but we can make a plot of the time taken to factorise \\(n\\) versus the value of \\(n\\). Since our values of \\(n\\) (as well as the times) will span quite a wide range, we will take the base-10 logarithms of both values when making the plot. By extrapolating the plot, we can then figure out how large a number we would need to make RSA secure.\nStart by keying in a few values of \\(n\\). You can use the examples above (which have been filled in for you), or choose your own. (But make sure that the examples are large enough that the time taken is not zero!)\nPress the ‘factorise’ button next to each value of \\(n\\), and the time taken to factorise them will be displayed for you in the box next to it. Then, when you have a few data points, click the button to plot the graph:\n\n\nValue of n \n\n\nTime (ms)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExercise: Using the linear regression equation (shown in the plot title), calculate how large a value of \\(n\\) we need to choose in order for our computer to take 1 year to factorise it.\n(You don’t need to calculate the actual value of \\(n\\); it will be a very big number! Expressing it in terms of its logarithm is enough. To give you an idea of its size, the number of digits in \\(n\\) is on the order of \\(\\log_{10}n\\).)\n\n\nAlthough that number might be enough to stop someone cracking our messages with this computer, it is not enough to keep out someone using a more powerful computer and a more efficient method for factorising numbers.\nThe value of \\(n\\) used in practical applications of the RSA algorithm is much larger than this. It is generally recommended that \\(n\\) should be at least ‘2048 bits’ long; or in other words, it should be larger than \\(2^{2048}\\)).\nThis is equivalent to a decimal number with about 617 digits, meaning that \\(\\log_{10}n \\approx 617\\)!"
+    "text": "9.3 RSA in practice\nClearly, if we make \\(n\\) enough, there will be a point where it takes years or even longer to factorise it.\nWe can’t find that out for ourselves today (we don’t have that much time!), but we can make a plot of the time taken to factorise \\(n\\) versus the value of \\(n\\). Since our values of \\(n\\) (as well as the times) will span quite a wide range, we will take the base-10 logarithms of both values when making the plot. By extrapolating the plot, we can then figure out how large a number we would need to make RSA secure.\nStart by keying in a few values of \\(n\\). You can use the examples above (which have been filled in for you), or choose your own. (But make sure that the examples are large enough that the time taken is not zero!)\nPress the ‘factorise’ button next to each value of \\(n\\), and the time taken to factorise them will be displayed for you in the box next to it. Then, when you have a few data points, click the button to plot the graph:\n\n\nValue of n \n\n\nTime (ms)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExercise: Using the linear regression equation (shown in the plot title), calculate how large a value of \\(n\\) we need to choose in order for our computer to take 1 year to factorise it.\n(You don’t need to calculate the actual value of \\(n\\); it will be a very big number! Expressing it in terms of its logarithm is enough. To give you an idea of its size, the number of digits in \\(n\\) is on the order of \\(\\log_{10}n\\).)\n\n\nAlthough that number might be enough to stop someone cracking our messages with this computer, it is not enough to keep out someone using a more powerful computer and a more efficient method for factorising numbers.\nThe value of \\(n\\) used in practical applications of the RSA algorithm is much larger than this. It is generally recommended that \\(n\\) should be at least ‘2048 bits’ long; or in other words, it should be larger than \\(2^{2048}\\)).\nThis is equivalent to a decimal number with about 617 digits, meaning that \\(\\log_{10}n \\approx 617\\)!",
+    "crumbs": [
+      "Asymmetric ciphers",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>RSA scheme II</span>"
+    ]
+  },
+  {
+    "objectID": "game_resources.html",
+    "href": "game_resources.html",
+    "title": "10  Cryptography Game Resources",
+    "section": "",
+    "text": "10.1 RULES",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Cryptography Game Resources</span>"
+    ]
   },
   {
     "objectID": "game_resources.html#rules",
     "href": "game_resources.html#rules",
     "title": "10  Cryptography Game Resources",
-    "section": "10.1 RULES",
-    "text": "10.1 RULES\n\nAll communication with your corresponding teams must be via the public channel.\nIf using RSA for encryption, do not set \\(n=pq\\) greater than 500!\nAny message can be sent via the public channel, but only those from the list of approved messages will score!"
+    "section": "",
+    "text": "All communication with your corresponding teams must be via the public channel.\nIf using RSA for encryption, do not set \\(n=pq\\) greater than 500!\nAny message can be sent via the public channel, but only those from the list of approved messages will score!",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Cryptography Game Resources</span>"
+    ]
   },
   {
     "objectID": "game_resources.html#asymmetric-encryption-tools-rsa",
     "href": "game_resources.html#asymmetric-encryption-tools-rsa",
     "title": "10  Cryptography Game Resources",
     "section": "10.2 Asymmetric Encryption Tools (RSA)",
-    "text": "10.2 Asymmetric Encryption Tools (RSA)\nSteps for implementing an RSA encryption scheme:\n\n10.2.1 Key Generation (by recipient)\nThe goal is to compute three numbers:\n\n\\(e\\), the encryption key\n\\(d\\), the decryption key\n\\(n\\), the product of two primes \\(p\\) and \\(q\\).\n\n\nPick primes \\(p, q\\) such that \\(n = pq &gt; 127\\), compute \\(n\\).\nCompute the totient function \\(\\phi=(p-1)(q-1)\\) and pick \\(e&lt;\\phi\\) such that \\(e\\) and \\(\\phi\\) are coprime (i.e. \\(\\gcd(e, \\phi)=1\\)).\nPick \\(d\\) such that \\(de \\equiv 1\\mod\\phi\\).\nSend the pair \\((e, n)\\) to sender.\n\n\n\n10.2.2 Encryption and Decryption\nFor a given \\(n\\) character long message \\(s=s_0\\ldots s_n\\), with characters \\(\\{s_i\\}\\), compute integer character representations \\(\\{m_i\\}\\) using ASCII table below.\n\n\n\n\n\n\n\n\n\nCharacter (\\(s_i\\))\nInteger (\\(m_i\\))\nCharacter (\\(s_i\\))\nInteger (\\(m_i\\))\n\n\n\n\n(space)\n31\nN\n53\n\n\nA\n41\nO\n54\n\n\nB\n42\nP\n55\n\n\nC\n43\nQ\n56\n\n\nD\n44\nR\n57\n\n\nE\n45\nS\n58\n\n\nF\n46\nT\n59\n\n\nG\n47\nU\n60\n\n\nH\n48\nV\n61\n\n\nJ\n49\nW\n62\n\n\nK\n50\nX\n63\n\n\nL\n51\nY\n64\n\n\nM\n52\nZ\n65\n\n\n\nThen, to encrypt a message we take the message \\(m_i\\), the exponent \\(e\\), and the modulus, \\(n\\), and compute:\n\\[\\begin{equation*}\n    c_i = m_i^e \\mod n,\n\\end{equation*}\\]\n\nm =  ,   e =  ,   n =   ,   c =   \n\nDecryption is the same, but instead you use the decryption key \\(d\\) instead of \\(e\\):\n\\[\\begin{equation*}\n    m_i = c_i^d \\mod n,\n\\end{equation*}\\]\n\nc =  ,   d =  ,   n =   ,   m ="
+    "text": "10.2 Asymmetric Encryption Tools (RSA)\nSteps for implementing an RSA encryption scheme:\n\n10.2.1 Key Generation (by recipient)\nThe goal is to compute three numbers:\n\n\\(e\\), the encryption key\n\\(d\\), the decryption key\n\\(n\\), the product of two primes \\(p\\) and \\(q\\).\n\n\nPick primes \\(p, q\\) such that \\(n = pq &gt; 127\\), compute \\(n\\).\nCompute the totient function \\(\\phi=(p-1)(q-1)\\) and pick \\(e&lt;\\phi\\) such that \\(e\\) and \\(\\phi\\) are coprime (i.e. \\(\\gcd(e, \\phi)=1\\)).\nPick \\(d\\) such that \\(de \\equiv 1\\mod\\phi\\).\nSend the pair \\((e, n)\\) to sender.\n\n\n\n10.2.2 Encryption and Decryption\nFor a given \\(n\\) character long message \\(s=s_0\\ldots s_n\\), with characters \\(\\{s_i\\}\\), compute integer character representations \\(\\{m_i\\}\\) using ASCII table below.\n\n\n\n\n\n\n\n\n\nCharacter (\\(s_i\\))\nInteger (\\(m_i\\))\nCharacter (\\(s_i\\))\nInteger (\\(m_i\\))\n\n\n\n\n(space)\n31\nN\n53\n\n\nA\n41\nO\n54\n\n\nB\n42\nP\n55\n\n\nC\n43\nQ\n56\n\n\nD\n44\nR\n57\n\n\nE\n45\nS\n58\n\n\nF\n46\nT\n59\n\n\nG\n47\nU\n60\n\n\nH\n48\nV\n61\n\n\nJ\n49\nW\n62\n\n\nK\n50\nX\n63\n\n\nL\n51\nY\n64\n\n\nM\n52\nZ\n65\n\n\n\nThen, to encrypt a message we take the message \\(m_i\\), the exponent \\(e\\), and the modulus, \\(n\\), and compute:\n\\[\\begin{equation*}\n    c_i = m_i^e \\mod n,\n\\end{equation*}\\]\n\nm =  ,   e =  ,   n =   ,   c =   \n\nDecryption is the same, but instead you use the decryption key \\(d\\) instead of \\(e\\):\n\\[\\begin{equation*}\n    m_i = c_i^d \\mod n,\n\\end{equation*}\\]\n\nc =  ,   d =  ,   n =   ,   m =",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Cryptography Game Resources</span>"
+    ]
   },
   {
     "objectID": "game_resources.html#breaking-rsa",
     "href": "game_resources.html#breaking-rsa",
     "title": "10  Cryptography Game Resources",
     "section": "10.3 Breaking RSA",
-    "text": "10.3 Breaking RSA\nTo aid in cracking RSA we have provided you with a tool that computes the quotient and remainder for two given numbers, i.e. given numbers \\(n\\) and \\(d\\) it returns the corresponding \\(q\\) and \\(r\\) from the equation:\n\\[\\begin{equation*}\n    n = q\\cdot d + r\n\\end{equation*}\\]\nHINT: This will speed up finding \\(p\\) and \\(q\\) as well as the Euclidean algorithm!\n\nn =  ,   d =  ,   q =  ,   r ="
+    "text": "10.3 Breaking RSA\nTo aid in cracking RSA we have provided you with a tool that computes the quotient and remainder for two given numbers, i.e. given numbers \\(n\\) and \\(d\\) it returns the corresponding \\(q\\) and \\(r\\) from the equation:\n\\[\\begin{equation*}\n    n = q\\cdot d + r\n\\end{equation*}\\]\nHINT: This will speed up finding \\(p\\) and \\(q\\) as well as the Euclidean algorithm!\n\nn =  ,   d =  ,   q =  ,   r =",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Cryptography Game Resources</span>"
+    ]
   },
   {
     "objectID": "game_resources.html#vigenère-cipher-tools",
     "href": "game_resources.html#vigenère-cipher-tools",
     "title": "10  Cryptography Game Resources",
     "section": "10.4 Vigenère Cipher Tools",
-    "text": "10.4 Vigenère Cipher Tools\nHere is a quick tool which will help you encrypt and decrypt messages using the Vigenère cipher, should you decide to use it.\nRemember that you can only communicate via the public channel, and it is possible for your opponents to intercept your messages!\n\nEncode  Decode  Key:"
+    "text": "10.4 Vigenère Cipher Tools\nHere is a quick tool which will help you encrypt and decrypt messages using the Vigenère cipher, should you decide to use it.\nRemember that you can only communicate via the public channel, and it is possible for your opponents to intercept your messages!\n\nEncode  Decode  Key:",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Cryptography Game Resources</span>"
+    ]
   }
 ]
