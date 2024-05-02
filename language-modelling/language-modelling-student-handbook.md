@@ -151,7 +151,7 @@ Notice how the code is hidden from view — we can still run it though! Running 
 <aside>
 ❗ Stop when you reach the second cell — it requires you to paste a token in to log in to a platform called HuggingFace, the state of the art for storing models + datasets!
 
-The token for our shared account is here (and also at the top of the page): `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`, which you can paste here:
+The token for our shared account is here (and also at the top of the page): `<hugging-face-token>`, which you can paste here:
 
 ![Untitled](images/Untitled%208.png)
 
