@@ -151,7 +151,7 @@ Notice how the code is hidden from view — we can still run it though! Running 
 <aside>
 ❗ Stop when you reach the second cell — it requires you to paste a token in to log in to a platform called HuggingFace, the state of the art for storing models + datasets!
 
-The token for our shared account is here (and also at the top of the page): `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`, which you can paste here:
+The token for our shared account is here (and also at the top of the page): `<hugging-face-token>`, which you can paste here:
 
 ![Untitled](images/Untitled%208.png)
 
@@ -445,4 +445,4 @@ Lots of the code from the notebook we ran came from HuggingFace tutorials! You�
 
 I would particularly recommend looking at fine-tuning a model on a different task — it will really cement the idea of fine-tuning, and will give you the power to go beyond text generation (think of things like doing chatbots/question-answer workflows, classifying movie reviews, translation… there’s all sorts to explore here!!)
 
-If you want to stay relatively up-to-date with the latest and greatest in language models, I highly recommend the ****************[Latent Space Podcast**************** by swyx](https://podcasts.apple.com/gb/podcast/latent-space-the-ai-engineer-podcast-codegen-agents/id1674008350) (the themes can get a little tech bro now and again, but most of the stuff on AI is really good, and they’ve been really fast to cover any big news items!)
+If you want to stay relatively up-to-date with the latest and greatest in language models, I highly recommend the **[Latent Space Podcast by swyx](https://podcasts.apple.com/gb/podcast/latent-space-the-ai-engineer-podcast-codegen-agents/id1674008350)** (the themes can get a little tech bro now and again, but most of the stuff on AI is really good, and they’ve been really fast to cover any big news items!)
