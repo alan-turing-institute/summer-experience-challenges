@@ -1,5 +1,5 @@
 ---
-title: "Turing Summer Experience 2023: Challenges"
+title: "Turing Summer Experience: Challenges"
 listing:
   contents:
     - "computer-vision.qmd"

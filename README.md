@@ -1,6 +1,6 @@
-# Turing Summer Experience 2023: Challenges
+# Turing Summer Experience: Challenges
 
-For coordinating efforts and collecting efforts to prepare student challenges for the 2023 Turing Summer Experience for 16-17 year olds.
+For coordinating efforts and collecting efforts to prepare student challenges for the Turing Summer Experience for 16-17 year olds.
 
 ## Students
 
