@@ -30,16 +30,6 @@
     ]
   },
   {
-    "objectID": "symmetric.html",
-    "href": "symmetric.html",
-    "title": "Symmetric ciphers",
-    "section": "",
-    "text": "As mentioned before, ciphers usually involve some sort of key, used to encrypt and decrypt messages. Ciphers where the encryption key and the decryption key are the same, are called symmetric ciphers. We will see a few examples here.\nFor symmetric ciphers, we need to worry about “key management”. In order for someone to read the secret message you sent them, you first need to have shared the key - there’s no point in having a sophisticated encryption algorithm if your adversary has the key! But how do you share it securely? (If you already have a secure communications channel for sending the key, why do you need to encrypt your message in the first place?)\nIn fact, many of the challenges in cryptography are related to designing protocols for ensuring that keys can be exchanged safely. The difficulty of sharing keys is also the motivation behind the development of asymmetric (or public/private key) ciphers, which we’ll look at later on. For now though, we’ll not worry about how we’d share keys in practice, and we’ll look at some examples of symmetric ciphers.\n\n\n\nThe progression of symmetric ciphers.\n\n\nToday we’ll go through three key symmetric ciphers in the history of cryptography: the Caesar (or shift) cipher, monoalphabetic ciphers and the Vigenère cipher.",
-    "crumbs": [
-      "Symmetric ciphers"
-    ]
-  },
-  {
     "objectID": "caesar.html#introduction",
     "href": "caesar.html#introduction",
     "title": "2  Caesar cipher",
@@ -180,16 +170,6 @@
     "crumbs": [
       "Symmetric ciphers",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Enigma</span>"
-    ]
-  },
-  {
-    "objectID": "asymmetric.html",
-    "href": "asymmetric.html",
-    "title": "Asymmetric ciphers",
-    "section": "",
-    "text": "Asymmetric cryptography refers to an encoding/decoding algorithm that requires two separate keys, known as a public key and a private key.\nLet’s say Bob wants to send Alice an encoded message that only she can read. Alice must first generate both a public key and a private key for herself. She sends the public key to Bob, and keeps the private key to herself.\nBob can then use the public key to encrypt his message to Alice; and Alice uses her private key to decrypt it. Since only Alice has the private key, only she can decrypt the message.\nYou can think of this as Alice giving Bob a lock, but keeping the key for herself.\n\n\n\nAlice gives Bob her public key so Bob can encrypt a message, which she then decrypts with her private key.\n\n\nIn this section, we’ll look at one specific example of an asymmetric scheme, namely the RSA system.",
-    "crumbs": [
-      "Asymmetric ciphers"
     ]
   },
   {
@@ -405,6 +385,26 @@
     "text": "10.4 Vigenère Cipher Tools\nHere is a quick tool which will help you encrypt and decrypt messages using the Vigenère cipher, should you decide to use it.\nRemember that you can only communicate via the public channel, and it is possible for your opponents to intercept your messages!\n\nEncode  Decode  Key:",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Cryptography Game Resources</span>"
+    ]
+  },
+  {
+    "objectID": "symmetric.html",
+    "href": "symmetric.html",
+    "title": "Symmetric ciphers",
+    "section": "",
+    "text": "As mentioned before, ciphers usually involve some sort of key, used to encrypt and decrypt messages. Ciphers where the encryption key and the decryption key are the same, are called symmetric ciphers. We will see a few examples here.\nFor symmetric ciphers, we need to worry about “key management”. In order for someone to read the secret message you sent them, you first need to have shared the key - there’s no point in having a sophisticated encryption algorithm if your adversary has the key! But how do you share it securely? (If you already have a secure communications channel for sending the key, why do you need to encrypt your message in the first place?)\nIn fact, many of the challenges in cryptography are related to designing protocols for ensuring that keys can be exchanged safely. The difficulty of sharing keys is also the motivation behind the development of asymmetric (or public/private key) ciphers, which we’ll look at later on. For now though, we’ll not worry about how we’d share keys in practice, and we’ll look at some examples of symmetric ciphers.\n\n\n\nThe progression of symmetric ciphers.\n\n\nToday we’ll go through three key symmetric ciphers in the history of cryptography: the Caesar (or shift) cipher, monoalphabetic ciphers and the Vigenère cipher.",
+    "crumbs": [
+      "Symmetric ciphers"
+    ]
+  },
+  {
+    "objectID": "asymmetric.html",
+    "href": "asymmetric.html",
+    "title": "Asymmetric ciphers",
+    "section": "",
+    "text": "Asymmetric cryptography refers to an encoding/decoding algorithm that requires two separate keys, known as a public key and a private key.\nLet’s say Bob wants to send Alice an encoded message that only she can read. Alice must first generate both a public key and a private key for herself. She sends the public key to Bob, and keeps the private key to herself.\nBob can then use the public key to encrypt his message to Alice; and Alice uses her private key to decrypt it. Since only Alice has the private key, only she can decrypt the message.\nYou can think of this as Alice giving Bob a lock, but keeping the key for herself.\n\n\n\nAlice gives Bob her public key so Bob can encrypt a message, which she then decrypts with her private key.\n\n\nIn this section, we’ll look at one specific example of an asymmetric scheme, namely the RSA system.",
+    "crumbs": [
+      "Asymmetric ciphers"
     ]
   }
 ]
