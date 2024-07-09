@@ -1,8 +1,12 @@
 # Language modelling challenge
 
-Archive of useful material. Text dataset is in this folder as `shakespeare.txt`.
+This repo contains the instructions for the language modelling challenge, along with the code for the Colab notebook. Here are the files contained in this repo:
 
-Links to material:
+- `train-your-own-language-model.ipynb`: The Colab notebook for the language modelling challenge
+- `language-modelling-challenge.md`: The instructions for the language modelling challenge (given to students), will need to be hosted somewhere by you
+- `facilitator-handbook.md`: The facilitator handbook for the language modelling challenge
+
+Links to material as the course existed in 2023 (you will need to host this yourself):
 
 - Colab notebook: https://colab.research.google.com/drive/1qB6F9l1p7JxgYlcz6Gj7Q_EwgK2qUa10?usp=sharing
   - Notebook is also in this repo as `train-your-own-language-model.ipynb`

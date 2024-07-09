@@ -4,11 +4,6 @@
 🔥 Welcome to the Language Model Mastery Challenge, where you'll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that's not all! We'll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!
 
 </aside>
-
-A review of this challenge from a friend:
-
-![Untitled](images/Untitled.png)
-
 ---
 
 ### Useful things:
