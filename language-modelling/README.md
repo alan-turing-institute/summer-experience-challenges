@@ -10,5 +10,5 @@ Links to material as the course existed in 2023 (you will need to host this your
 
 - Colab notebook: https://colab.research.google.com/drive/1qB6F9l1p7JxgYlcz6Gj7Q_EwgK2qUa10?usp=sharing
   - Notebook is also in this repo as `train-your-own-language-model.ipynb`
-- Student handbook: https://ndsp.notion.site/Language-Modelling-Student-Handbook-6133f623fbde42c2b6540e94d473fd56
+- Student handbook: https://hospitable-cork-52c.notion.site/Language-Modelling-Student-Handbook-aab4a54e6240480dbc8372e9cf7206d2
 - Facilitator handbook: https://ndsp.notion.site/Facilitator-handbook-0cc5a4663d184cfb819085e08b2e9f54
