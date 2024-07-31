@@ -21,6 +21,6 @@ Welcome to the Language Model Mastery Challenge, where you'll embark on an exhil
 
 ## Getting Started
 
-To get started, head over to the [Language Modelling challenge website](https://ndsp.notion.site/Language-Modelling-Student-Handbook-6133f623fbde42c2b6540e94d473fd56).
+To get started, head over to the [Language Modelling challenge website](https://hospitable-cork-52c.notion.site/Language-Modelling-Student-Handbook-aab4a54e6240480dbc8372e9cf7206d2).
 
 :::
