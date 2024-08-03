@@ -21,6 +21,20 @@
     "text": "To get started, head over to the Cryptography challenge website."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Turing Summer Experience: Challenges",
+    "section": "",
+    "text": "Today you’ll be spending most of the day working together on one of three data science challenges. Each covers a different theme or technique with many current and emerging real-world applications. In fact, it’s likely you’re using products, apps or services built on top of some, or even all, of them every day already.\nFollow the links below to find where to get started on the one you’ve been assigned to. All the challenge resources will stay publicly available after this week, so if you’re interested in any of the others you’re welcome to explore them another time. You’ll also get to hear about what the other teams were doing at the presentations on Friday."
+  },
+  {
+    "objectID": "index.html#challenge-links",
+    "href": "index.html#challenge-links",
+    "title": "Turing Summer Experience: Challenges",
+    "section": "Challenge Links",
+    "text": "Challenge Links"
+  },
+  {
     "objectID": "computer-vision.html",
     "href": "computer-vision.html",
     "title": "Computer Vision",
@@ -61,19 +75,5 @@
     "title": "Language Modelling",
     "section": "",
     "text": "To get started, head over to the Language Modelling challenge website."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Turing Summer Experience: Challenges",
-    "section": "",
-    "text": "Today you’ll be spending most of the day working together on one of three data science challenges. Each covers a different theme or technique with many current and emerging real-world applications. In fact, it’s likely you’re using products, apps or services built on top of some, or even all, of them every day already.\nFollow the links below to find where to get started on the one you’ve been assigned to. All the challenge resources will stay publicly available after this week, so if you’re interested in any of the others you’re welcome to explore them another time. You’ll also get to hear about what the other teams were doing at the presentations on Friday."
-  },
-  {
-    "objectID": "index.html#challenge-links",
-    "href": "index.html#challenge-links",
-    "title": "Turing Summer Experience: Challenges",
-    "section": "Challenge Links",
-    "text": "Challenge Links"
   }
 ]
