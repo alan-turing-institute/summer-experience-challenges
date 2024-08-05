@@ -272,14 +272,13 @@ window.Quarto = {
 </figure>
 </div>
 <p>When we tell the time we implicitly work in arithmetic modulo 12, which is why we know that 3pm is 4 hours after 11am. Modular arithmetic can also be thought of as performing the same operation on clocks with a different number of hours to 12.</p>
-<p>Going back to the example above, <span class="math inline">\(5 \bmod 3 = 2\)</span>, we see also that <span class="math inline">\(8 \bmod 3 = 2\)</span>; so <span class="math inline">\(5\)</span> and <span class="math inline">\(8\)</span> are equivalent, or <em>congruent</em>, modulo <span class="math inline">\(3\)</span>.</p>
-<p>Essentially, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are congruent modulo <span class="math inline">\(n\)</span> if <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same remainder when divided by <span class="math inline">\(n\)</span>.</p>
-<p>This is often denoted as:</p>
+<p>Going back to the example above, <span class="math inline">\(5 \bmod 3 = 2\)</span>, we see also that <span class="math inline">\(8 \bmod 3 = 2\)</span>; so <span class="math inline">\(5\)</span> and <span class="math inline">\(8\)</span> are equivalent, or <em>congruent</em>, modulo <span class="math inline">\(3\)</span>:</p>
 <p><span class="math display">\[5 \equiv 8 \bmod 3.\]</span></p>
-<p>We can insert any other expressions we like in here, as well:</p>
-<p><span class="math display">\[1 + 4 \equiv 4 \times 2 \bmod 3.\]</span></p>
+<p>This example highlights one common misconception about modular arithmetic. It is often said that <span class="math inline">\(5 \equiv 2 \bmod 3\)</span>, because 2 is the remainder when dividing 5 by 3. However, this is not entirely accurate: it is more correct to say that <span class="math inline">\(5 \equiv 2 \bmod 3\)</span> because 5 and 2 have the same remainder when divided by 3. In other words, the numbers on either side of the <span class="math inline">\(\equiv\)</span> sign are not the <em>remainders</em> themselves, but the numbers that have the same remainder when divided by <span class="math inline">\(n\)</span>.</p>
 <p>Another way of thinking about this is that integers ‘wrap around’ back to 0 after reaching <span class="math inline">\(n - 1\)</span>. So, when counting <em>modulo</em> <span class="math inline">\(3\)</span>, instead of <span class="math display">\[0, 1, 2, 3, 4, 5, 6, 7, 8, \ldots\]</span> we have: <span class="math display">\[0, 1, 2, 0, 1, 2, 0, 1, 2, \ldots\]</span></p>
 <p>Because <span class="math inline">\(5\)</span> and <span class="math inline">\(8\)</span> both ‘become’ the same number, they are congruent modulo <span class="math inline">\(3\)</span>.</p>
+<p>To sum up: <strong><span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are congruent modulo <span class="math inline">\(n\)</span> if <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same remainder when divided by <span class="math inline">\(n\)</span>.</strong> This is often denoted as:</p>
+<p><span class="math display">\[a \equiv b \bmod n.\]</span></p>
 <blockquote class="blockquote">
 <p><strong>Question:</strong> Consider some other areas in life where we use modular arithmetic without thinking about it.</p>
 <p>What day of the week will it be, five days from now?</p>
@@ -374,13 +373,13 @@ a + b &amp;= p + q + cn + dn \\
 </section>
 <section id="applications" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="applications"><span class="header-section-number">6.3</span> Applications</h2>
-<p>These equalities make it far easier to perform some calculations. For example, what is <span class="math inline">\(33^{594} \bmod{32}\)</span>?</p>
+<p>These equalities make it far easier to perform some calculations. For example, what is the remainder when <span class="math inline">\(33^{594}\)</span> is divided by <span class="math inline">\(32\)</span>?</p>
 <p>We might first think about calculating <span class="math inline">\(33\)</span> to the power of <span class="math inline">\(594\)</span>, and <em>then</em> dividing that by <span class="math inline">\(32\)</span> to find the remainder. That sounds difficult: even a computer would struggle with such a large number! (Try using the calculator above, or <a href="https://www.google.com/search?q=calculator">Google’s built-in calculator</a>, to calculate <span class="math inline">\(33^{594}\)</span>.)</p>
 <p>But if we notice that <span class="math inline">\(33 \equiv 1 \bmod{32}\)</span>, then we can use formula (3) to see that</p>
 <p><span class="math display">\[33^{594} \equiv 1^{594} \equiv 1 \bmod{32},\]</span></p>
 <p>because <span class="math inline">\(1\)</span> to the power of anything is still <span class="math inline">\(1\)</span>.</p>
 <blockquote class="blockquote">
-<p><strong>Challenge:</strong> Calculate <span class="math inline">\(7^{175} \bmod{16}\)</span>.</p>
+<p><strong>Challenge:</strong> Calculate the remainder when <span class="math inline">\(7^{175}\)</span> is divided by <span class="math inline">\(16\)</span>.</p>
 <p>[If you are having trouble, try to find a pattern here: what is <span class="math inline">\(7^1 \bmod 16\)</span>? and <span class="math inline">\(7^2 \bmod 16\)</span>? and <span class="math inline">\(7^3 \bmod 16\)</span>? Once you have found a pattern, think about why this might be the case. Can you use, for example, statement (3) above, noting that <span class="math inline">\(7^{(am)} = (7^a)^m\)</span>?]</p>
 </blockquote>
 <!-- The correct answer is 7, because 7^2 = 49 = (16 * 3) + 1 = 1 mod 16.
