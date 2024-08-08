@@ -69,7 +69,7 @@ Prove the following statements:
 1. $(ab) \equiv (pq) \bmod n$.
 
 We will work through the first one.
-To do this proof, we need to use one key fact: if $a \equiv p \bmod n$, that means that there is some integer $k$ for which $a = p + cn$.
+To do this proof, we need to use one key fact: if $a \equiv p \bmod n$, that means that there is some integer $c$ for which $a = p + cn$.
 In other words, $a$ is some multiple of $n$ plus $p$.
 
 If we do this separately for $a$ and $b$:
