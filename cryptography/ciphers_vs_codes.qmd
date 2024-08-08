@@ -40,6 +40,6 @@ As a very basic step, even before we worry about what encryption algorithm to us
 
 It would be much harder for someone to try to decrypt:
 
-TIUUG CGCTZ IGILG DUIQH RIIQG SRGSE OLOUP YI
+TIUUG CGCTG ZOGIL GDUIQ HRIIQ GSRGS EOLOU PYI
 
 than the message above!
