@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "language-modelling.html",
-    "href": "language-modelling.html",
-    "title": "Language Modelling",
-    "section": "",
-    "text": "Get hands on with models that generate text, like ChatGPT. Learn how to get the most out of these models, how to create your own, but also their vulnerabilities.\n\n\nWelcome to the Language Model Mastery Challenge, where you’ll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that’s not all! We’ll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!\n\n\n\nTo get started, head over to the Language Modelling challenge website.\n\n \n  \n   \n  \n    \n     Website"
-  },
-  {
-    "objectID": "language-modelling.html#overview",
-    "href": "language-modelling.html#overview",
-    "title": "Language Modelling",
-    "section": "",
-    "text": "Welcome to the Language Model Mastery Challenge, where you’ll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that’s not all! We’ll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!"
-  },
-  {
-    "objectID": "language-modelling.html#getting-started",
-    "href": "language-modelling.html#getting-started",
-    "title": "Language Modelling",
-    "section": "",
-    "text": "To get started, head over to the Language Modelling challenge website."
-  },
-  {
     "objectID": "computer-vision.html",
     "href": "computer-vision.html",
     "title": "Computer Vision",
@@ -42,6 +21,41 @@
     "text": "To get started, head to the Computer Vision challenge slides at this link."
   },
   {
+    "objectID": "language-modelling.html",
+    "href": "language-modelling.html",
+    "title": "Language Modelling",
+    "section": "",
+    "text": "Get hands on with models that generate text, like ChatGPT. Learn how to get the most out of these models, how to create your own, but also their vulnerabilities.\n\n\nWelcome to the Language Model Mastery Challenge, where you’ll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that’s not all! We’ll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!\n\n\n\nTo get started, head over to the Language Modelling challenge website.\n\n \n  \n   \n  \n    \n     Website"
+  },
+  {
+    "objectID": "language-modelling.html#overview",
+    "href": "language-modelling.html#overview",
+    "title": "Language Modelling",
+    "section": "",
+    "text": "Welcome to the Language Model Mastery Challenge, where you’ll embark on an exhilarating journey of fine-tuning your very own language model! Get ready to unleash your creativity as you dive into the vast sea of existing text and curate your own content to train your model. But that’s not all! We’ll also equip you with the skills to become a master prompter, enabling you to extract the full potential of ChatGPT-like models. And here comes the thrilling part: a virtual quest awaits as you attempt to breach the defenses of a language model through the art of prompt injection, unveiling a secret password hidden within its digital labyrinth. Brace yourself for an adventure that blends learning, hacking, and sheer enjoyment as you unlock the secrets of language models. Let the challenge begin!"
+  },
+  {
+    "objectID": "language-modelling.html#getting-started",
+    "href": "language-modelling.html#getting-started",
+    "title": "Language Modelling",
+    "section": "",
+    "text": "To get started, head over to the Language Modelling challenge website."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Turing Summer Experience: Challenges",
+    "section": "",
+    "text": "Today you’ll be spending most of the day working together on one of three data science challenges. Each covers a different theme or technique with many current and emerging real-world applications. In fact, it’s likely you’re using products, apps or services built on top of some, or even all, of them every day already.\nFollow the links below to find where to get started on the one you’ve been assigned to. All the challenge resources will stay publicly available after this week, so if you’re interested in any of the others you’re welcome to explore them another time. You’ll also get to hear about what the other teams were doing at the presentations on Friday."
+  },
+  {
+    "objectID": "index.html#challenge-links",
+    "href": "index.html#challenge-links",
+    "title": "Turing Summer Experience: Challenges",
+    "section": "Challenge Links",
+    "text": "Challenge Links"
+  },
+  {
     "objectID": "cryptography.html",
     "href": "cryptography.html",
     "title": "Cryptography",
@@ -61,19 +75,5 @@
     "title": "Cryptography",
     "section": "",
     "text": "To get started, head over to the Cryptography challenge website."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Turing Summer Experience: Challenges",
-    "section": "",
-    "text": "Today you’ll be spending most of the day working together on one of three data science challenges. Each covers a different theme or technique with many current and emerging real-world applications. In fact, it’s likely you’re using products, apps or services built on top of some, or even all, of them every day already.\nFollow the links below to find where to get started on the one you’ve been assigned to. All the challenge resources will stay publicly available after this week, so if you’re interested in any of the others you’re welcome to explore them another time. You’ll also get to hear about what the other teams were doing at the presentations on Friday."
-  },
-  {
-    "objectID": "index.html#challenge-links",
-    "href": "index.html#challenge-links",
-    "title": "Turing Summer Experience: Challenges",
-    "section": "Challenge Links",
-    "text": "Challenge Links"
   }
 ]
