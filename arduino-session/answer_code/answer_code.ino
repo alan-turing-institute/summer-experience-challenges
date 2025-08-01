@@ -15,6 +15,8 @@ void setup() {
   setupSwitch(sw1);
   setupSwitch(sw2);
   setupSwitch(sw3);
+  setupSwitch(clear_pin);
+  pinMode(lock_pin, INPUT);
 }
 
 void pressSwitch(int switch_pin){
