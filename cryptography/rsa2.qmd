@@ -20,7 +20,7 @@ Can you recover the message $m$?
 >
 > > Hint: The message can be recovered using the formula $m = c^d \bmod n$.
 > >
-> > Since you already know $n$ and $c$, the only thing you need to find is $d$. Recall that $d$ is specified by the equation $de \equiv 1 \bmod \phi$, and $\phi = (p - 1)(q - 1)$.
+> > Since you already know $n$ and $c$, the only thing you need to find is $d$. Recall that $d$ is specified by the equation $de \bmod \phi = 1$, and $\phi = (p - 1)(q - 1)$.
 > >
 > > Once you have found $d$, you can key in its value below to quickly calculate $m$, and submit your answer.
 >

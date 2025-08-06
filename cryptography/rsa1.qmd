@@ -17,26 +17,28 @@ Although they were the first to publicly describe the RSA system in 1977, an equ
 
 The RSA scheme revolves around modular arithmetic, which the previous page touched briefly on.
 
-Specifically, it assumes that the message you want to transmit is first translated into an integer $m$ (which stands for message).
+On this page, we only use the modulo **operator**, i.e. the remainder when dividing by $n$; we won't need to use the more general concept of congruences.
+
+The RSA scheme assumes that the message you want to transmit is first translated into an integer $m$ (which stands for message).
 
 > **Question:** Can you come up with a way of translating a plain-text message into an integer?
 
 1. The *encoding* step involves the sender taking the message $m$ and raising it to a power $e$ (for 'encryption'), modulo some number $n$:
 
-    $$c \equiv m^e \mod n$$
+    $$c = m^e \bmod n$$
 
     where $c$ is the *ciphertext*.
     The combination of $e$ and $n$ forms the *public key* of the RSA scheme.
 
 2. This ciphertext is then passed to the recipient, who then *decodes* it by raising it to a power $d$ (for 'decryption'), modulo $n$:
 
-    $$m \equiv c^d \mod n.$$
+    $$m = c^d \bmod n.$$
 
     $d$ forms part of the *private key*, which only the recipient is allowed to know.
 
 The two equations above imply together that:
 
-$$m \equiv (m^e)^d \mod n,$$
+$$m = (m^e)^d \bmod n,$$
 
 and crucially, this is true of *all* messages $m < n$, meaning that the keys can be used for whatever message you choose to send.
 
@@ -61,14 +63,14 @@ They do so using the following algorithm:
 
    $e$ and $n$ are part of the public key, and can be shared with the sender.
 
-3. Finally, choose $d$ such that $de \equiv 1 \bmod\phi$.
+3. Finally, choose $d$ such that $de \bmod \phi = 1$.
 
-   In this case, we need $d \times 5 \equiv 1 \bmod 48$: the smallest value of $d$ for which this holds true is $d = 29$. (Can you verify this?)
+   In this case, we need $(d \times 5) \bmod 48 = 1$. The smallest value of $d$ for which this holds true is $d = 29$. (Can you verify this?)
 
    $d$ is part of the private key, and must be kept secret.
 
 
-This setup ensures that regardless of what message $m$ is being sent, $$(m^e)^d \equiv m \bmod n,$$ as required by the RSA algorithm.
+This setup ensures that regardless of what message $m$ is being sent, $$(m^e)^d \bmod n = m,$$ as required by the RSA algorithm.
 
 Try this out using the interactive form here. It has been pre-filled with the numbers from the example above, but you should try it out with your own choice of numbers.
 
@@ -93,7 +95,7 @@ $e$: <input type="text" id="rsa-e" value="5" size="3" />
 <div id="rsa-e-out"></div>
 </div>
 
-- **Step 3**: Choose $d$ (decryption key: must satisfy $de \equiv 1 \bmod \phi$)
+- **Step 3**: Choose $d$ (decryption key: must satisfy $de \bmod \phi = 1$)
 <div class="rsa-grid-1">
 <div id="rsa-d-in">
 $d$: <input type="text" id="rsa-d" value="29" size="3" />
@@ -118,7 +120,7 @@ However, there are several questions that remain:
 
 1. Unless you chose very small numbers for $p$, $q$, and $e$, you probably found it hard to calculate $d$. How can this be done quickly?
 1. How do we know that the RSA scheme is *secure*? Is it possible to obtain the private key, $d$, if you have the public key ($e$ and $n$)?
-1. why does the RSA algorithm work at all, i.e. why is it always true that $(m^e)^d \equiv m \bmod n$?
+1. why does the RSA algorithm work at all, i.e. why is it always true that $(m^e)^d \bmod n = m$?
 
 We'll cover the first two questions in the remainder of today.
 

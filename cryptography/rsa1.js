@@ -90,7 +90,7 @@ function recalcD(e, phi) {
         const edmodphi = (emodphi * dmodphi) % phi;
         if (edmodphi == 1) {
             outdiv.style.color = "green";
-            outdiv.innerHTML = `⇒ OK! d × e = ${e * d} ≡ ${edmodphi} mod ${phi}`;
+            outdiv.innerHTML = `⇒ OK! d × e mod ${phi} = ${e * d} mod ${phi} = ${edmodphi}`;
             return d;
         }
         else {

@@ -1,44 +1,93 @@
 # Modular arithmetic I
 
-To begin the second part of this challenge, we'll take a brief look at *modular arithmetic*.
-This is the same thing as regular arithmetic, but with one twist: we only care about the remainder when dividing by some number $n$.
+To begin the second part of this challenge, we'll take a brief look at *modular arithmetic*.$\newcommand{\smod}[1]{\stackrel{\bmod #1}{\equiv\!\equiv}}$
 
+## Congruences
+
+Modular arithmetic is the same thing as regular arithmetic, but with one twist: we only care about the remainder when dividing by some number $n$.
 Instead of talking about numbers, we talk about numbers *modulo* $n$.
-For example, $5 \bmod 3 = 2$, because the remainder when dividing $5$ by $3$ is $2$. In fact, you already know how to do this:
+For example,
 
-![$11 + 4 = 15 \equiv 3\bmod 12$](images/400px-Modular_clocks.png)
+$$5 \smod{3} 2$$
 
-When we tell the time we implicitly work in arithmetic modulo 12, which is why we know that 3pm is 4 hours after 11am. 
-Modular arithmetic can also be thought of as performing the same operation on clocks with a different number of hours to 12.
+because both 5 and 2 have the same remainder when divided by $3$.
 
-Going back to the example above, $5 \bmod 3 = 2$, we see also that $8 \bmod 3 = 2$; so $5$ and $8$ are equivalent, or *congruent*, modulo $3$:
+In fact, the remainder when $8$ is divided by $3$ is *also* $2$, so we can also say that:
 
-$$5 \equiv 8 \bmod 3.$$
+$$5 \smod{3} 8$$
 
-This example highlights one common misconception about modular arithmetic.
-It is often said that $5 \equiv 2 \bmod 3$, because 2 is the remainder when dividing 5 by 3.
-However, this is not entirely accurate: it is more correct to say that $5 \equiv 2 \bmod 3$ because 5 and 2 have the same remainder when divided by 3.
-In other words, the numbers on either side of the $\equiv$ sign are not the *remainders* themselves, but the numbers that have the same remainder when divided by $n$.
+In mathematics, we say that two numbers are *congruent modulo* $n$ if they have the same remainder when divided by $n$.
+That is denoted here by the $\equiv$ sign.
 
-Another way of thinking about this is that integers 'wrap around' back to 0 after reaching $n - 1$.
-So, when counting *modulo* $3$, instead of $$0, 1, 2, 3, 4, 5, 6, 7, 8, \ldots$$ we have: $$0, 1, 2, 0, 1, 2, 0, 1, 2, \ldots$$
+> **Exercise:** Suppose that $11 \stackrel{\bmod 5}{\equiv\!\equiv} x$. Can you list five possible (positive) values of $x$?
+>
+> What can you say about all the values of $x - 11$?
+>
+> More generally, if $a \stackrel{\bmod n}{\equiv\!\equiv} b$, what can you say about $a - b$?
 
-Because $5$ and $8$ both 'become' the same number, they are congruent modulo $3$.
+## Working with modular arithmetic
 
-To sum up: **$a$ and $b$ are congruent modulo $n$ if $a$ and $b$ have the same remainder when divided by $n$.**
-This is often denoted as:
+Suppose that $a \smod{n} p$ and $b \smod{n} q$.
+Prove the following statements:
 
-$$a \equiv b \bmod n.$$
+1. $(a + b) \smod{n} (p + q)$.
+1. $(ab) \smod{n} (pq)$.
 
+We will work through the first one.
+To do this proof, we need to use one key fact: if $a \smod{n} p$, that means that there is some integer $c$ for which $a = p + cn$.
+In other words, $a$ is some multiple of $n$ plus $p$.
+
+If we do this separately for $a$ and $b$:
+$$\begin{align}
+a &= p + cn \\
+b &= q + dn
+\end{align}$$
+
+and then add these two together, we get:
+
+$$\begin{align}
+a + b &= p + q + cn + dn \\
+      &= p + q + (c + d)n
+\end{align}$$
+
+which means that $a + b$ is some multiple of $n$, plus $p + q$.
+This is exactly the same as saying $(a + b) \smod{n} (p + q)$.
+
+You can use the same strategy to prove statement (2).
+
+> **Optional:** If you have studied proof by induction, try using it to show that
+> for all integers $m > 0$, $(a^m) \smod{n} (p^m)$.
+
+## The modulo operator
+
+Above, we have seen that if $11 \smod{5} x$, then $x$ can be $1, 6, 11, 16, 21, \ldots$.
+
+One of these values is special: it is $1$, because that *is* the remainder itself when $11$ is divided by $5$.
+
+To denote this special remainder, we write instead:
+
+$$11 \bmod 5 = 1.$$
+
+Even though $11 \smod{5} 16$, it would not be correct to write $11 \bmod 5 = 16$.
+
+> **Exercise:** If $x \smod{n} y$, under what conditions can we say that $x \bmod n = y$?
+
+You may find that this is more familiar to you than the congruence notation: for example, you may have used the `mod` function in a programming language, which performs this operation.
+
+But also, many operations in daily life already involve this operator.
+When we tell the time we implicitly work in arithmetic modulo 12, which is why we know that 3 pm is 4 hours after 11 am. 
+
+![$(11 + 4) \bmod 12 = 15 \bmod 12 = 3.$](images/400px-Modular_clocks.png)
+
+can also be thought of as performing the same operation on clocks with a different number of hours to 12.
 
 > **Question:** Consider some other areas in life where we use modular arithmetic without thinking about it.
 >
-> What day of the week will it be, five days from now?
+> - What day of the week will it be, five days from now?
 >
-> If you need to wake up at 7 am and you need 8 hours' sleep, what time do you need to sleep?
+> - If a room light is currently off and you flip the switch 7 times, will it be on or off?
 >
 > Can you express these relations using modular arithmetic?
-
 
 ## Calculator
 
@@ -60,58 +109,29 @@ mod
 {{< include calculator.js >}}
 </script>
 
-## Exercises
+## Calculating remainders
 
-Suppose that $a \equiv p \bmod n$ and $b \equiv q \bmod n$.
-Prove the following statements:
+Understanding the congruence operator, $\smod{n}$, makes it far easier to perform some calculations.
 
-1. $(a + b) \equiv (p + q) \bmod n$.
-1. $(ab) \equiv (pq) \bmod n$.
-
-We will work through the first one.
-To do this proof, we need to use one key fact: if $a \equiv p \bmod n$, that means that there is some integer $c$ for which $a = p + cn$.
-In other words, $a$ is some multiple of $n$ plus $p$.
-
-If we do this separately for $a$ and $b$:
-$$\begin{align}
-a &= p + cn \\
-b &= q + dn
-\end{align}$$
-
-and then add these two together, we get:
-
-$$\begin{align}
-a + b &= p + q + cn + dn \\
-      &= p + q + (c + d)n
-\end{align}$$
-
-which means that $a + b$ is some multiple of $n$, plus $p + q$.
-This is exactly the same as saying $(a + b) \equiv (p + q) \bmod n$.
-
-You can use the same strategy to prove statement (2).
-
-> **Optional:** If you have studied proof by induction, try using it to show that
-> for all integers $m > 0$, $(a^m) \equiv (p^m) \bmod n$.
-
-## Applications
-
-These equalities make it far easier to perform some calculations.
-For example, what is the remainder when $33^{594}$ is divided by $32$?
+For example, what is the remainder when $33^{594}$ is divided by $32$? (Equally, what is $33^{594} \bmod 32$?)
 
 We might first think about calculating $33$ to the power of $594$, and *then* dividing that by $32$ to find the remainder.
 That sounds difficult: even a computer would struggle with such a large number! (Try using the calculator above, or [Google's built-in calculator](https://www.google.com/search?q=calculator), to calculate $33^{594}$.)
 
-But if we notice that $33 \equiv 1 \bmod{32}$, then we can use formula (3) to see that
+But if we notice that $33 \smod{32} 1$, then we can see that
 
-$$33^{594} \equiv 1^{594} \equiv 1 \bmod{32},$$
+$$\underbrace{33 \times 33 \times \cdots \times 33}_{\text{594 times}} \smod{32} \underbrace{1 \times 1 \cdots \times 1}_{\text{594 times}} \smod{32} 1,$$
 
 because $1$ to the power of anything is still $1$.
 
-> **Challenge:** Calculate the remainder when $7^{175}$ is divided by $16$.
+Because $1$ is smaller than $32$, we can conclude that $33^{594} \bmod 32 = 1$.
+
+> **Challenge:** If you did the proof by induction above, use that result to calculate the remainder when $7^{175}$ is divided by $16$.
 >
-> [If you are having trouble, try to find a pattern here: what is $7^1 \bmod 16$? and $7^2 \bmod 16$? and $7^3 \bmod 16$? Once you have found a pattern, think about why this might be the case. Can you use, for example, statement (3) above, noting that $7^{(am)} = (7^a)^m$?]
+> If you did not do the proof by induction, or if you want a hint: try to find a pattern here: what is $7^1 \bmod 16$? and $7^2 \bmod 16$? and $7^3 \bmod 16$? Once you have found a pattern, think about why this might be the case.]
 
 <!-- The correct answer is 7, because 7^2 = 49 = (16 * 3) + 1 = 1 mod 16.
 So 7^n for any even n = 1 mod 16, and 7^n for any odd n = 7 mod 16.
 If the students have trouble seeing this, try to get them to see the 'pattern' in 7^1 mod 16, 7^2 mod 16, 7^3 mod 16, 7^4 mod 16, ... which the calculator *will* correctly calculate.
 -->
+
