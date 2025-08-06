@@ -236,9 +236,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#calculator" id="toc-calculator" class="nav-link active" data-scroll-target="#calculator"><span class="header-section-number">6.1</span> Calculator</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.2</span> Exercises</a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><span class="header-section-number">6.3</span> Applications</a></li>
+  <li><a href="#congruences" id="toc-congruences" class="nav-link active" data-scroll-target="#congruences"><span class="header-section-number">6.1</span> Congruences</a></li>
+  <li><a href="#working-with-modular-arithmetic" id="toc-working-with-modular-arithmetic" class="nav-link" data-scroll-target="#working-with-modular-arithmetic"><span class="header-section-number">6.2</span> Working with modular arithmetic</a></li>
+  <li><a href="#the-modulo-operator" id="toc-the-modulo-operator" class="nav-link" data-scroll-target="#the-modulo-operator"><span class="header-section-number">6.3</span> The modulo operator</a></li>
+  <li><a href="#calculator" id="toc-calculator" class="nav-link" data-scroll-target="#calculator"><span class="header-section-number">6.4</span> Calculator</a></li>
+  <li><a href="#calculating-remainders" id="toc-calculating-remainders" class="nav-link" data-scroll-target="#calculating-remainders"><span class="header-section-number">6.5</span> Calculating remainders</a></li>
   </ul>
 </nav>
     </div>
@@ -264,30 +266,74 @@ window.Quarto = {
 </header>
 
 
-<p>To begin the second part of this challenge, we’ll take a brief look at <em>modular arithmetic</em>. This is the same thing as regular arithmetic, but with one twist: we only care about the remainder when dividing by some number <span class="math inline">\(n\)</span>.</p>
-<p>Instead of talking about numbers, we talk about numbers <em>modulo</em> <span class="math inline">\(n\)</span>. For example, <span class="math inline">\(5 \bmod 3 = 2\)</span>, because the remainder when dividing <span class="math inline">\(5\)</span> by <span class="math inline">\(3\)</span> is <span class="math inline">\(2\)</span>. In fact, you already know how to do this:</p>
+<p>To begin the second part of this challenge, we’ll take a brief look at <em>modular arithmetic</em>.<span class="math inline">\(\newcommand{\smod}[1]{\stackrel{\bmod #1}{\equiv\!\equiv}}\)</span></p>
+<section id="congruences" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="congruences"><span class="header-section-number">6.1</span> Congruences</h2>
+<p>Modular arithmetic is the same thing as regular arithmetic, but with one twist: we only care about the remainder when dividing by some number <span class="math inline">\(n\)</span>. Instead of talking about numbers, we talk about numbers <em>modulo</em> <span class="math inline">\(n\)</span>. For example,</p>
+<p><span class="math display">\[5 \smod{3} 2\]</span></p>
+<p>because both 5 and 2 have the same remainder when divided by <span class="math inline">\(3\)</span>.</p>
+<p>In fact, the remainder when <span class="math inline">\(8\)</span> is divided by <span class="math inline">\(3\)</span> is <em>also</em> <span class="math inline">\(2\)</span>, so we can also say that:</p>
+<p><span class="math display">\[5 \smod{3} 8\]</span></p>
+<p>In mathematics, we say that two numbers are <em>congruent modulo</em> <span class="math inline">\(n\)</span> if they have the same remainder when divided by <span class="math inline">\(n\)</span>. That is denoted here by the <span class="math inline">\(\equiv\)</span> sign.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise:</strong> Suppose that <span class="math inline">\(11 \stackrel{\bmod 5}{\equiv\!\equiv} x\)</span>. Can you list five possible (positive) values of <span class="math inline">\(x\)</span>?</p>
+<p>What can you say about all the values of <span class="math inline">\(x - 11\)</span>?</p>
+<p>More generally, if <span class="math inline">\(a \stackrel{\bmod n}{\equiv\!\equiv} b\)</span>, what can you say about <span class="math inline">\(a - b\)</span>?</p>
+</blockquote>
+</section>
+<section id="working-with-modular-arithmetic" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="working-with-modular-arithmetic"><span class="header-section-number">6.2</span> Working with modular arithmetic</h2>
+<p>Suppose that <span class="math inline">\(a \smod{n} p\)</span> and <span class="math inline">\(b \smod{n} q\)</span>. Prove the following statements:</p>
+<ol type="1">
+<li><span class="math inline">\((a + b) \smod{n} (p + q)\)</span>.</li>
+<li><span class="math inline">\((ab) \smod{n} (pq)\)</span>.</li>
+</ol>
+<p>We will work through the first one. To do this proof, we need to use one key fact: if <span class="math inline">\(a \smod{n} p\)</span>, that means that there is some integer <span class="math inline">\(c\)</span> for which <span class="math inline">\(a = p + cn\)</span>. In other words, <span class="math inline">\(a\)</span> is some multiple of <span class="math inline">\(n\)</span> plus <span class="math inline">\(p\)</span>.</p>
+<p>If we do this separately for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>: <span class="math display">\[\begin{align}
+a &amp;= p + cn \\
+b &amp;= q + dn
+\end{align}\]</span></p>
+<p>and then add these two together, we get:</p>
+<p><span class="math display">\[\begin{align}
+a + b &amp;= p + q + cn + dn \\
+      &amp;= p + q + (c + d)n
+\end{align}\]</span></p>
+<p>which means that <span class="math inline">\(a + b\)</span> is some multiple of <span class="math inline">\(n\)</span>, plus <span class="math inline">\(p + q\)</span>. This is exactly the same as saying <span class="math inline">\((a + b) \smod{n} (p + q)\)</span>.</p>
+<p>You can use the same strategy to prove statement (2).</p>
+<blockquote class="blockquote">
+<p><strong>Optional:</strong> If you have studied proof by induction, try using it to show that for all integers <span class="math inline">\(m &gt; 0\)</span>, <span class="math inline">\((a^m) \smod{n} (p^m)\)</span>.</p>
+</blockquote>
+</section>
+<section id="the-modulo-operator" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-modulo-operator"><span class="header-section-number">6.3</span> The modulo operator</h2>
+<p>Above, we have seen that if <span class="math inline">\(11 \smod{5} x\)</span>, then <span class="math inline">\(x\)</span> can be <span class="math inline">\(1, 6, 11, 16, 21, \ldots\)</span>.</p>
+<p>One of these values is special: it is <span class="math inline">\(1\)</span>, because that <em>is</em> the remainder itself when <span class="math inline">\(11\)</span> is divided by <span class="math inline">\(5\)</span>.</p>
+<p>To denote this special remainder, we write instead:</p>
+<p><span class="math display">\[11 \bmod 5 = 1.\]</span></p>
+<p>Even though <span class="math inline">\(11 \smod{5} 16\)</span>, it would not be correct to write <span class="math inline">\(11 \bmod 5 = 16\)</span>.</p>
+<blockquote class="blockquote">
+<p><strong>Exercise:</strong> If <span class="math inline">\(x \smod{n} y\)</span>, under what conditions can we say that <span class="math inline">\(x \bmod n = y\)</span>?</p>
+</blockquote>
+<p>You may find that this is more familiar to you than the congruence notation: for example, you may have used the <code>mod</code> function in a programming language, which performs this operation.</p>
+<p>But also, many operations in daily life already involve this operator. When we tell the time we implicitly work in arithmetic modulo 12, which is why we know that 3 pm is 4 hours after 11 am.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/400px-Modular_clocks.png" class="img-fluid figure-img"></p>
-<figcaption><span class="math inline">\(11 + 4 = 15 \equiv 3\bmod 12\)</span></figcaption>
+<figcaption><span class="math inline">\((11 + 4) \bmod 12 = 15 \bmod 12 = 3.\)</span></figcaption>
 </figure>
 </div>
-<p>When we tell the time we implicitly work in arithmetic modulo 12, which is why we know that 3pm is 4 hours after 11am. Modular arithmetic can also be thought of as performing the same operation on clocks with a different number of hours to 12.</p>
-<p>Going back to the example above, <span class="math inline">\(5 \bmod 3 = 2\)</span>, we see also that <span class="math inline">\(8 \bmod 3 = 2\)</span>; so <span class="math inline">\(5\)</span> and <span class="math inline">\(8\)</span> are equivalent, or <em>congruent</em>, modulo <span class="math inline">\(3\)</span>:</p>
-<p><span class="math display">\[5 \equiv 8 \bmod 3.\]</span></p>
-<p>This example highlights one common misconception about modular arithmetic. It is often said that <span class="math inline">\(5 \equiv 2 \bmod 3\)</span>, because 2 is the remainder when dividing 5 by 3. However, this is not entirely accurate: it is more correct to say that <span class="math inline">\(5 \equiv 2 \bmod 3\)</span> because 5 and 2 have the same remainder when divided by 3. In other words, the numbers on either side of the <span class="math inline">\(\equiv\)</span> sign are not the <em>remainders</em> themselves, but the numbers that have the same remainder when divided by <span class="math inline">\(n\)</span>.</p>
-<p>Another way of thinking about this is that integers ‘wrap around’ back to 0 after reaching <span class="math inline">\(n - 1\)</span>. So, when counting <em>modulo</em> <span class="math inline">\(3\)</span>, instead of <span class="math display">\[0, 1, 2, 3, 4, 5, 6, 7, 8, \ldots\]</span> we have: <span class="math display">\[0, 1, 2, 0, 1, 2, 0, 1, 2, \ldots\]</span></p>
-<p>Because <span class="math inline">\(5\)</span> and <span class="math inline">\(8\)</span> both ‘become’ the same number, they are congruent modulo <span class="math inline">\(3\)</span>.</p>
-<p>To sum up: <strong><span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are congruent modulo <span class="math inline">\(n\)</span> if <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same remainder when divided by <span class="math inline">\(n\)</span>.</strong> This is often denoted as:</p>
-<p><span class="math display">\[a \equiv b \bmod n.\]</span></p>
+<p>can also be thought of as performing the same operation on clocks with a different number of hours to 12.</p>
 <blockquote class="blockquote">
 <p><strong>Question:</strong> Consider some other areas in life where we use modular arithmetic without thinking about it.</p>
-<p>What day of the week will it be, five days from now?</p>
-<p>If you need to wake up at 7 am and you need 8 hours’ sleep, what time do you need to sleep?</p>
+<ul>
+<li><p>What day of the week will it be, five days from now?</p></li>
+<li><p>If a room light is currently off and you flip the switch 7 times, will it be on or off?</p></li>
+</ul>
 <p>Can you express these relations using modular arithmetic?</p>
 </blockquote>
-<section id="calculator" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="calculator"><span class="header-section-number">6.1</span> Calculator</h2>
+</section>
+<section id="calculator" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="calculator"><span class="header-section-number">6.4</span> Calculator</h2>
 <p>To help you get a feel for modular arithmetic, here is a calculator that accepts (almost) any mathematical expression in the left-hand side. You can also specify a modulus, and the calculator will show you the result of the expression modulo that number. You may find this useful for the exercises below.</p>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
 <script type="text/javascript">
@@ -347,39 +393,18 @@ document.getElementById("modulus").addEventListener("input", getResult);
 
 </script>
 </section>
-<section id="exercises" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.2</span> Exercises</h2>
-<p>Suppose that <span class="math inline">\(a \equiv p \bmod n\)</span> and <span class="math inline">\(b \equiv q \bmod n\)</span>. Prove the following statements:</p>
-<ol type="1">
-<li><span class="math inline">\((a + b) \equiv (p + q) \bmod n\)</span>.</li>
-<li><span class="math inline">\((ab) \equiv (pq) \bmod n\)</span>.</li>
-</ol>
-<p>We will work through the first one. To do this proof, we need to use one key fact: if <span class="math inline">\(a \equiv p \bmod n\)</span>, that means that there is some integer <span class="math inline">\(c\)</span> for which <span class="math inline">\(a = p + cn\)</span>. In other words, <span class="math inline">\(a\)</span> is some multiple of <span class="math inline">\(n\)</span> plus <span class="math inline">\(p\)</span>.</p>
-<p>If we do this separately for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>: <span class="math display">\[\begin{align}
-a &amp;= p + cn \\
-b &amp;= q + dn
-\end{align}\]</span></p>
-<p>and then add these two together, we get:</p>
-<p><span class="math display">\[\begin{align}
-a + b &amp;= p + q + cn + dn \\
-      &amp;= p + q + (c + d)n
-\end{align}\]</span></p>
-<p>which means that <span class="math inline">\(a + b\)</span> is some multiple of <span class="math inline">\(n\)</span>, plus <span class="math inline">\(p + q\)</span>. This is exactly the same as saying <span class="math inline">\((a + b) \equiv (p + q) \bmod n\)</span>.</p>
-<p>You can use the same strategy to prove statement (2).</p>
-<blockquote class="blockquote">
-<p><strong>Optional:</strong> If you have studied proof by induction, try using it to show that for all integers <span class="math inline">\(m &gt; 0\)</span>, <span class="math inline">\((a^m) \equiv (p^m) \bmod n\)</span>.</p>
-</blockquote>
-</section>
-<section id="applications" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="applications"><span class="header-section-number">6.3</span> Applications</h2>
-<p>These equalities make it far easier to perform some calculations. For example, what is the remainder when <span class="math inline">\(33^{594}\)</span> is divided by <span class="math inline">\(32\)</span>?</p>
+<section id="calculating-remainders" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="calculating-remainders"><span class="header-section-number">6.5</span> Calculating remainders</h2>
+<p>Understanding the congruence operator, <span class="math inline">\(\smod{n}\)</span>, makes it far easier to perform some calculations.</p>
+<p>For example, what is the remainder when <span class="math inline">\(33^{594}\)</span> is divided by <span class="math inline">\(32\)</span>? (Equally, what is <span class="math inline">\(33^{594} \bmod 32\)</span>?)</p>
 <p>We might first think about calculating <span class="math inline">\(33\)</span> to the power of <span class="math inline">\(594\)</span>, and <em>then</em> dividing that by <span class="math inline">\(32\)</span> to find the remainder. That sounds difficult: even a computer would struggle with such a large number! (Try using the calculator above, or <a href="https://www.google.com/search?q=calculator">Google’s built-in calculator</a>, to calculate <span class="math inline">\(33^{594}\)</span>.)</p>
-<p>But if we notice that <span class="math inline">\(33 \equiv 1 \bmod{32}\)</span>, then we can use formula (3) to see that</p>
-<p><span class="math display">\[33^{594} \equiv 1^{594} \equiv 1 \bmod{32},\]</span></p>
+<p>But if we notice that <span class="math inline">\(33 \smod{32} 1\)</span>, then we can see that</p>
+<p><span class="math display">\[\underbrace{33 \times 33 \times \cdots \times 33}_{\text{594 times}} \smod{32} \underbrace{1 \times 1 \cdots \times 1}_{\text{594 times}} \smod{32} 1,\]</span></p>
 <p>because <span class="math inline">\(1\)</span> to the power of anything is still <span class="math inline">\(1\)</span>.</p>
+<p>Because <span class="math inline">\(1\)</span> is smaller than <span class="math inline">\(32\)</span>, we can conclude that <span class="math inline">\(33^{594} \bmod 32 = 1\)</span>.</p>
 <blockquote class="blockquote">
-<p><strong>Challenge:</strong> Calculate the remainder when <span class="math inline">\(7^{175}\)</span> is divided by <span class="math inline">\(16\)</span>.</p>
-<p>[If you are having trouble, try to find a pattern here: what is <span class="math inline">\(7^1 \bmod 16\)</span>? and <span class="math inline">\(7^2 \bmod 16\)</span>? and <span class="math inline">\(7^3 \bmod 16\)</span>? Once you have found a pattern, think about why this might be the case. Can you use, for example, statement (3) above, noting that <span class="math inline">\(7^{(am)} = (7^a)^m\)</span>?]</p>
+<p><strong>Challenge:</strong> If you did the proof by induction above, use that result to calculate the remainder when <span class="math inline">\(7^{175}\)</span> is divided by <span class="math inline">\(16\)</span>.</p>
+<p>If you did not do the proof by induction, or if you want a hint: try to find a pattern here: what is <span class="math inline">\(7^1 \bmod 16\)</span>? and <span class="math inline">\(7^2 \bmod 16\)</span>? and <span class="math inline">\(7^3 \bmod 16\)</span>? Once you have found a pattern, think about why this might be the case.]</p>
 </blockquote>
 <!-- The correct answer is 7, because 7^2 = 49 = (16 * 3) + 1 = 1 mod 16.
 So 7^n for any even n = 1 mod 16, and 7^n for any odd n = 7 mod 16.

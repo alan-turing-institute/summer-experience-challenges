@@ -571,7 +571,7 @@ document.getElementById("plot").addEventListener("click", drawChart);
 <p><strong>Exercise 1:</strong> Suppose you know that <span class="math inline">\(n = 143\)</span> and <span class="math inline">\(e = 7\)</span>. You also know the encoded message is <span class="math inline">\(c = 41\)</span>. Can you recover the decoded message <span class="math inline">\(m\)</span>? <!-- Ans: d = 103, m = 50 --></p>
 <blockquote class="blockquote">
 <p>Hint: The message can be recovered using the formula <span class="math inline">\(m = c^d \bmod n\)</span>.</p>
-<p>Since you already know <span class="math inline">\(n\)</span> and <span class="math inline">\(c\)</span>, the only thing you need to find is <span class="math inline">\(d\)</span>. Recall that <span class="math inline">\(d\)</span> is specified by the equation <span class="math inline">\(de \equiv 1 \bmod \phi\)</span>, and <span class="math inline">\(\phi = (p - 1)(q - 1)\)</span>.</p>
+<p>Since you already know <span class="math inline">\(n\)</span> and <span class="math inline">\(c\)</span>, the only thing you need to find is <span class="math inline">\(d\)</span>. Recall that <span class="math inline">\(d\)</span> is specified by the equation <span class="math inline">\(de \bmod \phi = 1\)</span>, and <span class="math inline">\(\phi = (p - 1)(q - 1)\)</span>.</p>
 <p>Once you have found <span class="math inline">\(d\)</span>, you can key in its value below to quickly calculate <span class="math inline">\(m\)</span>, and submit your answer.</p>
 </blockquote>
 <div>

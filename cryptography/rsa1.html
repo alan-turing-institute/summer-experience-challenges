@@ -387,7 +387,7 @@ function recalcD(e, phi) {
         const edmodphi = (emodphi * dmodphi) % phi;
         if (edmodphi == 1) {
             outdiv.style.color = "green";
-            outdiv.innerHTML = `⇒ OK! d × e = ${e * d} ≡ ${edmodphi} mod ${phi}`;
+            outdiv.innerHTML = `⇒ OK! d × e mod ${phi} = ${e * d} mod ${phi} = ${edmodphi}`;
             return d;
         }
         else {
@@ -552,20 +552,21 @@ recalc();
 <section id="introduction" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
 <p>The RSA scheme revolves around modular arithmetic, which the previous page touched briefly on.</p>
-<p>Specifically, it assumes that the message you want to transmit is first translated into an integer <span class="math inline">\(m\)</span> (which stands for message).</p>
+<p>On this page, we only use the modulo <strong>operator</strong>, i.e.&nbsp;the remainder when dividing by <span class="math inline">\(n\)</span>; we won’t need to use the more general concept of congruences.</p>
+<p>The RSA scheme assumes that the message you want to transmit is first translated into an integer <span class="math inline">\(m\)</span> (which stands for message).</p>
 <blockquote class="blockquote">
 <p><strong>Question:</strong> Can you come up with a way of translating a plain-text message into an integer?</p>
 </blockquote>
 <ol type="1">
 <li><p>The <em>encoding</em> step involves the sender taking the message <span class="math inline">\(m\)</span> and raising it to a power <span class="math inline">\(e\)</span> (for ‘encryption’), modulo some number <span class="math inline">\(n\)</span>:</p>
-<p><span class="math display">\[c \equiv m^e \mod n\]</span></p>
+<p><span class="math display">\[c = m^e \bmod n\]</span></p>
 <p>where <span class="math inline">\(c\)</span> is the <em>ciphertext</em>. The combination of <span class="math inline">\(e\)</span> and <span class="math inline">\(n\)</span> forms the <em>public key</em> of the RSA scheme.</p></li>
 <li><p>This ciphertext is then passed to the recipient, who then <em>decodes</em> it by raising it to a power <span class="math inline">\(d\)</span> (for ‘decryption’), modulo <span class="math inline">\(n\)</span>:</p>
-<p><span class="math display">\[m \equiv c^d \mod n.\]</span></p>
+<p><span class="math display">\[m = c^d \bmod n.\]</span></p>
 <p><span class="math inline">\(d\)</span> forms part of the <em>private key</em>, which only the recipient is allowed to know.</p></li>
 </ol>
 <p>The two equations above imply together that:</p>
-<p><span class="math display">\[m \equiv (m^e)^d \mod n,\]</span></p>
+<p><span class="math display">\[m = (m^e)^d \bmod n,\]</span></p>
 <p>and crucially, this is true of <em>all</em> messages <span class="math inline">\(m &lt; n\)</span>, meaning that the keys can be used for whatever message you choose to send.</p>
 <p>In general, if we just pick any random numbers <span class="math inline">\(e\)</span>, <span class="math inline">\(d\)</span>, and <span class="math inline">\(n\)</span>, this will not be true! The RSA scheme works because these numbers are specifically chosen in a way that not only satisfies the equation above, but is also difficult to reverse-engineer.</p>
 <p>Specifically, if you were an attacker and you knew the public key (i.e.&nbsp;<span class="math inline">\(e\)</span> and <span class="math inline">\(n\)</span>) <em>as well as</em> the ciphertext <span class="math inline">\(c\)</span>, it’s still extremely difficult to find the correct value of <span class="math inline">\(d\)</span> to correctly decode the message.</p>
@@ -579,11 +580,11 @@ recalc();
 <li><p>Calculate the <em>totient function</em>, defined by <span class="math inline">\(\phi = (p - 1)(q - 1)\)</span>. (That symbol is the Greek letter phi.) In this case, we would have <span class="math inline">\(\phi = 4 \times 12 = 48\)</span>.</p>
 <p>Then, choose an integer <span class="math inline">\(e\)</span> which is smaller than <span class="math inline">\(\phi\)</span> and has no common prime factors with <span class="math inline">\(\phi\)</span>. Here, the only prime factors of <span class="math inline">\(48\)</span> are <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span>: so, a valid choice would be <span class="math inline">\(e = 5\)</span>.</p>
 <p><span class="math inline">\(e\)</span> and <span class="math inline">\(n\)</span> are part of the public key, and can be shared with the sender.</p></li>
-<li><p>Finally, choose <span class="math inline">\(d\)</span> such that <span class="math inline">\(de \equiv 1 \bmod\phi\)</span>.</p>
-<p>In this case, we need <span class="math inline">\(d \times 5 \equiv 1 \bmod 48\)</span>: the smallest value of <span class="math inline">\(d\)</span> for which this holds true is <span class="math inline">\(d = 29\)</span>. (Can you verify this?)</p>
+<li><p>Finally, choose <span class="math inline">\(d\)</span> such that <span class="math inline">\(de \bmod \phi = 1\)</span>.</p>
+<p>In this case, we need <span class="math inline">\((d \times 5) \bmod 48 = 1\)</span>. The smallest value of <span class="math inline">\(d\)</span> for which this holds true is <span class="math inline">\(d = 29\)</span>. (Can you verify this?)</p>
 <p><span class="math inline">\(d\)</span> is part of the private key, and must be kept secret.</p></li>
 </ol>
-<p>This setup ensures that regardless of what message <span class="math inline">\(m\)</span> is being sent, <span class="math display">\[(m^e)^d \equiv m \bmod n,\]</span> as required by the RSA algorithm.</p>
+<p>This setup ensures that regardless of what message <span class="math inline">\(m\)</span> is being sent, <span class="math display">\[(m^e)^d \bmod n = m,\]</span> as required by the RSA algorithm.</p>
 <p>Try this out using the interactive form here. It has been pre-filled with the numbers from the example above, but you should try it out with your own choice of numbers.</p>
 <ul>
 <li><strong>Step 1</strong>: Choose <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> (must be prime)
@@ -604,7 +605,7 @@ recalc();
 
 </div>
 </div></li>
-<li><strong>Step 3</strong>: Choose <span class="math inline">\(d\)</span> (decryption key: must satisfy <span class="math inline">\(de \equiv 1 \bmod \phi\)</span>)
+<li><strong>Step 3</strong>: Choose <span class="math inline">\(d\)</span> (decryption key: must satisfy <span class="math inline">\(de \bmod \phi = 1\)</span>)
 <div class="rsa-grid-1">
 <div id="rsa-d-in">
 <p><span class="math inline">\(d\)</span>: <input type="text" id="rsa-d" value="29" size="3"> &nbsp;&nbsp;&nbsp; &nbsp; <input type="button" id="rsa-d-hint" value="(hint)" class="hint"></p>
@@ -630,7 +631,7 @@ recalc();
 <ol type="1">
 <li>Unless you chose very small numbers for <span class="math inline">\(p\)</span>, <span class="math inline">\(q\)</span>, and <span class="math inline">\(e\)</span>, you probably found it hard to calculate <span class="math inline">\(d\)</span>. How can this be done quickly?</li>
 <li>How do we know that the RSA scheme is <em>secure</em>? Is it possible to obtain the private key, <span class="math inline">\(d\)</span>, if you have the public key (<span class="math inline">\(e\)</span> and <span class="math inline">\(n\)</span>)?</li>
-<li>why does the RSA algorithm work at all, i.e.&nbsp;why is it always true that <span class="math inline">\((m^e)^d \equiv m \bmod n\)</span>?</li>
+<li>why does the RSA algorithm work at all, i.e.&nbsp;why is it always true that <span class="math inline">\((m^e)^d \bmod n = m\)</span>?</li>
 </ol>
 <p>We’ll cover the first two questions in the remainder of today.</p>
 <p>The proof that RSA works requires slightly more mathematical knowledge than we’ve seen so far, so we will not be covering it today. If you are curious, you can find it <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Proofs_of_correctness">on Wikipedia</a>!</p>
