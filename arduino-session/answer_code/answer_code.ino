@@ -5,21 +5,18 @@ int sw3 = 13;
 int clear_pin = 2;
 int lock_pin = 3;
 
+void setupSwitch(int pin){
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, HIGH);
+}
+
 void setup() {
+  setupSwitch(sw0);
+  setupSwitch(sw1);
+  setupSwitch(sw2);
+  setupSwitch(sw3);
+  setupSwitch(clear_pin);
   pinMode(lock_pin, INPUT);
-  pinMode(clear_pin, OUTPUT);
-  //Set pins to be OUTPUTs and turn off
-  pinMode(sw0, OUTPUT);
-  digitalWrite(sw0, HIGH);
-
-  pinMode(sw1, OUTPUT);
-  digitalWrite(sw1, HIGH);
-
-  pinMode(sw2, OUTPUT);
-  digitalWrite(sw2, HIGH);
-
-  pinMode(sw3, OUTPUT);
-  digitalWrite(sw3, HIGH);
 }
 
 void pressSwitch(int switch_pin){
@@ -29,13 +26,15 @@ void pressSwitch(int switch_pin){
   digitalWrite(switch_pin, HIGH);
   delay(switch_delay);
 }
-void clear_safe(){
+
+void clearSafe(){
   int switch_delay = 50;
   digitalWrite(clear_pin, LOW);
   delay(switch_delay);
   digitalWrite(clear_pin, HIGH);
   delay(switch_delay);
 }
+
 void tryCombination(int a, int b, int c, int d){
   /* This is an array, if you want the pin number
       if you want the pin number for sw0, you can 
@@ -55,37 +54,19 @@ bool checkSafe(){
 }
 
 void loop() {
-  bool safe_is_locked = false;
-
-
+  bool safe_is_opened = false;
   for(int a = 0; a<4; a++){
     for (int b = 0; b<4; b++){
       for (int c = 0; c<4; c++){
         for (int d = 0; d<4; d++){
-          clear_safe();
+          clearSafe();
           tryCombination(a,b,c,d);
-          safe_is_locked = checkSafe();
-          if(safe_is_locked == true){
-            delay(5000);
+          safe_is_opened = checkSafe();
+          if(safe_is_opened == true){
+            delay(100000);
           }
-
         }
       }
     }
   }
-  
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
