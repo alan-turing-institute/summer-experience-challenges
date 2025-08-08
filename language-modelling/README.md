@@ -8,7 +8,7 @@ This repo contains the instructions for the language modelling challenge, along 
 
 Links to material (updated for 2024):
 
-- Colab notebook: https://colab.research.google.com/drive/1WI-58Y5j-zdjYIhocpTYJrXbkqUYJoia?usp=sharing
+- Colab notebook: [https://colab.research.google.com/drive/1WI-58Y5j-zdjYIhocpTYJrXbkqUYJoia?usp=sharing](https://colab.research.google.com/drive/1lx4_4VmaE_8vyNSsg8NSaL7Ji1_u_atz?usp=sharing)
   - Notebook is also in this repo as `train-your-own-language-model.ipynb`
 - Student handbook: https://hospitable-cork-52c.notion.site/Language-Modelling-Student-Handbook-aab4a54e6240480dbc8372e9cf7206d2
 - Facilitator handbook: https://hospitable-cork-52c.notion.site/Language-Challenge-Facilitator-Handbook-1147f44fa820478d85a2e18012c6fd1a
