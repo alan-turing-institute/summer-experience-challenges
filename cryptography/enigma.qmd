@@ -1,5 +1,5 @@
 ---
-title: "Enigma"
+title: "Enigma (optional)"
 format: html
 ---
 
@@ -22,7 +22,8 @@ Like Vigenère, Enigma is therefore a *polyalphabetic substitution cipher*: a gi
 
 Since Enigma is a symmetric cipher, the procedure is exactly the same for encrypting a plaintext message, or for decrypting a ciphertext message.
 
-> **Exercise:**  Have a go with the [Enigma emulator](https://www.101computing.net/enigma-machine-emulator/).   Some things to try:
+> **Exercise:**  Have a go with the [Enigma emulator](https://www.101computing.net/enigma-machine-emulator/). Some things to try:
+>
 >  - Set the starting rotors to something (e.g. "A,B,C"), then type out a short message.  Note that after every keypress, the right hand rotor shifts by 1.
 >  - After the end of that message, reset the rotors to the original position, and then type out the ciphertext that you got from the previous step.  Hopefully you should now recover the original text.
 >  - You can also try pressing the same key many times - what do you notice about the output ciphertext?
