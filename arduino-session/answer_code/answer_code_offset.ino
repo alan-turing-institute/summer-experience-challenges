@@ -4,7 +4,7 @@ int sw2 = 11;
 int sw3 = 12;
 int clear_pin = 5;
 int lock_pin = 6;
-int switch_offset = 9;
+int switch_offset = sw0;
 
 void setup() {
   // put your setup code here, to run once:
