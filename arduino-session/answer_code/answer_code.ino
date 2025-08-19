@@ -3,7 +3,7 @@ int sw1 = 10;
 int sw2 = 11;
 int sw3 = 12;
 int clear_pin = 5;
-int lock_pin = 6
+int lock_pin = 6;
 
 void setup() {
   pinMode(sw0, OUTPUT);
@@ -11,7 +11,7 @@ void setup() {
   pinMode(sw2, OUTPUT);
   pinMode(sw3, OUTPUT);
   pinMode(clear_pin, OUTPUT);
-  pinMode(lockpin, INPUT);
+  pinMode(lock_pin, INPUT);
 }
 
 void pressSwitch(int switch_pin){
@@ -23,10 +23,10 @@ void pressSwitch(int switch_pin){
 }
 
 void loop() {
-  for (int first_digit = sw0; first_digit < (sw3+1); first_digit++)
-    for (int second_digit = sw0; second_digit < (sw3+1); second_digit++)
-      for (int third_digit = sw0; third_digit < (sw3+1); third_digit++)
-        for (int forth_digit = sw0; forth_digit < (sw3+1); forth_digit++){
+  for (int first_digit = sw0; first_digit < (sw3+1); first_digit++) {
+    for (int second_digit = sw0; second_digit < (sw3+1); second_digit++) {
+      for (int third_digit = sw0; third_digit < (sw3+1); third_digit++) {
+        for (int forth_digit = sw0; forth_digit < (sw3+1); forth_digit++) {
           pressSwitch(clear_pin);
           pressSwitch(first_digit);
           pressSwitch(second_digit);
