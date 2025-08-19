@@ -56,7 +56,7 @@ This is exactly the same as saying $(a + b) \smod{n} (p + q)$.
 You can use the same strategy to prove statement (2).
 
 > **Optional:** If you have studied proof by induction, try using it to show that
-> for all integers $m > 0$, $(a^m) \smod{n} (p^m)$.
+> for all integers $m > 0$, if $a \smod{n} p$, then $(a^m) \smod{n} (p^m)$.
 
 ## The modulo operator
 
