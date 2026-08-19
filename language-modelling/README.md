@@ -10,6 +10,8 @@ There are some links that'll be useful as we go through the session, we've put t
 - [Prompt Engineering - What's the worst that could happen?](https://simonwillison.net/2023/Apr/14/worst-that-can-happen/)
 - [LLM Password Challenge](https://esl-lewis.github.io/LLM-password-challenge/)
 
+---
+
 To access the materials for part 2 of the LLM Challenge 2026, finetuning a small LLM, head over to this repository:
 
 <div align="center">
