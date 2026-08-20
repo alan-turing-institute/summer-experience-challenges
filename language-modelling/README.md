@@ -9,7 +9,7 @@ There are some links that'll be useful as we go through the session, we've put t
 - [Anthropic best practice for prompt engineering](https://claude.com/blog/best-practices-for-prompt-engineering)
 - [Prompt Engineering - What's the worst that could happen?](https://simonwillison.net/2023/Apr/14/worst-that-can-happen/)
 - [LLM Password Challenge](https://esl-lewis.github.io/LLM-password-challenge/)
-- [prompt airlines - Extension task!](https://promptairlines.com)
+- [Prompt airlines - Extension task!](https://promptairlines.com)
 
 ---
 
